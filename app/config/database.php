@@ -4,9 +4,9 @@
 global $dbConnector;
 
   try {
-    //connecting to the database
+    //connect to the database
     $dbConnector = new PDO("mysql:dbname=" . $_ENV['DB_NAME'] . "; host=" . $_ENV['DB_HOST'] . ":" . $_ENV['DB_PORT'] . "; charset=utf8", $_ENV['DB_LOGIN'],$_ENV['DB_PASSWORD']);
-    //on définit une option de config, ici ATTR_ERRMODE pour contrôler la gestion des erreurs, et ERRMODE_EXCEPTION pour déclencher des exceptions
+    //define a config option, here ATTR_ERRMODE to manage errors and ERRMODE_EXCEPTION for exceptions
     $dbConnector->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
   }
 

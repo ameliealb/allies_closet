@@ -49,11 +49,11 @@ class Route
                 break;
 
             case "createArticle":
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    submitArticle();
-                } else {
-                    showCreateArticle();
-                }
+                showCreateArticle();
+                break;
+
+            case "submitArticle":
+                submitArticle();
                 break;
 
             case "forum":

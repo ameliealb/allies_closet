@@ -50,5 +50,6 @@ function createArticle($data)
         $data['content'],
         $data['status'],
         $data['article_image']
+        
     ]);
 }

@@ -48,6 +48,12 @@ function submitArticle()
         return;
     }
 
+    if (strlen($title) > 200) {
+    $error = "Le titre ne peut pas dépasser 200 caractères.";
+    require RACINE . '/app/views/articles/createArtView.php';
+    return;
+}
+
     //variable initialized as empty in case the admin doesn't put any image
     $article_image = '';
 
