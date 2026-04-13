@@ -536,8 +536,6 @@ header {
   }
 }
 
-/*==========LOGIN/REGISTER PAGE==========*/
-
 #auth-container {
   gap: 30px;
   margin: 80px auto;
@@ -608,4 +606,14 @@ header {
   }
 
 
+}
+
+/*==========INDEX FORUM PAGE==========*/
+
+#forumBlock{
+
+  #mainForumBlock{
+    display: flex;
+  }
+  
 }
