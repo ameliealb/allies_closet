@@ -77,6 +77,7 @@ body h2 {
   font-family: "Playfair Display";
   font-size: 2.5rem;
   margin-top: 280px;
+  font-weight: 400;
 }
 body .underLine {
   height: 1px;
@@ -88,7 +89,6 @@ body .underLineSmall {
   height: 1px;
   background-color: #DAAF50;
   width: 10%;
-  margin: -12px 0 32px 0;
 }
 body .italicBig {
   font-style: italic;
@@ -104,8 +104,14 @@ body .bold {
 body .big {
   font-size: 120%;
 }
+body .gold {
+  color: #DAAF50;
+}
+body .signatureFont {
+  font-family: "Playfair Display";
+}
 body button:hover,
-body a:hover {
+body a:hover, body:hover {
   transition: all 1s ease;
 }
 body input:focus {
@@ -490,7 +496,6 @@ header #navHeader button:hover a {
   text-align: center;
 }
 
-/*==========LOGIN/REGISTER PAGE==========*/
 #auth-container {
   gap: 30px;
   margin: 80px auto;
@@ -553,6 +558,107 @@ header #navHeader button:hover a {
 #quoteCoco h4 {
   margin: -40px 0 0 16px;
   font-size: 3rem;
+}
+
+/*==========INDEX FORUM PAGE==========*/
+#introForum p {
+  color: #FFFFFF;
+  font-family: "Playfair Display";
+  font-size: 2rem;
+}
+#introForum p .big {
+  text-transform: uppercase;
+}
+#introForum .underLineSmall {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+#introForum h3 {
+  color: #FFFFFF;
+  font-family: "Poppins";
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+#forumBlock {
+  display: grid;
+  grid-template-columns: 2.2fr 0.8fr;
+  gap: 80px;
+  padding: 32px 64px;
+}
+#forumBlock p {
+  font-family: "Poppins";
+  font-size: 1.5rem;
+  color: #DAAF50;
+}
+#forumBlock h3 {
+  font-family: "Playfair Display";
+  font-size: 1.2rem;
+  color: #FFFFFF;
+  font-weight: 400;
+}
+#forumBlock h3 span {
+  color: #DAAF50;
+}
+#forumBlock #mainForumBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#forumBlock #mainForumBlock p {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #DAAF50;
+  opacity: 0.6;
+}
+#forumBlock #mainForumBlock .messageCard {
+  position: relative;
+  border: 1px solid #c9a84c;
+  background: #211d0d;
+  background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
+  box-sizing: border-box;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1px;
+}
+#forumBlock #mainForumBlock .messageCard h4 {
+  font-family: "Playfair Display";
+  font-size: 1.2rem;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+#forumBlock #mainForumBlock .messageCard a {
+  font-family: "Poppins";
+  font-size: 0.8rem;
+  color: #DAAF50;
+  text-decoration: none;
+  border-bottom: 0.5px solid rgba(218, 175, 80, 0.4);
+}
+#forumBlock #sidebarForumBlock {
+  position: relative;
+  border: 1px solid #c9a84c;
+  background: #211d0d;
+  background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
+  box-sizing: border-box;
+}
+#forumBlock #sidebarForumBlock p {
+  font-size: 0.8rem;
+  color: #DAAF50;
+  margin-bottom: 32px;
+}
+#forumBlock a {
+  display: inline-block;
+  border: 1px solid #DAAF50;
+  color: #DAAF50;
+  padding: 8px 24px;
+  font-size: 1rem;
+  font-family: "Poppins";
+  text-decoration: none;
+  margin-top: 16px;
+  background: transparent;
+}
+#forumBlock a:hover {
+  background-color: rgba(218, 175, 80, 0.1);
 }
 
 /*# sourceMappingURL=style.css.map */

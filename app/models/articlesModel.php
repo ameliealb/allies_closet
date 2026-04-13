@@ -24,7 +24,7 @@ function searchArticles($keyword)
 
     //requested prepared, keyword has to be founded either in the title or the content, then order the results by date in disorder
     $stmt = $dbConnector->prepare("
-        SELECT * FROM ARTICLE 
+        SELECT * FROM ARTICLE
         WHERE status = 'published'
         AND (title LIKE ? OR content LIKE ?)
         ORDER BY date_of_creation DESC
