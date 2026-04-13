@@ -1,0 +1,18 @@
+{
+    "name": "root/projet-final",
+    "description": "projet final",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Root\\ProjetFinal\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Amelie Bourdin"
+        }
+    ]
+}
