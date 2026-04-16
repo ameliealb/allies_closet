@@ -1,7 +1,6 @@
 <?php
 
-//the user visits the blog, the functions show every single published article 
-function getAllArticles($limit, $offset)
+function getAllArticles($limit, $offset) //the user visits the blog, the function shows every single published article and respects paging 
 {
     global $dbConnector;
 
@@ -18,7 +17,7 @@ function getAllArticles($limit, $offset)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getArticlesByCategory($category, $limit, $offset)
+function getArticlesByCategory($category, $limit, $offset) //the user selects a cat, the function shows every single published article attached with that cat and keeps respecting paging 
 {
     global $dbConnector;
 
@@ -51,7 +50,7 @@ function countArticlesByCategory($category)
     return $result['total'];
 }
 
-function getAllArticlesAdmin()
+function getAllArticlesAdmin() //displays every articles for the dashboard
 {
     global $dbConnector;
 
@@ -63,13 +62,13 @@ function getAllArticlesAdmin()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//the user wants to search article by keyword
-function searchArticles($keyword)
+
+function searchArticles($keyword) //the user wants to search article by keyword
 {
     global $dbConnector;
 
-    //'%'. _ .'%' is used to find a value (keyword) at any position in the field
-    $search = '%' . $keyword . '%';
+    
+    $search = '%' . $keyword . '%'; //'%'. _ .'%' is used to find a value (keyword) at any position in the field
 
     //requested prepared, keyword has to be founded either in the title or the content, then order the results by date in disorder
     $stmt = $dbConnector->prepare("
@@ -78,8 +77,8 @@ function searchArticles($keyword)
         AND (title LIKE ? OR content LIKE ?)
         ORDER BY date_of_creation DESC
     ");
-    //$search is used as both parameters, because the keyword is looked for in both title and content
-    $stmt->execute([$search, $search]);
+    
+    $stmt->execute([$search, $search]); //$search is used as both parameters, because the keyword is looked for in both title and content
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -92,8 +91,8 @@ function getArticleById($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-//admin wants to create an article
-function createArticle($data)
+
+function createArticle($data) //admin wants to create an article
 {
     global $dbConnector;
 
@@ -111,7 +110,7 @@ function createArticle($data)
     ]);
 }
 
-function updateArticle($id, $data)
+function updateArticle($id, $data) //admin wants to make changes on an article
 {
     global $dbConnector;
 
@@ -129,15 +128,24 @@ function updateArticle($id, $data)
     ]);
 }
 
-function deleteArticle($id)
+function deleteArticle($id) //admin wants to delete an article
 {
     global $dbConnector;
 
+    //first deletes likes
+    $stmt = $dbConnector->prepare("DELETE FROM LIKE_ WHERE id_article = ?");
+    $stmt->execute([$id]);
+
+    //second deletes comments
+    $stmt = $dbConnector->prepare("DELETE FROM COMMENTARY WHERE id_article = ?");
+    $stmt->execute([$id]);
+
+    //third deletes the article
     $stmt = $dbConnector->prepare("DELETE FROM ARTICLE WHERE id_article = ?");
     return $stmt->execute([$id]);
 }
 
-function archiveArticle($id)
+function archiveArticle($id) //admin wants to archive an article
 {
     global $dbConnector;
 

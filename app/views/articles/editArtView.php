@@ -9,7 +9,7 @@
         <p class="error"><?php echo htmlspecialchars($error); ?></p>
     <?php endif; ?>
 
-    <form method="POST" action="index.php?action=submitEditArticle" enctype="multipart/form-data">
+    <form method="POST" action="?action=submitEditArticle" enctype="multipart/form-data">
 
         <input type="hidden" name="id_article" value="<?php echo $article['id_article']; ?>">
 

@@ -10,7 +10,7 @@
     <?php endif; ?>
 
     <!-- enctype is absolutely needed to upload an image -->
-    <form method="POST" action="index.php?action=submitArticle" enctype="multipart/form-data">
+    <form method="POST" action="?action=submitArticle" enctype="multipart/form-data">
 
         <input type="text" name="title" placeholder="titre" required>
 

@@ -721,6 +721,121 @@ header {
   }
 }
 
+/*==========CREATE ARTICLE PAGE==========*/
+
+#createArticleView {
+    padding: 4rem 6rem;
+    max-width: 800px;
+    margin: 0 auto;
+
+    .error {
+        font-family: $otherText;
+        font-size: 12px;
+        color: red;
+        margin-bottom: 1rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+
+        input[type="text"] {
+            background-color: lighten($mainBackgroundColor, 3%);
+            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+            color: $thirdlyTextColor;
+            padding: 12px 16px;
+            font-family: $otherText;
+            font-size: 14px;
+            outline: none;
+
+            &::placeholder {
+                color: rgba($thirdlyTextColor, 0.4);
+            }
+
+            &:focus {
+                border-color: $secondaryBackgroundColor;
+            }
+        }
+
+        textarea {
+            background-color: lighten($mainBackgroundColor, 3%);
+            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+            color: $thirdlyTextColor;
+            padding: 12px 16px;
+            font-family: $otherText;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 400px;
+            outline: none;
+
+            &::placeholder {
+                color: rgba($thirdlyTextColor, 0.4);
+            }
+
+            &:focus {
+                border-color: $secondaryBackgroundColor;
+            }
+        }
+
+        label {
+            font-family: $otherText;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: $mainTextColor;
+            opacity: 0.7;
+            margin-bottom: -0.8rem;
+        }
+
+        select {
+            background-color: lighten($mainBackgroundColor, 3%);
+            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+            color: $thirdlyTextColor;
+            padding: 10px 16px;
+            font-family: $otherText;
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+
+            option {
+                background-color: $mainBackgroundColor;
+                color: $thirdlyTextColor;
+            }
+
+            &:focus {
+                border-color: $secondaryBackgroundColor;
+            }
+        }
+
+        input[type="file"] {
+            font-family: $otherText;
+            font-size: 12px;
+            color: $thirdlyTextColor;
+            cursor: pointer;
+        }
+
+        button {
+            display: block;
+            align-self: flex-start;
+            border: 1px solid $secondaryBackgroundColor;
+            color: $secondaryTextColor;
+            padding: 10px 28px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: transparent;
+            cursor: pointer;
+            font-family: $otherText;
+            margin-top: 0.5rem;
+
+            &:hover {
+                background-color: rgba($secondaryBackgroundColor, 0.1);
+            }
+        }
+    }
+}
+
 /*==========EDIT ARTICLE PAGE==========*/
 
 #editArticleBlock {

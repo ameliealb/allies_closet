@@ -37,7 +37,7 @@
                         </a>
                     </p>
                     <p class="commentDate"><?php echo htmlspecialchars($comment['date_of_sending']); ?></p>
-                    <p class="commentContent"><?php echo nl2br(htmlspecialchars($article['content'])); ?></p>
+                    <p class="commentContent"><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
 
                     <?php if (isset($_SESSION['user']) && ($_SESSION['user']['id_user'] == $comment['id_user'] || $_SESSION['user']['role'] === 'admin')): ?>
                         <a href="index.php?action=deleteComment&id_comment=<?php echo $comment['id_comment']; ?>&id_article=<?php echo $article['id_article']; ?>"

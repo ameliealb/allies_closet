@@ -1,27 +1,29 @@
 <?php
 
-function showBlog()
+
+function showBlog() //displays blog and paging
 {
-    $limit   = 10;
-    $page    = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $offset  = ($page - 1) * $limit;
+    $limit = 10;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset = ($page - 1) * $limit;
 
     if (!empty($_GET['search'])) {
-        $keyword    = trim($_GET['search']);
-        $articles   = searchArticles($keyword);
+        $keyword = trim($_GET['search']);
+        $articles = searchArticles($keyword);
         $totalPages = 1;
     } else {
-        $total      = countArticles();
+        $total = countArticles();
         $totalPages = ceil($total / $limit);
-        $articles   = getAllArticles($limit, $offset);
+        $articles = getAllArticles($limit, $offset);
     }
 
     require RACINE . '/app/views/articles/indexArtView.php';
 }
 
-function showCategory()
+
+function showCategory() //displays catogories, users are able to look for articles having a specific cat attached by clicking on the keyword
 {
-    $category   = $_GET['category'];
+    $category = $_GET['category'];
     $categories = ['mode', 'maquillage', 'chaussures', 'cheveux', 'skincare', 'lifestyle'];
 
     if (!in_array($category, $categories)) {
@@ -29,22 +31,24 @@ function showCategory()
         exit;
     }
 
-    $limit      = 10;
-    $page       = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $offset     = ($page - 1) * $limit;
-    $total      = countArticlesByCategory($category);
+    //paging
+    $limit = 10;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset = ($page - 1) * $limit;
+    $total = countArticlesByCategory($category);
     $totalPages = ceil($total / $limit);
-    $articles   = getArticlesByCategory($category, $limit, $offset);
+    $articles = getArticlesByCategory($category, $limit, $offset);
 
     require RACINE . '/app/views/articles/indexArtView.php';
 }
 
-function showArticle()
+
+function showArticle() //displays article's page
 {
-    $id       = $_GET['id'];
-    $article  = getArticleById($id);
+    $id = $_GET['id'];
+    $article = getArticleById($id);
     $comments = getCommentsByArticleId($id);
-    $likes    = countLikesArticle($id);
+    $likes = countLikesArticle($id);
     $hasLiked = isset($_SESSION['user']) ? hasLikedArticle($_SESSION['user']['id_user'], $id) : false;
 
     if (!$article) {
@@ -55,7 +59,8 @@ function showArticle()
     require RACINE . '/app/views/articles/showArtView.php';
 }
 
-function showCreateArticle()
+
+function showCreateArticle() //displays creation article page, only for the admin
 {
     //if the user is NOT logged in OR the user hasn't 'admin' as role, the function leads it to the login page
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
@@ -63,25 +68,28 @@ function showCreateArticle()
         exit;
     }
 
-    //if the user is logged in AND has 'admin' as role, the function leads the admin to the article creation page 
-    require RACINE . '/app/views/articles/createArtView.php';
+
+    require RACINE . '/app/views/articles/createArtView.php'; //if the user is logged in AND has 'admin' as role, the function leads the admin to the article creation page 
 }
 
 
 function submitArticle()
 {
-    //if the user is NOT logged in OR the user hasn't 'admin' as role, the function leads it to the login page
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         header('Location: /projet-final/index.php?action=loginPage');
         exit;
     }
 
-    //getting the data from the form in createArtView.php and trimming strings to avoid any errors
-    $title   = trim($_POST['title']);
-    $content = trim($_POST['content']);
-    $status  = $_POST['status'];
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: /projet-final/index.php?action=dashboard');
+        exit;
+    }
 
-    //both title and content are required
+    $title   = trim($_POST['title'] ?? '');
+    $content = trim($_POST['content'] ?? '');
+    $status  = $_POST['status'] ?? 'draft';
+
+
     if (empty($title) || empty($content)) {
         $error = "Le titre et le contenu sont obligatoires.";
         require RACINE . '/app/views/articles/createArtView.php';
@@ -94,23 +102,17 @@ function submitArticle()
         return;
     }
 
-    //variable initialized as empty in case the admin doesn't put any image
-    $article_image = '';
 
-    //if an image is selected by the admin
+    $article_image = ''; //variable initialized as empty in case the admin doesn't put any image
+
     if (!empty($_FILES['article_image']['name'])) {
-        //path used by the server
-        $uploadDir  = RACINE . '/app/public/images/';
-
-        /*gives an unique ID to the image and stick it's "real" name to it,
-        ex : 4b3403665fea6_image1.png
-        */
         $fileName = uniqid() . '_' . basename($_FILES['article_image']['name']);
-        $uploadPath = $uploadDir . $fileName;
+        $destPath = RACINE . '/app/public/images/' . $fileName;
+        $fileContent = file_get_contents($_FILES['article_image']['tmp_name']);
 
-        move_uploaded_file($_FILES['article_image']['tmp_name'], $uploadPath);
-        //path used by the web browser
-        $article_image = '/projet-final/app/public/images/' . $fileName;
+        if (file_put_contents($destPath, $fileContent) !== false) {
+            $article_image = BASE_URL . '/app/public/images/' . $fileName;
+        }
     }
 
     $data = [
@@ -122,13 +124,14 @@ function submitArticle()
         'article_image' => $article_image
     ];
 
-    //creating a new article, createArticle() defined in articlesModel.php and it parameter $data defined above
-    createArticle($data);
 
-    //then the admin is leaded to it's dashboard
-    header('Location: /projet-final/index.php?action=blog');
+    createArticle($data); //creating a new article, createArticle() defined in articlesModel.php and it parameter $data defined above
+
+
+    header('Location: /projet-final/index.php?action=blog'); //then the admin is leaded to it's dashboard
     exit;
 }
+
 
 function showEditArticle()
 {
@@ -136,6 +139,8 @@ function showEditArticle()
         header('Location: /projet-final/index.php?action=loginPage');
         exit;
     }
+
+    // ← pas de check REQUEST_METHOD ici, c'est un GET normal
 
     $id = $_GET['id'];
     $article = getArticleById($id);
@@ -155,13 +160,23 @@ function submitEditArticle()
         exit;
     }
 
-    $id = $_POST['id_article'];
-    $title = trim($_POST['title']);
-    $content = trim($_POST['content']);
-    $status = $_POST['status'];
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: /projet-final/index.php?action=dashboard');
+        exit;
+    }
+
+    $id = $_POST['id_article'] ?? null;
+    $title = trim($_POST['title'] ?? '');
+    $content = trim($_POST['content'] ?? '');
+    $status = $_POST['status'] ?? 'draft';
+
+    if (!$id) {
+        header('Location: /projet-final/index.php?action=dashboard');
+        exit;
+    }
 
     if (empty($title) || empty($content)) {
-        $error   = "Le titre et le contenu sont obligatoires.";
+        $error = "Le titre et le contenu sont obligatoires.";
         $article = getArticleById($id);
         require RACINE . '/app/views/articles/editArtView.php';
         return;
@@ -172,8 +187,12 @@ function submitEditArticle()
 
     if (!empty($_FILES['article_image']['name'])) {
         $fileName = uniqid() . '_' . basename($_FILES['article_image']['name']);
-        move_uploaded_file($_FILES['article_image']['tmp_name'], RACINE . '/app/public/images/' . $fileName);
-        $article_image = '/projet-final/app/public/images/' . $fileName;
+        $destPath = RACINE . '/app/public/images/' . $fileName;
+        $fileContent = file_get_contents($_FILES['article_image']['tmp_name']);
+
+        if (file_put_contents($destPath, $fileContent) !== false) {
+            $article_image = BASE_URL . '/app/public/images/' . $fileName;
+        }
     }
 
     $data = [
@@ -188,6 +207,7 @@ function submitEditArticle()
     exit;
 }
 
+//allows the admin to delete an article
 function submitDeleteArticle()
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
@@ -201,21 +221,23 @@ function submitDeleteArticle()
     exit;
 }
 
-function submitArchiveArticle()
+
+function submitArchiveArticle() //allows the admin to archive an article
 {
-    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') { //allowed only if admin
         header('Location: /projet-final/index.php?action=loginPage');
         exit;
     }
 
     $id = $_GET['id'];
-    archiveArticle($id); // ← appelle la fonction du model
-    header('Location: /projet-final/index.php?action=dashboard');
+
+    archiveArticle($id); //calls for the model function 
+    header('Location: /projet-final/index.php?action=dashboard'); //then redirects to the dashboard page
     exit;
 }
 
 
-function toggleLikeArticle()
+function toggleLikeArticle() //allows users to like or unlike an article
 {
     if (!isset($_SESSION['user'])) {
         header('Location: /projet-final/index.php?action=loginPage');
@@ -223,7 +245,7 @@ function toggleLikeArticle()
     }
 
     $id_article = $_GET['id_article'];
-    $id_user    = $_SESSION['user']['id_user'];
+    $id_user = $_SESSION['user']['id_user'];
 
     if (hasLikedArticle($id_user, $id_article)) {
         unlikeArticle($id_user, $id_article);
