@@ -1,17 +1,27 @@
 <?php require RACINE . '/app/views/layouts/header.php'; ?>
 
-<div id="dashboardAdmin">
+<div id="dashboard-container">
 
-    <h2>bienvenue, <?php echo htmlspecialchars($_SESSION['user']['username']); ?></h2>
-    <div class="underLine">&nbsp</div> 
-    
-    <nav id="dashboardMenu">
-        <ul>
-            <a href="index.php?action=createArticle"><img src="<?php echo BASE_URL; ?>/app/public/images/img_write_articles.webp" alt="admin_write"><li>créer un article</li></a>
-            <a href="index.php?action=manageArticles"><img src="<?php echo BASE_URL; ?>/app/public/images/img_manage_articles.webp" alt="admin_manage_article"><li>gérer les articles</li></a>
-            <a href="index.php?action=manageUsers"><img src="<?php echo BASE_URL; ?>/app/public/images/img_manage_users.webp" alt="admin_manage_user"><li>gérer les membres</li></a>
-        </ul>
-    </nav>
+    <h2>bonjour <?php echo htmlspecialchars($_SESSION['user']['username']); ?></h2>
+
+    <section id="manageArticles">
+        <h3>mes articles</h3>
+
+        <?php
+        $articles = getAllArticlesAdmin();
+        foreach ($articles as $article):
+        ?>
+            <div class="articleRow">
+                <p><?php echo htmlspecialchars($article['title']); ?></p>
+                <p><?php echo htmlspecialchars($article['status']); ?></p>
+                <a href="index.php?action=showEditArticle&id=<?php echo $article['id_article']; ?>">modifier</a>
+                <a href="index.php?action=archiveArticle&id=<?php echo $article['id_article']; ?>">archiver</a>
+                <a href="index.php?action=deleteArticle&id=<?php echo $article['id_article']; ?>" onclick="return confirm('Supprimer cet article ?')">supprimer</a>
+            </div>
+        <?php endforeach; ?>
+
+        <a href="index.php?action=createArticle">+ créer un article</a>
+    </section>
 
 </div>
 

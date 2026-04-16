@@ -577,49 +577,181 @@ header #navHeader button:hover a {
 }
 
 /*==========ADMIN DASHBOARD PAGE==========*/
-#dashboardAdmin .underLine {
-  width: 30%;
+#dashboard-container {
+  padding: 4rem 6rem;
 }
-#dashboardAdmin #dashboardMenu {
-  width: 90%;
-  margin: 0 auto;
+#dashboard-container #manageArticles {
+  margin-top: 3rem;
 }
-#dashboardAdmin #dashboardMenu ul {
-  list-style-type: none;
+#dashboard-container #manageArticles h3 {
+  font-family: "Playfair Display";
+  font-size: 24px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0 0 1.5rem;
+  letter-spacing: 1px;
+}
+#dashboard-container #manageArticles .articleRow {
   display: flex;
-  gap: 2%;
+  align-items: center;
+  gap: 2rem;
+  border: 0.5px solid rgba(218, 175, 80, 0.3);
+  padding: 1.2rem 2rem;
+  margin-bottom: 1px;
+  background-color: rgb(5.1, 5.1, 5.1);
 }
-#dashboardAdmin #dashboardMenu ul a {
-  text-decoration: none;
-  color: #DAAF50;
+#dashboard-container #manageArticles .articleRow:hover {
+  border-color: rgba(218, 175, 80, 0.6);
+}
+#dashboard-container #manageArticles .articleRow p {
   font-family: "Poppins";
-  width: 32%;
-  height: 300px;
-  border: 1px solid #DAAF50;
-  display: block;
-  position: relative;
-  overflow: hidden;
+  margin: 0;
 }
-#dashboardAdmin #dashboardMenu ul a img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+#dashboard-container #manageArticles .articleRow p:first-of-type {
+  font-size: 15px;
+  color: #FFFFFF;
+  flex: 1;
 }
-#dashboardAdmin #dashboardMenu ul a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 60%);
-}
-#dashboardAdmin #dashboardMenu ul a li {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  z-index: 1;
+#dashboard-container #manageArticles .articleRow p:last-of-type {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: #DAAF50;
-  font-size: 0.95rem;
+  opacity: 0.6;
+}
+#dashboard-container #manageArticles .articleRow a {
+  font-family: "Poppins";
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 16px;
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
+  color: #DAAF50;
+  white-space: nowrap;
+}
+#dashboard-container #manageArticles .articleRow a:hover {
+  background-color: rgba(218, 175, 80, 0.1);
+}
+#dashboard-container #manageArticles .articleRow a:last-of-type {
+  border-color: rgba(255, 0, 0, 0.4);
+  color: #ff6666;
+}
+#dashboard-container #manageArticles .articleRow a:last-of-type:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+#dashboard-container #manageArticles > a {
+  display: inline-block;
+  margin-top: 2rem;
+  border: 1px solid #DAAF50;
+  color: #000000;
+  padding: 10px 28px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: "Poppins";
+  background: transparent;
+}
+#dashboard-container #manageArticles > a:hover {
+  background-color: rgba(218, 175, 80, 0.1);
+}
+
+/*==========EDIT ARTICLE PAGE==========*/
+#editArticleBlock {
+  padding: 4rem 6rem;
+}
+#editArticleBlock h1 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: #DAAF50;
+  letter-spacing: 2px;
+  margin: 0 0 0.5rem;
+}
+#editArticleBlock .underLine {
+  height: 1px;
+  background-color: #DAAF50;
+  margin: 0 0 3rem;
+}
+#editArticleBlock .error {
+  font-family: "Poppins";
+  font-size: 12px;
+  color: red;
+  margin-bottom: 1rem;
+}
+#editArticleBlock form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+}
+#editArticleBlock form label {
+  font-family: "Poppins";
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #DAAF50;
+  opacity: 0.7;
+  margin-bottom: -0.5rem;
+}
+#editArticleBlock form input[type=text],
+#editArticleBlock form select {
+  background-color: rgb(7.65, 7.65, 7.65);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
+  color: #FFFFFF;
+  padding: 10px 16px;
+  font-family: "Poppins";
+  font-size: 13px;
+  outline: none;
+}
+#editArticleBlock form input[type=text]:focus,
+#editArticleBlock form select:focus {
+  border-color: #DAAF50;
+}
+#editArticleBlock form textarea {
+  background-color: rgb(7.65, 7.65, 7.65);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
+  color: #FFFFFF;
+  padding: 12px 16px;
+  font-family: "Poppins";
+  font-size: 13px;
+  resize: vertical;
+  min-height: 300px;
+  outline: none;
+}
+#editArticleBlock form textarea:focus {
+  border-color: #DAAF50;
+}
+#editArticleBlock form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#editArticleBlock form img {
+  width: 200px;
+  height: 130px;
+  object-fit: cover;
+}
+#editArticleBlock form input[type=file] {
+  font-family: "Poppins";
+  font-size: 12px;
+  color: #FFFFFF;
+}
+#editArticleBlock form button {
+  display: block;
+  align-self: flex-start;
+  border: 1px solid #DAAF50;
+  color: #000000;
+  padding: 10px 28px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: transparent;
+  cursor: pointer;
+  font-family: "Poppins";
+  margin-top: 1rem;
+}
+#editArticleBlock form button:hover {
+  background-color: rgba(218, 175, 80, 0.1);
 }
 
 /*==========LOGIN/REGISTER PAGE==========*/
@@ -791,6 +923,177 @@ header #navHeader button:hover a {
 }
 #blogBlock .articleCard .articleContent a:hover {
   background-color: rgba(218, 175, 80, 0.1);
+}
+
+/*==========FOR EACH ARTICLE PAGE==========*/
+#showArticleBlock {
+  padding: 4rem 6rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+#showArticleBlock > p {
+  font-family: "Poppins";
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #DAAF50;
+  opacity: 0.6;
+  margin: 0 0 2rem;
+}
+#showArticleBlock > img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 3rem;
+}
+#showArticleBlock #articleContent {
+  border-left: 2px solid rgba(218, 175, 80, 0.5);
+  padding: 0 0 0 2rem;
+  margin-bottom: 4rem;
+}
+#showArticleBlock #articleContent p {
+  font-family: "Poppins";
+  font-size: 16px;
+  line-height: 2;
+  color: #FFFFFF;
+  margin: 0;
+}
+#showArticleBlock #commentsBlock {
+  border-top: 0.5px solid rgba(218, 175, 80, 0.3);
+  padding-top: 3rem;
+}
+#showArticleBlock #commentsBlock h2 {
+  font-family: "Playfair Display";
+  font-size: 28px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0 0 2rem;
+  letter-spacing: 1px;
+}
+#showArticleBlock #commentsBlock > p {
+  font-family: "Poppins";
+  font-size: 13px;
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+#showArticleBlock #commentsBlock .commentCard {
+  border: 0.5px solid rgba(218, 175, 80, 0.2);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1px;
+  background-color: rgb(5.1, 5.1, 5.1);
+}
+#showArticleBlock #commentsBlock .commentCard:hover {
+  border-color: rgba(218, 175, 80, 0.5);
+}
+#showArticleBlock #commentsBlock .commentCard .commentAuthor {
+  font-family: "Poppins";
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 0.3rem;
+}
+#showArticleBlock #commentsBlock .commentCard .commentAuthor a {
+  color: #DAAF50;
+  text-decoration: none;
+}
+#showArticleBlock #commentsBlock .commentCard .commentAuthor a:hover {
+  opacity: 0.7;
+}
+#showArticleBlock #commentsBlock .commentCard .commentDate {
+  font-family: "Poppins";
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #DAAF50;
+  opacity: 0.5;
+  margin: 0 0 0.8rem;
+  text-transform: uppercase;
+}
+#showArticleBlock #commentsBlock .commentCard .commentContent {
+  font-family: "Poppins";
+  font-size: 14px;
+  line-height: 1.8;
+  color: #FFFFFF;
+  margin: 0 0 1rem;
+}
+#showArticleBlock #commentsBlock .commentCard a {
+  font-family: "Poppins";
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff6666;
+  text-decoration: none;
+  border-bottom: 0.5px solid rgba(255, 0, 0, 0.3);
+}
+#showArticleBlock #commentsBlock .commentCard a:hover {
+  border-color: red;
+}
+#showArticleBlock #commentsBlock #commentForm {
+  margin-top: 3rem;
+  border-top: 0.5px solid rgba(218, 175, 80, 0.2);
+  padding-top: 2rem;
+}
+#showArticleBlock #commentsBlock #commentForm h3 {
+  font-family: "Playfair Display";
+  font-size: 22px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0 0 1.5rem;
+}
+#showArticleBlock #commentsBlock #commentForm .error {
+  font-family: "Poppins";
+  font-size: 12px;
+  color: red;
+  margin-bottom: 1rem;
+}
+#showArticleBlock #commentsBlock #commentForm textarea {
+  width: 100%;
+  background-color: rgb(7.65, 7.65, 7.65);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
+  color: #FFFFFF;
+  padding: 12px 16px;
+  font-family: "Poppins";
+  font-size: 13px;
+  resize: vertical;
+  min-height: 120px;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  outline: none;
+}
+#showArticleBlock #commentsBlock #commentForm textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#showArticleBlock #commentsBlock #commentForm textarea:focus {
+  border-color: #DAAF50;
+}
+#showArticleBlock #commentsBlock #commentForm button {
+  display: block;
+  border: 1px solid #DAAF50;
+  color: #000000;
+  padding: 10px 28px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: transparent;
+  cursor: pointer;
+  font-family: "Poppins";
+}
+#showArticleBlock #commentsBlock #commentForm button:hover {
+  background-color: rgba(218, 175, 80, 0.1);
+}
+#showArticleBlock #commentsBlock > p:last-of-type {
+  margin-top: 2rem;
+  font-family: "Poppins";
+  font-size: 12px;
+  color: #DAAF50;
+  opacity: 0.6;
+}
+#showArticleBlock #commentsBlock > p:last-of-type a {
+  color: #DAAF50;
+  text-decoration: underline;
+}
+#showArticleBlock #commentsBlock > p:last-of-type a:hover {
+  opacity: 1;
 }
 
 /*====================FORUM====================*/

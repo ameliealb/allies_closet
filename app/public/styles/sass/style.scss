@@ -628,60 +628,209 @@ header {
 }
 
 /*==========ADMIN DASHBOARD PAGE==========*/
+#dashboard-container {
+  padding: 4rem 6rem;
 
-#dashboardAdmin {
-  .underLine {
-    width: 30%;
-  }
+  #manageArticles {
+    margin-top: 3rem;
 
-  #dashboardMenu {
-    width: 90%;
-    margin: 0 auto;
+    h3 {
+      font-family: $secondaryTitles;
+      font-size: 24px;
+      font-weight: 400;
+      color: $thirdlyTextColor;
+      margin: 0 0 1.5rem;
+      letter-spacing: 1px;
+    }
 
-    ul {
-      list-style-type: none;
+    .articleRow {
       display: flex;
-      gap: 2%;
+      align-items: center;
+      gap: 2rem;
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+      padding: 1.2rem 2rem;
+      margin-bottom: 1px;
+      background-color: lighten($mainBackgroundColor, 2%);
+
+      &:hover {
+        border-color: rgba($secondaryBackgroundColor, 0.6);
+      }
+
+      p {
+        font-family: $otherText;
+        margin: 0;
+
+        &:first-of-type {
+          font-size: 15px;
+          color: $thirdlyTextColor;
+          flex: 1;
+        }
+
+        &:last-of-type {
+          font-size: 10px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: $mainTextColor;
+          opacity: 0.6;
+        }
+      }
 
       a {
-        text-decoration: none;
-        color: $mainTextColor;
         font-family: $otherText;
-        width: 32%;
-        height: 300px;
-        border: 1px solid $secondaryBackgroundColor;
-        display: block;
-        position: relative;
-        overflow: hidden;
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 6px 16px;
+        border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+        color: $mainTextColor;
+        white-space: nowrap;
 
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
+        &:hover {
+          background-color: rgba($secondaryBackgroundColor, 0.1);
         }
 
-        &::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
-        }
+        &:last-of-type {
+          border-color: rgba(red, 0.4);
+          color: lighten(red, 20%);
 
-        li {
-          position: absolute;
-          bottom: 16px;
-          left: 16px;
-          right: 16px;
-          z-index: 1;
-          color: $mainTextColor;
-          font-size: 0.95rem;
+          &:hover {
+            background-color: rgba(red, 0.1);
+          }
         }
+      }
+    }
+
+    &>a {
+      display: inline-block;
+      margin-top: 2rem;
+      border: 1px solid $secondaryBackgroundColor;
+      color: $secondaryTextColor;
+      padding: 10px 28px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: $otherText;
+      background: transparent;
+
+      &:hover {
+        background-color: rgba($secondaryBackgroundColor, 0.1);
       }
     }
   }
 }
 
+/*==========EDIT ARTICLE PAGE==========*/
+
+#editArticleBlock {
+    padding: 4rem 6rem;
+
+    h1 {
+        font-family: $mainTitleFont;
+        font-size: 48px;
+        font-weight: 400;
+        color: $mainTextColor;
+        letter-spacing: 2px;
+        margin: 0 0 0.5rem;
+    }
+
+    .underLine {
+        height: 1px;
+        background-color: $secondaryBackgroundColor;
+        margin: 0 0 3rem;
+    }
+
+    .error {
+        font-family: $otherText;
+        font-size: 12px;
+        color: red;
+        margin-bottom: 1rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 800px;
+
+        label {
+            font-family: $otherText;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: $mainTextColor;
+            opacity: 0.7;
+            margin-bottom: -0.5rem;
+        }
+
+        input[type="text"],
+        select {
+            background-color: lighten($mainBackgroundColor, 3%);
+            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+            color: $thirdlyTextColor;
+            padding: 10px 16px;
+            font-family: $otherText;
+            font-size: 13px;
+            outline: none;
+
+            &:focus {
+                border-color: $secondaryBackgroundColor;
+            }
+        }
+
+        textarea {
+            background-color: lighten($mainBackgroundColor, 3%);
+            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+            color: $thirdlyTextColor;
+            padding: 12px 16px;
+            font-family: $otherText;
+            font-size: 13px;
+            resize: vertical;
+            min-height: 300px;
+            outline: none;
+
+            &:focus {
+                border-color: $secondaryBackgroundColor;
+            }
+
+            &::placeholder {
+                color: rgba($thirdlyTextColor, 0.4);
+            }
+        }
+
+        img {
+            width: 200px;
+            height: 130px;
+            object-fit: cover;
+        }
+
+        input[type="file"] {
+            font-family: $otherText;
+            font-size: 12px;
+            color: $thirdlyTextColor;
+        }
+
+        button {
+            display: block;
+            align-self: flex-start;
+            border: 1px solid $secondaryBackgroundColor;
+            color: $secondaryTextColor;
+            padding: 10px 28px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: transparent;
+            cursor: pointer;
+            font-family: $otherText;
+            margin-top: 1rem;
+
+            &:hover {
+                background-color: rgba($secondaryBackgroundColor, 0.1);
+            }
+        }
+    }
+}
 
 /*==========LOGIN/REGISTER PAGE==========*/
 
@@ -881,6 +1030,205 @@ header {
   }
 }
 
+/*==========FOR EACH ARTICLE PAGE==========*/
+
+#showArticleBlock {
+    padding: 4rem 6rem;
+    max-width: 900px;
+    margin: 0 auto;
+
+    & > p {
+        font-family: $otherText;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: $mainTextColor;
+        opacity: 0.6;
+        margin: 0 0 2rem;
+    }
+
+    & > img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 3rem;
+    }
+
+    #articleContent {
+        border-left: 2px solid rgba($secondaryBackgroundColor, 0.5);
+        padding: 0 0 0 2rem;
+        margin-bottom: 4rem;
+
+        p {
+            font-family: $otherText;
+            font-size: 16px;
+            line-height: 2;
+            color: $thirdlyTextColor;
+            margin: 0;
+        }
+    }
+
+    #commentsBlock {
+        border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+        padding-top: 3rem;
+
+        h2 {
+            font-family: $secondaryTitles;
+            font-size: 28px;
+            font-weight: 400;
+            color: $thirdlyTextColor;
+            margin: 0 0 2rem;
+            letter-spacing: 1px;
+        }
+
+        & > p {
+            font-family: $otherText;
+            font-size: 13px;
+            color: $thirdlyTextColor;
+            opacity: 0.5;
+        }
+
+        .commentCard {
+            border: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1px;
+            background-color: lighten($mainBackgroundColor, 2%);
+
+            &:hover {
+                border-color: rgba($secondaryBackgroundColor, 0.5);
+            }
+
+            .commentAuthor {
+                font-family: $otherText;
+                font-size: 10px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                margin: 0 0 0.3rem;
+
+                a {
+                    color: $mainTextColor;
+                    text-decoration: none;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+            }
+
+            .commentDate {
+                font-family: $otherText;
+                font-size: 10px;
+                letter-spacing: 1px;
+                color: $mainTextColor;
+                opacity: 0.5;
+                margin: 0 0 0.8rem;
+                text-transform: uppercase;
+            }
+
+            .commentContent {
+                font-family: $otherText;
+                font-size: 14px;
+                line-height: 1.8;
+                color: $thirdlyTextColor;
+                margin: 0 0 1rem;
+            }
+
+            a {
+                font-family: $otherText;
+                font-size: 9px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: lighten(red, 20%);
+                text-decoration: none;
+                border-bottom: 0.5px solid rgba(red, 0.3);
+
+                &:hover {
+                    border-color: red;
+                }
+            }
+        }
+
+        #commentForm {
+            margin-top: 3rem;
+            border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
+            padding-top: 2rem;
+
+            h3 {
+                font-family: $secondaryTitles;
+                font-size: 22px;
+                font-weight: 400;
+                color: $thirdlyTextColor;
+                margin: 0 0 1.5rem;
+            }
+
+            .error {
+                font-family: $otherText;
+                font-size: 12px;
+                color: red;
+                margin-bottom: 1rem;
+            }
+
+            textarea {
+                width: 100%;
+                background-color: lighten($mainBackgroundColor, 3%);
+                border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+                color: $thirdlyTextColor;
+                padding: 12px 16px;
+                font-family: $otherText;
+                font-size: 13px;
+                resize: vertical;
+                min-height: 120px;
+                box-sizing: border-box;
+                margin-bottom: 1rem;
+                outline: none;
+
+                &::placeholder {
+                    color: rgba($thirdlyTextColor, 0.4);
+                }
+
+                &:focus {
+                    border-color: $secondaryBackgroundColor;
+                }
+            }
+
+            button {
+                display: block;
+                border: 1px solid $secondaryBackgroundColor;
+                color: $secondaryTextColor;
+                padding: 10px 28px;
+                font-size: 11px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                background: transparent;
+                cursor: pointer;
+                font-family: $otherText;
+
+                &:hover {
+                    background-color: rgba($secondaryBackgroundColor, 0.1);
+                }
+            }
+        }
+
+        & > p:last-of-type {
+            margin-top: 2rem;
+            font-family: $otherText;
+            font-size: 12px;
+            color: $mainTextColor;
+            opacity: 0.6;
+
+            a {
+                color: $mainTextColor;
+                text-decoration: underline;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
 /*====================FORUM====================*/
 
 /*==========INDEX FORUM PAGE==========*/
@@ -965,10 +1313,10 @@ header {
         color: $thirdlyTextColor;
         font-size: 1rem;
 
-        a{
+        a {
           text-decoration: none;
           color: $thirdlyTextColor;
-          font-weight:800;
+          font-weight: 800;
         }
       }
 
@@ -1387,9 +1735,9 @@ header {
 // ══════════════════════════════════════════════
 // PAGE À PROPOS
 // ══════════════════════════════════════════════
- 
+
 #aboutPage {
- 
+
   // ── Hero ──────────────────────────────────
   .about-hero {
     position: relative;
@@ -1397,14 +1745,14 @@ header {
     grid-template-columns: 1fr 1fr;
     min-height: 90vh;
     overflow: hidden;
- 
+
     &__bg {
       position: absolute;
       inset: 0;
       background: radial-gradient(ellipse at 30% 50%, rgba($secondaryBackgroundColor, 0.15) 0%, transparent 60%);
       pointer-events: none;
     }
- 
+
     &__content {
       display: flex;
       flex-direction: column;
@@ -1413,7 +1761,7 @@ header {
       z-index: 1;
       animation: fadeUp 0.8s ease both;
     }
- 
+
     &__eyebrow {
       font-family: $otherText;
       font-size: 0.8rem;
@@ -1424,7 +1772,7 @@ header {
       display: flex;
       align-items: center;
       gap: 12px;
- 
+
       &::before {
         content: "";
         display: inline-block;
@@ -1433,7 +1781,7 @@ header {
         background: $mainTextColor;
       }
     }
- 
+
     &__title {
       font-family: $secondaryTitles;
       font-size: clamp(2.8rem, 5vw, 4.5rem);
@@ -1441,23 +1789,23 @@ header {
       color: $mainTextColor;
       line-height: 1.1;
       margin: 0 0 2.5rem;
- 
+
       em {
         color: $mainTextColor;
         font-style: italic;
       }
     }
- 
+
     &__line {
       width: 60px;
       height: 2px;
       background: $mainTextColor;
     }
- 
+
     &__image-wrap {
       position: relative;
       overflow: hidden;
- 
+
       &::before {
         content: "";
         position: absolute;
@@ -1467,7 +1815,7 @@ header {
         pointer-events: none;
       }
     }
- 
+
     &__image {
       width: 100%;
       height: 100%;
@@ -1476,13 +1824,13 @@ header {
       display: block;
       filter: grayscale(20%);
       transition: filter 0.5s ease;
- 
+
       &:hover {
         filter: grayscale(0%);
       }
     }
   }
- 
+
   // ── Intro ─────────────────────────────────
   .about-intro {
     display: grid;
@@ -1491,7 +1839,7 @@ header {
     padding: 6rem 8vw;
     border-top: 1px solid rgba($mainTextColor, 0.15);
     animation: fadeUp 0.8s 0.2s ease both;
- 
+
     &__number {
       font-family: $mainTitleFont;
       font-size: 5rem;
@@ -1500,7 +1848,7 @@ header {
       line-height: 1;
       padding-top: 0.5rem;
     }
- 
+
     &__title {
       font-family: $mainTitleFont;
       font-size: 1.8rem;
@@ -1509,7 +1857,7 @@ header {
       margin: 0 0 1.5rem;
       letter-spacing: 0.05em;
     }
- 
+
     p {
       font-family: $otherText;
       font-size: 1.05rem;
@@ -1517,27 +1865,27 @@ header {
       line-height: 1.8;
       margin: 0 0 1rem;
       max-width: 600px;
- 
+
       strong {
         color: $mainTextColor;
         font-weight: 600;
       }
     }
   }
- 
+
   // ── Valeurs ───────────────────────────────
   .about-values {
     padding: 5rem 8vw;
     background: rgba($secondaryBackgroundColor, 0.04);
     border-top: 1px solid rgba($mainTextColor, 0.1);
     border-bottom: 1px solid rgba($mainTextColor, 0.1);
- 
+
     &__header {
       display: flex;
       align-items: center;
       gap: 2rem;
       margin-bottom: 4rem;
- 
+
       h2 {
         font-family: $mainTitleFont;
         font-size: 1.4rem;
@@ -1549,29 +1897,29 @@ header {
         margin: 0;
       }
     }
- 
+
     &__line {
       flex: 1;
       height: 1px;
       background: rgba($mainTextColor, 0.25);
     }
- 
+
     &__grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
- 
+
     &__card {
       padding: 3rem 2.5rem;
       border: 1px solid rgba($mainTextColor, 0.12);
       transition: border-color 0.3s ease, background 0.3s ease;
- 
+
       &:hover {
         border-color: rgba($mainTextColor, 0.5);
         background: rgba($mainTextColor, 0.03);
       }
- 
+
       h3 {
         font-family: $mainTitleFont;
         font-size: 1.2rem;
@@ -1580,7 +1928,7 @@ header {
         letter-spacing: 0.08em;
         margin: 1rem 0 0.8rem;
       }
- 
+
       p {
         font-family: $otherText;
         font-size: 0.95rem;
@@ -1589,19 +1937,19 @@ header {
         margin: 0;
       }
     }
- 
+
     &__icon {
       font-size: 1.2rem;
       color: $mainTextColor;
       display: block;
     }
   }
- 
+
   // ── Citation ──────────────────────────────
   .about-quote {
     padding: 7rem 8vw;
     text-align: center;
- 
+
     blockquote {
       font-family: $mainTitleFont;
       font-size: clamp(1.4rem, 3vw, 2.2rem);
@@ -1611,7 +1959,7 @@ header {
       margin: 0;
       position: relative;
     }
- 
+
     &__mark {
       font-size: 6rem;
       color: rgba($mainTextColor, 0.15);
@@ -1620,7 +1968,7 @@ header {
       margin-right: 0.2rem;
       font-style: normal;
     }
- 
+
     cite {
       display: block;
       font-family: $otherText;
@@ -1631,13 +1979,13 @@ header {
       margin-top: 2rem;
     }
   }
- 
+
   // ── CTA ───────────────────────────────────
   .about-cta {
     padding: 5rem 8vw;
     text-align: center;
     border-top: 1px solid rgba($mainTextColor, 0.15);
- 
+
     p {
       font-family: $otherText;
       font-size: 1rem;
@@ -1647,19 +1995,19 @@ header {
     }
   }
 }
- 
- 
+
+
 // ══════════════════════════════════════════════
 // PAGE CONTACT
 // ══════════════════════════════════════════════
- 
+
 #contactPage {
- 
+
   // ── Hero ──────────────────────────────────
   .contact-hero {
     padding: 7rem 8vw 4rem;
     animation: fadeUp 0.7s ease both;
- 
+
     &__eyebrow {
       font-family: $otherText;
       font-size: 0.8rem;
@@ -1670,7 +2018,7 @@ header {
       align-items: center;
       gap: 12px;
       margin-bottom: 1.5rem;
- 
+
       &::before {
         content: "";
         display: inline-block;
@@ -1679,7 +2027,7 @@ header {
         background: $mainTextColor;
       }
     }
- 
+
     &__title {
       font-family: $mainTitleFont;
       font-size: clamp(3rem, 6vw, 5rem);
@@ -1687,13 +2035,13 @@ header {
       color: $mainTextColor;
       line-height: 1;
       margin: 0 0 1.2rem;
- 
+
       em {
         color: $mainTextColor;
         font-style: italic;
       }
     }
- 
+
     &__sub {
       font-family: $otherText;
       font-size: 1rem;
@@ -1701,14 +2049,14 @@ header {
       margin: 0 0 2.5rem;
       letter-spacing: 0.04em;
     }
- 
+
     &__line {
       width: 60px;
       height: 2px;
       background: $mainTextColor;
     }
   }
- 
+
   // ── Wrapper 2 colonnes ────────────────────
   .contact-wrapper {
     display: grid;
@@ -1716,13 +2064,13 @@ header {
     gap: 5rem;
     padding: 4rem 8vw 7rem;
     align-items: start;
- 
+
     @media (max-width: 900px) {
       grid-template-columns: 1fr;
       gap: 4rem;
     }
   }
- 
+
   // ── Formulaire ────────────────────────────
   .contact-form-section {
     &__title {
@@ -1735,27 +2083,27 @@ header {
       text-transform: lowercase;
     }
   }
- 
+
   .contact-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
- 
+
     &__row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
- 
+
       @media (max-width: 600px) {
         grid-template-columns: 1fr;
       }
     }
- 
+
     &__group {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
- 
+
       label {
         font-family: $otherText;
         font-size: 0.78rem;
@@ -1763,7 +2111,7 @@ header {
         text-transform: uppercase;
         color: rgba($mainTextColor, 0.5);
       }
- 
+
       input,
       textarea {
         background: transparent;
@@ -1775,17 +2123,17 @@ header {
         outline: none;
         transition: border-color 0.25s ease;
         resize: none;
- 
+
         &::placeholder {
           color: rgba($mainTextColor, 0.25);
         }
- 
+
         &:focus {
           border-color: $mainTextColor;
         }
       }
     }
- 
+
     &__submit {
       align-self: flex-start;
       background: $mainTextColor;
@@ -1798,19 +2146,19 @@ header {
       padding: 1rem 2.5rem;
       cursor: pointer;
       transition: background 0.25s ease, color 0.25s ease;
- 
+
       &:hover {
         background: transparent;
         color: $mainTextColor;
       }
     }
   }
- 
+
   // ── Aside réseaux ─────────────────────────
   .contact-aside {
     position: sticky;
     top: 2rem;
- 
+
     &__title {
       font-family: $mainTitleFont;
       font-size: 1.3rem;
@@ -1820,35 +2168,35 @@ header {
       margin: 0 0 2rem;
       text-transform: lowercase;
     }
- 
+
     &__socials {
       display: flex;
       flex-direction: column;
       gap: 2px;
       margin-bottom: 3rem;
     }
- 
+
     &__note {
       display: flex;
       gap: 1rem;
       padding: 1.5rem;
       border: 1px solid rgba($mainTextColor, 0.15);
       align-items: flex-start;
- 
+
       &-icon {
         color: $mainTextColor;
         font-size: 1rem;
         flex-shrink: 0;
         margin-top: 2px;
       }
- 
+
       p {
         font-family: $otherText;
         font-size: 0.85rem;
         color: rgba($mainTextColor, 0.55);
         line-height: 1.7;
         margin: 0;
- 
+
         strong {
           color: $mainTextColor;
           font-weight: 600;
@@ -1856,7 +2204,7 @@ header {
       }
     }
   }
- 
+
   .contact-social {
     display: grid;
     grid-template-columns: 40px 1fr auto;
@@ -1866,17 +2214,17 @@ header {
     border: 1px solid rgba($mainTextColor, 0.12);
     text-decoration: none;
     transition: border-color 0.25s ease, background 0.25s ease;
- 
+
     &:hover {
       border-color: $mainTextColor;
       background: rgba($mainTextColor, 0.04);
- 
+
       .contact-social__icon {
         background: $mainTextColor;
         color: $secondaryTextColor;
       }
     }
- 
+
     &__icon {
       width: 36px;
       height: 36px;
@@ -1890,14 +2238,14 @@ header {
       text-transform: lowercase;
       transition: background 0.25s ease, color 0.25s ease;
     }
- 
+
     &__label {
       font-family: $otherText;
       font-size: 0.9rem;
       color: $mainTextColor;
       letter-spacing: 0.05em;
     }
- 
+
     &__handle {
       font-family: $otherText;
       font-size: 0.78rem;
@@ -1906,12 +2254,12 @@ header {
     }
   }
 }
- 
- 
+
+
 // ══════════════════════════════════════════════
 // PARTAGÉ : bouton gold + animations
 // ══════════════════════════════════════════════
- 
+
 .btn-gold {
   display: inline-block;
   background: $mainTextColor;
@@ -1924,18 +2272,19 @@ header {
   border: 1px solid $mainTextColor;
   padding: 1rem 2.5rem;
   transition: background 0.25s ease, color 0.25s ease;
- 
+
   &:hover {
     background: transparent;
     color: $mainTextColor;
   }
 }
- 
+
 @keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

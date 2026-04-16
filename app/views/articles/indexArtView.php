@@ -11,6 +11,16 @@
         <button type="submit">rechercher</button>
     </form>
 
+    <nav id="categoriesNav">
+                    <a href="index.php?action=blog">tous</a>
+                    <a href="index.php?action=showCategory&category=mode">mode</a>
+                    <a href="index.php?action=showCategory&category=maquillage">maquillage</a>
+                    <a href="index.php?action=showCategory&category=chaussures">chaussures</a>
+                    <a href="index.php?action=showCategory&category=cheveux">cheveux</a>
+                    <a href="index.php?action=showCategory&category=skincare">skincare</a>
+                    <a href="index.php?action=showCategory&category=lifestyle">lifestyle</a>
+                </nav>
+                
     <?php if (empty($articles)): ?>
         <p>aucun article trouvé.</p>
 

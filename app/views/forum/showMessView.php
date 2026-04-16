@@ -9,8 +9,16 @@
         </a> le <?php echo htmlspecialchars($message['date_of_creation']); ?></p>
 
     <article id="mainMessage">
+        <p><?php echo nl2br(htmlspecialchars($message['content'])); ?></p>
+        <div id="likeBlock">
+            <span><?php echo $likes; ?> like<?php echo $likes > 1 ? 's' : ''; ?></span>
 
-        <p><?php echo ($message['content']); ?></p>
+            <?php if (isset($_SESSION['user'])): ?>
+                <a href="index.php?action=toggleLikeMessage&id_message=<?php echo $message['id_message']; ?>">
+                    <?php echo $hasLiked ? '♥ retirer le like' : '♡ liker'; ?>
+                </a>
+            <?php endif; ?>
+        </div>
     </article>
 
     <section id="replies">
@@ -21,10 +29,11 @@
         <?php else: ?>
             <?php foreach ($replies as $reply): ?>
                 <article class="replyCard">
-                    <p>par <a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
-                            <?php echo htmlspecialchars($message['username']); ?>
+                    <p><a href="index.php?action=showProfile&id=<?php echo $reply['id_user']; ?>">
+                            <?php echo htmlspecialchars($reply['username']); ?>
                         </a> le <?php echo htmlspecialchars($reply['date_of_creation']); ?></p>
-                    <p><?php echo htmlspecialchars($reply['content']); ?></p>
+                    <p><?php echo nl2br(htmlspecialchars($reply['content'])); ?></p>
+
 
                     <?php if (isset($_SESSION['user'])): ?>
                         <details>
@@ -45,10 +54,10 @@
                         <div class="subReplies">
                             <?php foreach ($subReplies as $subReply): ?>
                                 <article class="subReplyCard">
-                                    <p>par <a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
-                                            <?php echo htmlspecialchars($message['username']); ?>
+                                    <p>par <a href="index.php?action=showProfile&id=<?php echo $subReply['id_user']; ?>">
+                                            <?php echo htmlspecialchars($subReply['username']); ?>
                                         </a> le <?php echo htmlspecialchars($subReply['date_of_creation']); ?></p>
-                                    <p id="subReplyContent"><?php echo htmlspecialchars($subReply['content']); ?></p>
+                                    <p id="subReplyContent"><?php echo nl2br(htmlspecialchars($subReply['content'])); ?></p>
                                 </article>
                             <?php endforeach; ?>
                         </div>

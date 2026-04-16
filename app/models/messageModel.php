@@ -38,6 +38,43 @@ function getMessageById($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function getMessagesByCategory($category, $limit, $offset)
+{
+    global $dbConnector;
+
+    $limit  = (int)$limit;
+    $offset = (int)$offset;
+
+    $stmt = $dbConnector->prepare("
+        SELECT MESSAGE.*, USER_.username
+        FROM MESSAGE
+        JOIN USER_ ON MESSAGE.id_user = USER_.id_user
+        WHERE MESSAGE.id_reply IS NULL
+        AND MESSAGE.status = 'active'
+        AND MESSAGE.category = ?
+        ORDER BY MESSAGE.date_of_creation DESC
+        LIMIT $limit OFFSET $offset
+    ");
+    $stmt->execute([$category]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function countMessagesByCategory($category)
+{
+    global $dbConnector;
+
+    $stmt = $dbConnector->prepare("
+        SELECT COUNT(*) as total
+        FROM MESSAGE
+        WHERE id_reply IS NULL
+        AND status = 'active'
+        AND category = ?
+    ");
+    $stmt->execute([$category]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'];
+}
+
 //displays replies published below a topic
 function getRepliesByMessageId($id)
 {
@@ -91,17 +128,17 @@ function getLastReplies()
 //creates a new topic
 function createMessage($data)
 {
-
     global $dbConnector;
 
     $stmt = $dbConnector->prepare("
-    INSERT INTO MESSAGE(id_user, title, content, date_of_creation)
-    VALUES (?, ?, ?, NOW())
+        INSERT INTO MESSAGE (id_user, title, content, category, date_of_creation)
+        VALUES (?, ?, ?, ?, NOW())
     ");
     return $stmt->execute([
         $data['id_user'],
         $data['title'],
-        $data['content']
+        $data['content'],
+        $data['category']
     ]);
 }
 
@@ -120,4 +157,48 @@ function createReply($data)
         $data['id_reply'],
         $data['content']
     ]);
+}
+
+function likeMessage($id_user, $id_message)
+{
+    global $dbConnector;
+
+    $stmt = $dbConnector->prepare("
+        INSERT INTO LIKING (id_user, id_message) VALUES (?, ?)
+    ");
+    return $stmt->execute([$id_user, $id_message]);
+}
+
+function unlikeMessage($id_user, $id_message)
+{
+    global $dbConnector;
+
+    $stmt = $dbConnector->prepare("
+        DELETE FROM LIKING WHERE id_user = ? AND id_message = ?
+    ");
+    return $stmt->execute([$id_user, $id_message]);
+}
+
+function hasLikedMessage($id_user, $id_message)
+{
+    global $dbConnector;
+
+    $stmt = $dbConnector->prepare("
+        SELECT COUNT(*) as total FROM LIKING WHERE id_user = ? AND id_message = ?
+    ");
+    $stmt->execute([$id_user, $id_message]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'] > 0;
+}
+
+function countLikesMessage($id_message)
+{
+    global $dbConnector;
+
+    $stmt = $dbConnector->prepare("
+        SELECT COUNT(*) as total FROM LIKING WHERE id_message = ?
+    ");
+    $stmt->execute([$id_message]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total'];
 }

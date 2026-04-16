@@ -3,12 +3,33 @@
 //displays forum's page and all messages (topics and replies) in the database
 function showForum()
 {
-    $limit      = 10;
-    $page       = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $offset     = ($page - 1) * $limit;
-    $total      = countMessages();
-    $totalPages = ceil($total / $limit);
-    $messages   = getAllMessages($limit, $offset);
+    $limit       = 10;
+    $page        = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset      = ($page - 1) * $limit;
+    $total       = countMessages();
+    $totalPages  = ceil($total / $limit);
+    $messages    = getAllMessages($limit, $offset);
+    $lastReplies = getLastReplies();
+
+    require RACINE . '/app/views/forum/indexForumView.php';
+}
+
+function showForumCategory()
+{
+    $category   = $_GET['category'];
+    $categories = ['mode', 'maquillage', 'chaussures', 'cheveux', 'skincare', 'lifestyle'];
+
+    if (!in_array($category, $categories)) {
+        header('Location: /projet-final/index.php?action=forum');
+        exit;
+    }
+
+    $limit       = 10;
+    $page        = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset      = ($page - 1) * $limit;
+    $total       = countMessagesByCategory($category);
+    $totalPages  = ceil($total / $limit);
+    $messages    = getMessagesByCategory($category, $limit, $offset);
     $lastReplies = getLastReplies();
 
     require RACINE . '/app/views/forum/indexForumView.php';
@@ -17,9 +38,12 @@ function showForum()
 //displays topic's page selected by the user
 function showMessage()
 {
-    $id = $_GET['id'];
-    $message = getMessageById($id);
-    $replies = getRepliesByMessageId($id);
+    $id       = $_GET['id'];
+    $message  = getMessageById($id);
+    $replies  = getRepliesByMessageId($id);
+    $likes    = countLikesMessage($id);
+    $hasLiked = isset($_SESSION['user']) ? hasLikedMessage($_SESSION['user']['id_user'], $id) : false;
+
     require RACINE . '/app/views/forum/showMessView.php';
 }
 
@@ -51,10 +75,11 @@ function submitMessage()
     }
 
     $data = [
-        'id_user' => $_SESSION['user']['id_user'],
-        'title' => $title,
-        'content' => $content
-    ];
+    'id_user' => $_SESSION['user']['id_user'],
+    'title' => $title,
+    'content' => $content,
+    'category' => $_POST['category']
+];
 
     createMessage($data);
     header('Location: /projet-final/index.php?action=forum');
@@ -89,5 +114,25 @@ function submitReply()
 
     createReply($data);
     header('Location: /projet-final/index.php?action=showMessage&id=' . $topic_id);
+    exit;
+}
+
+function toggleLikeMessage()
+{
+    if (!isset($_SESSION['user'])) {
+        header('Location: /projet-final/index.php?action=loginPage');
+        exit;
+    }
+
+    $id_message = $_GET['id_message'];
+    $id_user    = $_SESSION['user']['id_user'];
+
+    if (hasLikedMessage($id_user, $id_message)) {
+        unlikeMessage($id_user, $id_message);
+    } else {
+        likeMessage($id_user, $id_message);
+    }
+
+    header('Location: /projet-final/index.php?action=showMessage&id=' . $id_message);
     exit;
 }

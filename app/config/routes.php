@@ -55,6 +55,23 @@ class Route
                 showDashboard();
                 break;
 
+            case "showArticle":
+                showArticle();
+                break;
+
+            case "toggleLikeArticle":
+                toggleLikeArticle();
+                break;
+
+
+            case "submitComment":
+                submitComment();
+                break;
+
+            case "deleteComment":
+                submitDeleteComment();
+                break;
+
             case "createArticle":
                 showCreateArticle();
                 break;
@@ -63,12 +80,40 @@ class Route
                 submitArticle();
                 break;
 
+            case "showEditArticle":
+                showEditArticle();
+                break;
+
+            case "submitEditArticle":
+                submitEditArticle();
+                break;
+
+            case "deleteArticle":
+                submitDeleteArticle();
+                break;
+
+            case "archiveArticle":
+                submitArchiveArticle();
+                break;
+
             case "forum":
                 showForum();
                 break;
 
+            case "showCategory":
+                showCategory();
+                break;
+
+            case "showForumCategory":
+                showForumCategory();
+                break;
+
             case "showMessage":
                 showMessage();
+                break;
+
+            case "toggleLikeMessage":
+                toggleLikeMessage();
                 break;
 
             case "createMessage":

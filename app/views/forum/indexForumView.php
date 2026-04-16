@@ -12,15 +12,26 @@
     <h3>bienvenue sur le forum : <br>crééer vos propres sujets et partagez vos visions <br>avec d'autres ALLIEGATORS. <br> <br> amicalement vôtre, <br><span class="signatureFont">Allie</span></h3>
     <div class="underLineSmall"></div>
 </div>
-
+<nav id="categoriesNav">
+    <a href="index.php?action=forum">tous</a>
+    <a href="index.php?action=showForumCategory&category=mode">mode</a>
+    <a href="index.php?action=showForumCategory&category=maquillage">maquillage</a>
+    <a href="index.php?action=showForumCategory&category=chaussures">chaussures</a>
+    <a href="index.php?action=showForumCategory&category=cheveux">cheveux</a>
+    <a href="index.php?action=showForumCategory&category=skincare">skincare</a>
+    <a href="index.php?action=showForumCategory&category=lifestyle">lifestyle</a>
+</nav>
 <div id="forumBlock">
+
     <div id="mainForumBlock">
+
         <?php if (empty($messages)): ?>
             <p>aucun message pour le moment.</p>
         <?php else: ?>
             <p>topics récents</p>
             <?php foreach ($messages as $message): ?>
                 <article class="messageCard">
+                    <p class="messageCategory"><?php echo htmlspecialchars($message['category']); ?></p>
                     <h4><?php echo htmlspecialchars($message['title']); ?></h4>
                     <p><?php echo htmlspecialchars(substr($message['content'], 0, 150)); ?>...</p>
                     <p>rédigé par <span class="bold"><a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
@@ -40,10 +51,14 @@
             <div id="sidenavBlock">
                 <?php foreach ($lastReplies as $reply): ?>
                     <div class="sidenav">
-                        <p><span id="lastReplyImportant">par <strong><a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
-                                        <?php echo htmlspecialchars($message['username']); ?>
-                                    </a></strong> sur <a href="index.php?action=showMessage&id=<?php echo $reply['id_reply']; ?>"><?php echo htmlspecialchars($reply['topic_title']); ?> : </span></a> <br> >> <?php echo htmlspecialchars(substr($reply['content'], 0, 80)); ?>...
+                        <p>
+                            par <strong><?php echo htmlspecialchars($reply['username']); ?></strong>
+                            sur <a href="index.php?action=showMessage&id=<?php echo $reply['id_reply']; ?>">
+                                <?php echo htmlspecialchars($reply['topic_title']); ?>
+                            </a>
+                            <p> >> <?php echo htmlspecialchars(substr($reply['content'], 0, 80)); ?></p>
                         </p>
+                        
                     </div>
                 <?php endforeach; ?>
             </div>
