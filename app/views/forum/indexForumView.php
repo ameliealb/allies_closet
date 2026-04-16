@@ -23,33 +23,76 @@
                 <article class="messageCard">
                     <h4><?php echo htmlspecialchars($message['title']); ?></h4>
                     <p><?php echo htmlspecialchars(substr($message['content'], 0, 150)); ?>...</p>
-                    <p>rédigé par <?php echo htmlspecialchars($message['username']) ?> le <?php echo htmlspecialchars($message['date_of_creation']); ?></p>
-                    <a href="index.php?action=showMessage&id=<?php echo $message['id_message']; ?>">voir le topic</a>
+                    <p>rédigé par <span class="bold"><a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
+                                <?php echo htmlspecialchars($message['username']); ?>
+                            </a></span> le <?php echo htmlspecialchars($message['date_of_creation']); ?></p>
+                    <button><a href="index.php?action=showMessage&id=<?php echo $message['id_message']; ?>">voir le topic</a></button>
                 </article>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
 
     <div id="sidebarForumBlock">
-        <p>derniers commentaires</p>
+        <p>dernières réponses</p>
+        <?php if (empty($lastReplies)): ?>
+            <p>aucune réponse pour le moment.</p>
+        <?php else: ?>
+            <div id="sidenavBlock">
+                <?php foreach ($lastReplies as $reply): ?>
+                    <div class="sidenav">
+                        <p><span id="lastReplyImportant">par <strong><a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
+                                        <?php echo htmlspecialchars($message['username']); ?>
+                                    </a></strong> sur <a href="index.php?action=showMessage&id=<?php echo $reply['id_reply']; ?>"><?php echo htmlspecialchars($reply['topic_title']); ?> : </span></a> <br> >> <?php echo htmlspecialchars(substr($reply['content'], 0, 80)); ?>...
+                        </p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
+
+    <nav id="pagination">
+        <?php if ($page > 1): ?>
+            <a href="index.php?action=forum&page=<?php echo $page - 1; ?>">← précédent</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="index.php?action=forum&page=<?php echo $i; ?>"
+                <?php if ($i === $page): ?> class="activePage" <?php endif; ?>>
+                <?php echo $i; ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="index.php?action=forum&page=<?php echo $page + 1; ?>">suivant →</a>
+        <?php endif; ?>
+    </nav>
+
+    <div>&nbsp;</div>
 
 
 
     <div id="speakUp">
         <p>lancez une discussion</p>
-        <span>exprimez-vous</span>
-        <?php if (isset($_SESSION['user'])): ?>
-            <button><a href="index.php?action=createMessage">créer un topic</a></button>
-        <?php endif; ?>
-        <p>attention : ce site internet a été créé dans l’optique d’en faire un lieu sûr où partager ses opinions sur des sujets qui nous rassemblent. le forum et son contenu (sujets, réponses, ...) sont soumis à des règles strictes se basant sur le respect d’autrui. toute forme de discrimination est interdite, punie par la loi et ne sera pas tolérée.</p>
+        <div id="speakUpCase">
+            <p>exprimez-vous</p>
+            <?php if (isset($_SESSION['user'])): ?>
+                <button><a href="index.php?action=createMessage">créez un topic</a></button>
+            <?php endif; ?>
+            <?php if (!isset($_SESSION['user'])): ?>
+                <h6><a href="index.php?action=loginPage">cliquez ici et connectez-vous pour écrire un topic</a></h6>
+            <?php endif; ?>
+        </div>
+        <p>attention : ce site internet a été créé dans l’optique d’en faire un lieu sûr où partager ses opinions sur des sujets qui nous rassemblent. <br> le forum et son contenu (sujets, réponses, ...) sont soumis à des règles strictes se basant sur le respect d’autrui. toute forme de discrimination est interdite, punie par la loi et ne sera pas tolérée.</p>
     </div>
 
     <div id="joinOrContact">
-        <p><span>rejoignez</span> <br>les ALLIEGATORS</p>
-        <button><a href="index.php?action=loginPage">inscrivez-vous ici</a></button>
-        <p>ou si vous avez besoin de plus <br> amples renseignements</p>
-        <button><a href="index.php?action=contact">contactez-moi</a></button>
+        <p>passez le cap</p>
+        <div id="joinOrContactCase">
+            <h5><span class="big" id="join">rejoignez</span> <br>les <span id="joinAlliegators">ALLIEGATORS</span></h5>
+            <button><a href="index.php?action=loginPage">inscrivez-vous ici</a></button>
+            <p>ou si vous avez besoin de plus <br> amples renseignements</p>
+            <button><a href="index.php?action=contact">contactez-moi</a></button>
+        </div>
     </div>
 </div>
 

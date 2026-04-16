@@ -37,8 +37,15 @@ body {
 
   .underLineSmall {
     height: 1px;
-    background-color: $secondaryBackgroundColor;
+    background-color: $secondaryBackgroundColor ;
     width: 10%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .italicBig {
@@ -76,8 +83,17 @@ body {
   input:focus {
     outline: none;
     border: 1px solid #d4af37;
-    box-shadow: 0 1px 8px #d4af37b6;
+    box-shadow: 0 1px 4px #d4af37b6;
     transition: all 1s ease;
+  }
+
+  textarea {
+    &:focus {
+      outline: none;
+      border: 1px solid #d4af37;
+      box-shadow: 0 1px 4px #d4af37b6;
+      transition: all 1s ease;
+    }
   }
 }
 
@@ -314,19 +330,23 @@ header {
     #firstBlockPart1 {
       width: 58%;
 
-      .underLineSmall {
-        background-color: $thirdlyBackgroundColor;
-      }
-
-
       #subBlock1 {
         display: flex;
-        align-items: end;
+        flex-direction: row;
+        align-items: center;
         gap: 16px;
         color: $thirdlyBackgroundColor;
 
+        .underLineSmall {
+          background-color: $thirdlyBackgroundColor;
+          width: 60px;
+          display: block;
+          align-self: center;
+        }
+
         h2 {
           font-size: 1.5rem;
+          margin-top: 16px;
         }
       }
 
@@ -371,27 +391,45 @@ header {
     #firstBlockPart2 {
       width: 32%;
       height: 800px;
-      background-color: violet;
-      background-image: url(../../images/homePic_firstArticle.png);
-      background-size: cover;
-      background-repeat: no-repeat;
       border: 1px solid $secondaryBackgroundColor;
 
       a {
         text-decoration: none;
-
       }
 
       #lastArticle {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        box-sizing: border-box;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 40%;
+          background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+        }
 
         h3 {
-          display: flex;
-          height: 768px;
-          align-items: flex-end;
-          margin-left: 16px;
+          position: absolute;
+          bottom: 12px;
+          left: 16px;
+          margin: 0;
+          font-size: 15px;
+          font-weight: 400;
           color: $mainTextColor;
-          font-family: $secondaryTitles;
-          text-shadow: 1px 8px 16px $mainBackgroundColor;
+          font-family: $otherText;
+          z-index: 1;
         }
       }
     }
@@ -440,81 +478,158 @@ header {
 
   #secondBlock {
     display: flex;
-    background: #0a0900;
-    min-height: 720px;
-    gap: 40px;
-    margin-top: 200px;
+    height: 960px;
+    width: 80%;
+    gap: 16px;
+    margin: 160px auto;
+  }
+
+  %articleBase {
+    position: relative;
+    border: 1px solid #c9a84c;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+    }
+
+    h4 {
+      position: absolute;
+      bottom: 12px;
+      left: 16px;
+      margin: 0;
+      font-size: 15px;
+      font-weight: 400;
+      font-family: $otherText;
+      color: #c9a84c;
+      z-index: 1;
+    }
   }
 
   #firstArticleColumn {
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    #firstArticle {
+      @extend %articleBase;
+      flex: 1;
+    }
   }
 
   #secondArticleColumn {
     flex: 1.4;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 16px;
+
+    #secondArticle,
+    #thirdArticle {
+      @extend %articleBase;
+      flex: 1;
+    }
+
+    p {
+      margin-bottom: -16px;
+      font-size: 1.5rem;
+      color: #c9a84c;
+      letter-spacing: 0.04em;
+    }
+
+    h5 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #c9a84c;
+      line-height: 1.1;
+    }
   }
 
-  #firstArticle,
-  #secondArticle,
-  #thirdArticle {
+  #communityBlock {
     position: relative;
-    border: 1px solid #c9a84c;
-    background: #211d0d;
-    background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
-    box-sizing: border-box;
-  }
+    margin: 0 -40px;
+    background: linear-gradient(135deg, #2a2200 0%, #1a1500 50%, #0a0900 100%);
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
 
-  #firstArticle {
-    flex: 1;
-  }
+    #communityLabel {
+      font-family: $otherText;
+      font-size: 0.8rem;
+      letter-spacing: 5%;
+      text-transform: uppercase;
+      color: $thirdlyTextColor;
+      margin: 0 0 64px;
+    }
 
-  #secondArticle {
-    flex: 1;
-  }
+    #communityContent {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 56px;
 
-  #thirdArticle {
-    flex: 1;
-  }
+      h2 {
+        font-family: $secondaryTitles;
+        font-size: 4rem;
+        font-weight: 400;
+        color: $thirdlyTextColor;
+        margin: 0 0 1.5rem;
+        line-height: 1.1;
 
-  #firstArticle h4,
-  #secondArticle h4,
-  #thirdArticle h4 {
-    position: absolute;
-    bottom: 12px;
-    left: 16px;
-    margin: 0;
-    font-size: 15px;
-    font-weight: 400;
-    font-style: italic;
-    color: #c9a84c;
-    letter-spacing: 0.02em;
-  }
+        span {
+          color: $mainTextColor;
+          font-weight: 700;
+        }
+      }
 
-  #secondArticleColumn p {
-    margin: 18px 0 2px 16px;
-    font-size: 14px;
-    color: #c9a84c;
-    letter-spacing: 0.04em;
-  }
+      p {
+        font-family: $otherText;
+        font-size: 14px;
+        color: $thirdlyTextColor;
+        opacity: 0.8;
+        line-height: 1.8;
+        margin: 0 0 2rem;
+      }
 
-  #secondArticleColumn h5 {
-    margin: 0 0 0 16px;
-    font-size: 38px;
-    font-weight: 700;
-    color: #c9a84c;
-    line-height: 1.1;
+      button {
+        padding: 12px 16px;
+        font-family: $otherText;
+        font-size: 1.1rem;
+
+      }
+
+      #subscribeButton {
+        background-color: $secondaryBackgroundColor;
+        color: $secondaryTextColor;
+        border: 1px solid #AF7F26;
+      }
+
+      #subscribeButton:hover {
+        background-color: $mainBackgroundColor;
+        color: $mainTextColor;
+      }
+    }
   }
 }
 
 /*==========ADMIN DASHBOARD PAGE==========*/
 
 #dashboardAdmin {
-
   .underLine {
     width: 30%;
   }
@@ -526,24 +641,49 @@ header {
     ul {
       list-style-type: none;
       display: flex;
+      gap: 2%;
 
       a {
         text-decoration: none;
         color: $mainTextColor;
         font-family: $otherText;
         width: 32%;
-        height: 160px;
+        height: 300px;
         border: 1px solid $secondaryBackgroundColor;
-        margin: 0 auto;
+        display: block;
+        position: relative;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
+        }
 
         li {
-
-          text-align: center;
+          position: absolute;
+          bottom: 16px;
+          left: 16px;
+          right: 16px;
+          z-index: 1;
+          color: $mainTextColor;
+          font-size: 0.95rem;
         }
       }
     }
   }
 }
+
+
+/*==========LOGIN/REGISTER PAGE==========*/
 
 #auth-container {
   gap: 30px;
@@ -613,9 +753,135 @@ header {
     margin: -40px 0 0 16px;
     font-size: 3rem;
   }
-
-
 }
+
+
+/*====================BLOG====================*/
+
+/*==========INDEX BLOG PAGE==========*/
+
+#blogBlock {
+
+  form {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    align-items: center;
+
+    input[type="text"] {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 10px 16px;
+      font-family: $otherText;
+      font-size: 12px;
+      letter-spacing: 1px;
+      width: 300px;
+      outline: none;
+
+      &::placeholder {
+        color: rgba($thirdlyTextColor, 0.4);
+      }
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
+    }
+
+    button {
+      display: block;
+      border: 1px solid $secondaryBackgroundColor;
+      color: $secondaryTextColor;
+      padding: 10px 24px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: transparent;
+      cursor: pointer;
+      font-family: $otherText;
+
+      &:hover {
+        background-color: rgba($secondaryBackgroundColor, 0.1);
+      }
+    }
+  }
+
+  &>p {
+    font-family: $otherText;
+    font-size: 13px;
+    color: $thirdlyTextColor;
+    opacity: 0.6;
+    letter-spacing: 1px;
+  }
+
+  .articleCard {
+    width: 60%;
+    border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: lighten($mainBackgroundColor, 2%);
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: rgba($secondaryBackgroundColor, 0.6);
+    }
+
+    .articleContent {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      h3 {
+        font-family: $secondaryTitles;
+        font-size: 26px;
+        font-weight: 400;
+        color: $thirdlyTextColor;
+        margin: 0;
+        letter-spacing: 1px;
+      }
+
+      p {
+        font-family: $otherText;
+        font-size: 11px;
+        letter-spacing: 1px;
+        color: $mainTextColor;
+        opacity: 0.6;
+        margin: 0;
+        text-transform: uppercase;
+
+        &:last-of-type {
+          font-size: 14px;
+          letter-spacing: 0;
+          text-transform: none;
+          opacity: 1;
+          color: $thirdlyTextColor;
+          line-height: 1.8;
+        }
+      }
+
+      a {
+        display: inline-block;
+        align-self: flex-start;
+        border: 1px solid $secondaryBackgroundColor;
+        color: $secondaryTextColor;
+        padding: 8px 24px;
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        background: transparent;
+        text-decoration: none;
+        font-family: $otherText;
+        margin-top: 0.5rem;
+
+        &:hover {
+          background-color: rgba($secondaryBackgroundColor, 0.1);
+        }
+      }
+    }
+  }
+}
+
+/*====================FORUM====================*/
 
 /*==========INDEX FORUM PAGE==========*/
 
@@ -625,16 +891,16 @@ header {
     color: $thirdlyTextColor;
     font-family: $secondaryTitles;
     font-size: 2rem;
+    margin: 48px 0;
 
     .big {
       text-transform: uppercase;
     }
   }
 
-  .underLineSmall{
+  .underLineSmall {
     width: 40%;
-    display: flex;
-    align-items: center;
+    margin: 0 auto;
   }
 
   h3 {
@@ -672,13 +938,10 @@ header {
   #mainForumBlock {
     display: flex;
     flex-direction: column;
-    gap: 8px;
 
     p {
-      font-size: 10px;
-      letter-spacing: 1px;
       color: $mainTextColor;
-      opacity: 0.6;
+      font-size: 1rem;
     }
 
     .messageCard {
@@ -687,53 +950,994 @@ header {
       background: #211d0d;
       background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
       box-sizing: border-box;
-      padding: 1.5rem 2rem;
-      margin-bottom: 1px;
+      padding: 32px 48px;
+      margin-bottom: 8px;
 
       h4 {
-        font-family: $secondaryTitles;
-        font-size: 1.2rem;
-        color: $thirdlyTextColor;
+        font-family: $otherText;
+        font-size: 1.4rem;
+        color: $mainTextColor;
         font-weight: bold;
+        margin: 0;
       }
 
-      a {
-        font-family: $otherText;
-        font-size: 0.8rem;
-        color: $mainTextColor;
-        text-decoration: none;
-        border-bottom: 0.5px solid rgba($mainTextColor, 0.4);
+      p {
+        color: $thirdlyTextColor;
+        font-size: 1rem;
+
+        a{
+          text-decoration: none;
+          color: $thirdlyTextColor;
+          font-weight:800;
+        }
+      }
+
+
+      button {
+        background-color: $secondaryBackgroundColor;
+        border: 1px solid #AF7F26;
+        padding: 8px 16px;
+        cursor: pointer;
+        white-space: nowrap;
+
+        a {
+          color: $secondaryTextColor;
+          text-decoration: none;
+          font-family: $otherText;
+          font-size: 1.1rem;
+        }
+
+        &:hover {
+          background-color: $mainBackgroundColor;
+
+          a {
+            color: $mainTextColor;
+          }
+        }
       }
     }
   }
 
   #sidebarForumBlock {
-    position: relative;
-    border: 1px solid #c9a84c;
-    background: #211d0d;
-    background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
-    box-sizing: border-box;
 
     p {
-      font-size: 0.8rem;
-      color: $mainTextColor;
-      margin-bottom: 32px;
+      font-size: 1rem;
+    }
+
+    #sidenavBlock {
+      position: relative;
+      border: 1px solid #c9a84c;
+      background: #211d0d;
+      background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
+      box-sizing: border-box;
+
+      p {
+        font-size: 1rem;
+        color: $thirdlyTextColor;
+        padding: 8px;
+        margin-top: 0;
+
+        a {
+          text-decoration: none;
+          font-weight: bold;
+          color: $mainTextColor;
+        }
+      }
     }
   }
 
-  a {
-    display: inline-block;
-    border: 1px solid $secondaryBackgroundColor;
-    color: $mainTextColor;
-    padding: 8px 24px;
-    font-size: 1rem;
-    font-family: $otherText;
-    text-decoration: none;
-    margin-top: 16px;
-    background: transparent;
+  #speakUp {
 
-    &:hover {
-      background-color: rgba($mainTextColor, 0.1);
+    p {
+      font-size: 1rem;
     }
+
+    #speakUpCase {
+      border: 1px solid #AF7F26;
+      background: #211d0d;
+      background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
+      box-sizing: border-box;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+
+      p {
+        text-align: center;
+        font-size: 5rem;
+        margin: 16px 0 16px 0;
+        font-family: $secondaryTitles;
+        font-style: italic;
+        text-transform: uppercase;
+      }
+
+      h6 {
+        text-align: center;
+
+        a {
+          text-decoration: none;
+          color: $mainTextColor;
+          font-family: $otherText;
+          font-size: 1rem;
+        }
+
+        &:hover {
+
+          a {
+            color: $thirdlyTextColor;
+          }
+        }
+
+      }
+
+      button {
+        background-color: $mainBackgroundColor;
+        width: 14%;
+        margin: 0 auto;
+        border: 1px solid #AF7F26;
+        padding: 8px 16px;
+        cursor: pointer;
+
+        a {
+          color: $mainTextColor;
+          text-decoration: none;
+          font-family: $otherText;
+          font-size: 1.1rem;
+        }
+
+        &:hover {
+          background-color: $secondaryBackgroundColor;
+
+          a {
+            color: $secondaryTextColor;
+          }
+        }
+      }
+    }
+  }
+
+
+  #pagination {
+    a {
+      color: #AF7F26;
+    }
+  }
+
+  #joinOrContact {
+    p {
+      font-size: 1rem;
+    }
+
+    #joinOrContactCase {
+      border: 1px solid #AF7F26;
+      position: relative;
+      height: auto;
+      padding-bottom: 56px;
+      background-image: url(../../images/img_signin_sidebar.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      box-sizing: border-box;
+
+      h5 {
+        font-size: 1.5rem;
+        font-family: $otherText;
+        text-align: center;
+        color: $thirdlyTextColor;
+
+        #join {
+          font-family: $secondaryTitles;
+          font-weight: bold;
+          text-transform: uppercase;
+          font-size: 2.5rem;
+          color: $mainTextColor;
+        }
+
+        #joinAlliegators {
+          text-transform: uppercase;
+        }
+      }
+
+      p {
+        color: $thirdlyTextColor;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
+      button {
+        display: block;
+        background-color: $secondaryBackgroundColor;
+        margin: 0 auto;
+        border: 1px solid #AF7F26;
+        padding: 8px 16px;
+        cursor: pointer;
+
+        a {
+          color: $secondaryTextColor;
+          text-decoration: none;
+          font-family: $otherText;
+          font-size: 1.1rem;
+        }
+
+        &:hover {
+          background-color: $mainBackgroundColor;
+
+          a {
+            color: $mainTextColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*==========TOPIC PAGE (FORUM)==========*/
+
+#showMessageBlock {
+
+  &>p {
+    font-family: $otherText;
+    font-size: 1.2rem;
+    letter-spacing: 5%;
+    color: $mainTextColor;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  #mainMessage {
+    border-left: 1px solid $secondaryBackgroundColor;
+    padding: 32px 64px;
+    margin: 0 auto;
+    width: 80%;
+
+    p {
+      font-family: $otherText;
+      font-size: 1rem;
+      line-height: 1.9;
+      color: $thirdlyTextColor;
+      margin: 0;
+    }
+  }
+
+  #replies {
+    padding: 32px 64px;
+    margin: 0 auto;
+    width: 80%;
+
+    h3 {
+      font-family: $secondaryTitles;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: $thirdlyTextColor;
+    }
+
+    .replyCard {
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+      padding: 16px 32px;
+      margin-bottom: 1px;
+      background-color: lighten($mainBackgroundColor, 5%);
+
+      &:hover {
+        border-color: rgba($secondaryBackgroundColor, 0.6);
+      }
+
+      &>p {
+        font-family: $otherText;
+        font-size: 0.8rem;
+        letter-spacing: 5%;
+        color: $mainTextColor;
+        text-transform: uppercase;
+
+        &:last-of-type {
+          font-size: 1rem;
+          letter-spacing: 0;
+          text-transform: none;
+          opacity: 1;
+          color: $thirdlyTextColor;
+          margin-top: 0.8rem;
+        }
+      }
+
+      details {
+
+        summary {
+          font-family: $otherText;
+          font-size: 0.8rem;
+          letter-spacing: 5%;
+          text-transform: uppercase;
+          color: $thirdlyTextColor;
+          cursor: pointer;
+        }
+
+        form {
+          margin-top: 1rem;
+
+          textarea {
+            width: 100%;
+            background-color: $mainBackgroundColor;
+            border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+            color: $thirdlyTextColor;
+            padding: 12px 16px;
+            font-family: $otherText;
+            font-size: 13px;
+            resize: vertical;
+            min-height: 80px;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+
+            &::placeholder {
+              color: rgba($thirdlyTextColor, 0.4);
+            }
+          }
+
+          button {
+            display: block;
+            background-color: $secondaryBackgroundColor;
+            border: 1px solid #AF7F26;
+            padding: 8px 16px;
+            cursor: pointer;
+            color: $secondaryTextColor;
+            font-family: $otherText;
+
+            &:hover {
+              background-color: $mainBackgroundColor;
+              color: $mainTextColor;
+            }
+          }
+        }
+      }
+
+      .subReplies {
+        padding: 16px 32px;
+        margin: 8px auto;
+        width: 90%;
+        border-left: 1px solid rgba($secondaryBackgroundColor, 0.2);
+
+        .subReplyCard {
+          margin: 0;
+          border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.1);
+
+          p {
+            font-family: $otherText;
+            font-size: 0.8rem;
+            letter-spacing: 5%;
+            color: $mainTextColor;
+            text-transform: uppercase;
+
+            &:last-of-type {
+              font-size: 1rem;
+              color: $thirdlyTextColor;
+              text-transform: none;
+              letter-spacing: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #replyForm {
+    border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+    padding: 32px 64px;
+    margin: 0 auto;
+    width: 80%;
+
+    h3 {
+      font-family: $secondaryTitles;
+      font-size: 24px;
+      font-weight: 400;
+      color: $thirdlyTextColor;
+    }
+
+    .error {
+      font-family: $otherText;
+      font-size: 12px;
+      color: red;
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+      color: $thirdlyTextColor;
+      padding: 12px 16px;
+      font-family: $otherText;
+      font-size: 1rem;
+      min-height: 120px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+
+      &::placeholder {
+        color: rgba($thirdlyTextColor, 0.4);
+      }
+    }
+
+    button {
+      display: block;
+      background-color: $secondaryBackgroundColor;
+      border: 1px solid #AF7F26;
+      padding: 8px 16px;
+      cursor: pointer;
+      color: $secondaryTextColor;
+      font-family: $otherText;
+
+      &:hover {
+        background-color: $mainBackgroundColor;
+        color: $mainTextColor;
+      }
+    }
+  }
+
+  &>p:last-of-type {
+    font-family: $otherText;
+    font-size: 12px;
+    color: $mainTextColor;
+    opacity: 0.6;
+
+    a {
+      color: $mainTextColor;
+      text-decoration: underline;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// ══════════════════════════════════════════════
+// PAGE À PROPOS
+// ══════════════════════════════════════════════
+ 
+#aboutPage {
+ 
+  // ── Hero ──────────────────────────────────
+  .about-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+    overflow: hidden;
+ 
+    &__bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba($secondaryBackgroundColor, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+ 
+    &__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5vw 6rem 8vw;
+      z-index: 1;
+      animation: fadeUp 0.8s ease both;
+    }
+ 
+    &__eyebrow {
+      font-family: $otherText;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+ 
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background: $mainTextColor;
+      }
+    }
+ 
+    &__title {
+      font-family: $secondaryTitles;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 700;
+      color: $mainTextColor;
+      line-height: 1.1;
+      margin: 0 0 2.5rem;
+ 
+      em {
+        color: $mainTextColor;
+        font-style: italic;
+      }
+    }
+ 
+    &__line {
+      width: 60px;
+      height: 2px;
+      background: $mainTextColor;
+    }
+ 
+    &__image-wrap {
+      position: relative;
+      overflow: hidden;
+ 
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 20px;
+        border: 1px solid rgba($mainTextColor, 0.3);
+        z-index: 1;
+        pointer-events: none;
+      }
+    }
+ 
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.5s ease;
+ 
+      &:hover {
+        filter: grayscale(0%);
+      }
+    }
+  }
+ 
+  // ── Intro ─────────────────────────────────
+  .about-intro {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 3rem;
+    padding: 6rem 8vw;
+    border-top: 1px solid rgba($mainTextColor, 0.15);
+    animation: fadeUp 0.8s 0.2s ease both;
+ 
+    &__number {
+      font-family: $mainTitleFont;
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba($mainTextColor, 0.15);
+      line-height: 1;
+      padding-top: 0.5rem;
+    }
+ 
+    &__title {
+      font-family: $mainTitleFont;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: $mainTextColor;
+      margin: 0 0 1.5rem;
+      letter-spacing: 0.05em;
+    }
+ 
+    p {
+      font-family: $otherText;
+      font-size: 1.05rem;
+      color: rgba($mainTextColor, 0.75);
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      max-width: 600px;
+ 
+      strong {
+        color: $mainTextColor;
+        font-weight: 600;
+      }
+    }
+  }
+ 
+  // ── Valeurs ───────────────────────────────
+  .about-values {
+    padding: 5rem 8vw;
+    background: rgba($secondaryBackgroundColor, 0.04);
+    border-top: 1px solid rgba($mainTextColor, 0.1);
+    border-bottom: 1px solid rgba($mainTextColor, 0.1);
+ 
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 4rem;
+ 
+      h2 {
+        font-family: $mainTitleFont;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: $mainTextColor;
+        letter-spacing: 0.2em;
+        text-transform: lowercase;
+        white-space: nowrap;
+        margin: 0;
+      }
+    }
+ 
+    &__line {
+      flex: 1;
+      height: 1px;
+      background: rgba($mainTextColor, 0.25);
+    }
+ 
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+ 
+    &__card {
+      padding: 3rem 2.5rem;
+      border: 1px solid rgba($mainTextColor, 0.12);
+      transition: border-color 0.3s ease, background 0.3s ease;
+ 
+      &:hover {
+        border-color: rgba($mainTextColor, 0.5);
+        background: rgba($mainTextColor, 0.03);
+      }
+ 
+      h3 {
+        font-family: $mainTitleFont;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: $mainTextColor;
+        letter-spacing: 0.08em;
+        margin: 1rem 0 0.8rem;
+      }
+ 
+      p {
+        font-family: $otherText;
+        font-size: 0.95rem;
+        color: rgba($mainTextColor, 0.65);
+        line-height: 1.7;
+        margin: 0;
+      }
+    }
+ 
+    &__icon {
+      font-size: 1.2rem;
+      color: $mainTextColor;
+      display: block;
+    }
+  }
+ 
+  // ── Citation ──────────────────────────────
+  .about-quote {
+    padding: 7rem 8vw;
+    text-align: center;
+ 
+    blockquote {
+      font-family: $mainTitleFont;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: rgba($mainTextColor, 0.6);
+      line-height: 1.5;
+      margin: 0;
+      position: relative;
+    }
+ 
+    &__mark {
+      font-size: 6rem;
+      color: rgba($mainTextColor, 0.15);
+      line-height: 0;
+      vertical-align: -2.5rem;
+      margin-right: 0.2rem;
+      font-style: normal;
+    }
+ 
+    cite {
+      display: block;
+      font-family: $otherText;
+      font-size: 0.85rem;
+      font-style: normal;
+      letter-spacing: 0.15em;
+      color: $mainTextColor;
+      margin-top: 2rem;
+    }
+  }
+ 
+  // ── CTA ───────────────────────────────────
+  .about-cta {
+    padding: 5rem 8vw;
+    text-align: center;
+    border-top: 1px solid rgba($mainTextColor, 0.15);
+ 
+    p {
+      font-family: $otherText;
+      font-size: 1rem;
+      color: rgba($mainTextColor, 0.6);
+      letter-spacing: 0.08em;
+      margin: 0 0 2rem;
+    }
+  }
+}
+ 
+ 
+// ══════════════════════════════════════════════
+// PAGE CONTACT
+// ══════════════════════════════════════════════
+ 
+#contactPage {
+ 
+  // ── Hero ──────────────────────────────────
+  .contact-hero {
+    padding: 7rem 8vw 4rem;
+    animation: fadeUp 0.7s ease both;
+ 
+    &__eyebrow {
+      font-family: $otherText;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+ 
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background: $mainTextColor;
+      }
+    }
+ 
+    &__title {
+      font-family: $mainTitleFont;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      color: $mainTextColor;
+      line-height: 1;
+      margin: 0 0 1.2rem;
+ 
+      em {
+        color: $mainTextColor;
+        font-style: italic;
+      }
+    }
+ 
+    &__sub {
+      font-family: $otherText;
+      font-size: 1rem;
+      color: rgba($mainTextColor, 0.55);
+      margin: 0 0 2.5rem;
+      letter-spacing: 0.04em;
+    }
+ 
+    &__line {
+      width: 60px;
+      height: 2px;
+      background: $mainTextColor;
+    }
+  }
+ 
+  // ── Wrapper 2 colonnes ────────────────────
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 5rem;
+    padding: 4rem 8vw 7rem;
+    align-items: start;
+ 
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+  }
+ 
+  // ── Formulaire ────────────────────────────
+  .contact-form-section {
+    &__title {
+      font-family: $mainTitleFont;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: $mainTextColor;
+      letter-spacing: 0.15em;
+      margin: 0 0 2.5rem;
+      text-transform: lowercase;
+    }
+  }
+ 
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+ 
+    &__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+ 
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+      }
+    }
+ 
+    &__group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+ 
+      label {
+        font-family: $otherText;
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba($mainTextColor, 0.5);
+      }
+ 
+      input,
+      textarea {
+        background: transparent;
+        border: 1px solid rgba($mainTextColor, 0.2);
+        color: $mainTextColor;
+        font-family: $otherText;
+        font-size: 0.95rem;
+        padding: 0.9rem 1.2rem;
+        outline: none;
+        transition: border-color 0.25s ease;
+        resize: none;
+ 
+        &::placeholder {
+          color: rgba($mainTextColor, 0.25);
+        }
+ 
+        &:focus {
+          border-color: $mainTextColor;
+        }
+      }
+    }
+ 
+    &__submit {
+      align-self: flex-start;
+      background: $mainTextColor;
+      color: $secondaryTextColor;
+      font-family: $otherText;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid $mainTextColor;
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+ 
+      &:hover {
+        background: transparent;
+        color: $mainTextColor;
+      }
+    }
+  }
+ 
+  // ── Aside réseaux ─────────────────────────
+  .contact-aside {
+    position: sticky;
+    top: 2rem;
+ 
+    &__title {
+      font-family: $mainTitleFont;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: $mainTextColor;
+      letter-spacing: 0.15em;
+      margin: 0 0 2rem;
+      text-transform: lowercase;
+    }
+ 
+    &__socials {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 3rem;
+    }
+ 
+    &__note {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
+      border: 1px solid rgba($mainTextColor, 0.15);
+      align-items: flex-start;
+ 
+      &-icon {
+        color: $mainTextColor;
+        font-size: 1rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+ 
+      p {
+        font-family: $otherText;
+        font-size: 0.85rem;
+        color: rgba($mainTextColor, 0.55);
+        line-height: 1.7;
+        margin: 0;
+ 
+        strong {
+          color: $mainTextColor;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+ 
+  .contact-social {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid rgba($mainTextColor, 0.12);
+    text-decoration: none;
+    transition: border-color 0.25s ease, background 0.25s ease;
+ 
+    &:hover {
+      border-color: $mainTextColor;
+      background: rgba($mainTextColor, 0.04);
+ 
+      .contact-social__icon {
+        background: $mainTextColor;
+        color: $secondaryTextColor;
+      }
+    }
+ 
+    &__icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba($mainTextColor, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $otherText;
+      font-size: 0.75rem;
+      color: $mainTextColor;
+      text-transform: lowercase;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+ 
+    &__label {
+      font-family: $otherText;
+      font-size: 0.9rem;
+      color: $mainTextColor;
+      letter-spacing: 0.05em;
+    }
+ 
+    &__handle {
+      font-family: $otherText;
+      font-size: 0.78rem;
+      color: rgba($mainTextColor, 0.4);
+      letter-spacing: 0.05em;
+    }
+  }
+}
+ 
+ 
+// ══════════════════════════════════════════════
+// PARTAGÉ : bouton gold + animations
+// ══════════════════════════════════════════════
+ 
+.btn-gold {
+  display: inline-block;
+  background: $mainTextColor;
+  color: $secondaryTextColor;
+  font-family: $otherText;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid $mainTextColor;
+  padding: 1rem 2.5rem;
+  transition: background 0.25s ease, color 0.25s ease;
+ 
+  &:hover {
+    background: transparent;
+    color: $mainTextColor;
+  }
+}
+ 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

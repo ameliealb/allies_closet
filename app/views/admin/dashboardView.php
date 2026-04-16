@@ -7,9 +7,9 @@
     
     <nav id="dashboardMenu">
         <ul>
-            <a href="index.php?action=createArticle"><li>créer un article</li></a>
-            <a href="index.php?action=manageArticles"><li>gérer les articles</li></a>
-            <a href="index.php?action=manageUsers"><li>gérer les membres</li></a>
+            <a href="index.php?action=createArticle"><img src="<?php echo BASE_URL; ?>/app/public/images/img_write_articles.webp" alt="admin_write"><li>créer un article</li></a>
+            <a href="index.php?action=manageArticles"><img src="<?php echo BASE_URL; ?>/app/public/images/img_manage_articles.webp" alt="admin_manage_article"><li>gérer les articles</li></a>
+            <a href="index.php?action=manageUsers"><img src="<?php echo BASE_URL; ?>/app/public/images/img_manage_users.webp" alt="admin_manage_user"><li>gérer les membres</li></a>
         </ul>
     </nav>
 

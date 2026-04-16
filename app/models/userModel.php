@@ -30,3 +30,30 @@ function createUser($data)
         $data['email']
     ]);
 }
+
+//when clicks on the username, redirects to the user page
+function findById($id)
+{
+    global $dbConnector;
+
+    $stmt = $dbConnector->prepare("SELECT * FROM USER_ WHERE id_user = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+//allows to change avatar and/or description
+function updateProfile($id, $data)
+{
+    global $dbConnector;
+
+    $stmt = $dbConnector->prepare("
+        UPDATE USER_ 
+        SET profile_description = ?, avatar = ?
+        WHERE id_user = ?
+    ");
+    return $stmt->execute([
+        $data['profile_description'],
+        $data['avatar'],
+        $id
+    ]);
+}

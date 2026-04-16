@@ -7,14 +7,17 @@ $dotenv->load();
 
 define("RACINE", __DIR__);
 
+define("BASE_URL", "/projet-final");
+
 require_once RACINE . "/app/config/database.php";
-require_once RACINE . "/app/models/loginModel.php";
+require_once RACINE . "/app/models/userModel.php";
 require_once RACINE . "/app/models/articlesModel.php";
 require_once RACINE . "/app/models/messageModel.php";
 require_once RACINE . "/app/controllers/loginController.php";
 require_once RACINE . "/app/controllers/articlesController.php";
 require_once RACINE . "/app/controllers/adminController.php";
 require_once RACINE . "/app/controllers/messageController.php";
+require_once RACINE . "/app/controllers/userController.php";
 
 require_once RACINE . "/app/config/routes.php";
 

@@ -2,24 +2,58 @@
 
 <div id="showMessageBlock">
 
+    <h2><?php echo htmlspecialchars($message['title']); ?></h2>
+    <div class="underLine"></div>
+    <p>par <a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
+            <?php echo htmlspecialchars($message['username']); ?>
+        </a> le <?php echo htmlspecialchars($message['date_of_creation']); ?></p>
+
     <article id="mainMessage">
-        <h1><?php echo htmlspecialchars($message['title']); ?></h1>
-        <p>par <?php echo htmlspecialchars($message['username']); ?></p>
-        <p><?php echo htmlspecialchars($message['date_of_creation']); ?></p>
-        <p><?php echo htmlspecialchars($message['content']); ?></p>
+
+        <p><?php echo ($message['content']); ?></p>
     </article>
 
     <section id="replies">
-        <h2>réponses</h2>
+        <h3>réponses</h3>
 
         <?php if (empty($replies)): ?>
             <p>aucune réponse pour le moment.</p>
         <?php else: ?>
             <?php foreach ($replies as $reply): ?>
                 <article class="replyCard">
-                    <p>par <?php echo htmlspecialchars($reply['username']); ?></p>
-                    <p><?php echo htmlspecialchars($reply['date_of_creation']); ?></p>
+                    <p>par <a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
+                            <?php echo htmlspecialchars($message['username']); ?>
+                        </a> le <?php echo htmlspecialchars($reply['date_of_creation']); ?></p>
                     <p><?php echo htmlspecialchars($reply['content']); ?></p>
+
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <details>
+                            <summary>répondre à ce message</summary>
+                            <form method="POST" action="index.php?action=submitReply">
+                                <input type="hidden" name="id_reply" value="<?php echo $reply['id_message']; ?>">
+                                <input type="hidden" name="topic_id" value="<?php echo $message['id_message']; ?>">
+                                <textarea name="content" placeholder="ta réponse..." required></textarea>
+                                <button type="submit">répondre</button>
+                            </form>
+                        </details>
+                    <?php endif; ?>
+
+                    <?php
+                    $subReplies = getRepliesByMessageId($reply['id_message']);
+                    if (!empty($subReplies)):
+                    ?>
+                        <div class="subReplies">
+                            <?php foreach ($subReplies as $subReply): ?>
+                                <article class="subReplyCard">
+                                    <p>par <a href="index.php?action=showProfile&id=<?php echo $message['id_user']; ?>">
+                                            <?php echo htmlspecialchars($message['username']); ?>
+                                        </a> le <?php echo htmlspecialchars($subReply['date_of_creation']); ?></p>
+                                    <p id="subReplyContent"><?php echo htmlspecialchars($subReply['content']); ?></p>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
                 </article>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -27,7 +61,7 @@
 
     <?php if (isset($_SESSION['user'])): ?>
         <section id="replyForm">
-            <h2>répondre</h2>
+            <h3>répondre au topic</h3>
 
             <?php if (!empty($error)): ?>
                 <p class="error"><?php echo htmlspecialchars($error); ?></p>
@@ -35,8 +69,8 @@
 
             <form method="POST" action="index.php?action=submitReply">
                 <input type="hidden" name="id_reply" value="<?php echo $message['id_message']; ?>">
-                <input type="text" name="title" placeholder="titre de ta réponse">
-                <textarea name="content" placeholder="ta réponse..." required></textarea>
+                <input type="hidden" name="topic_id" value="<?php echo $message['id_message']; ?>">
+                <textarea name="content" placeholder="écrivez votre réponse ici" required></textarea>
                 <button type="submit">répondre</button>
             </form>
         </section>

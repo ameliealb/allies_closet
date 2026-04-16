@@ -24,7 +24,7 @@ function login()
     if (!$user) {
         $error = "Email ou mot de passe incorrect."; //it's highly recommended not to show which error occurs
         require RACINE . '/app/views/login/loginRegisterView.php';
-        return; //ferme la condition
+        return; //close condition
     }
 
     //if the password entered isn't the same registered in the database, an error is displayed and the login/register view is showed again

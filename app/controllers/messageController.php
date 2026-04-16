@@ -3,7 +3,14 @@
 //displays forum's page and all messages (topics and replies) in the database
 function showForum()
 {
-    $messages = getAllMessages();
+    $limit      = 10;
+    $page       = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $offset     = ($page - 1) * $limit;
+    $total      = countMessages();
+    $totalPages = ceil($total / $limit);
+    $messages   = getAllMessages($limit, $offset);
+    $lastReplies = getLastReplies();
+
     require RACINE . '/app/views/forum/indexForumView.php';
 }
 
@@ -63,23 +70,24 @@ function submitReply()
     }
 
     $id_reply = $_POST['id_reply'];
-    $content = trim($_POST['content']);
+    $topic_id = $_POST['topic_id'];
+    $content  = trim($_POST['content']);
 
     if (empty($content)) {
-        $error = "La réponse ne peut pas être vide.";
-        $message = getMessageById($id_reply);
-        $replies = getRepliesByMessageId($id_reply);
+        $error   = "La réponse ne peut pas être vide.";
+        $message = getMessageById($topic_id);
+        $replies = getRepliesByMessageId($topic_id);
         require RACINE . '/app/views/forum/showMessView.php';
         return;
     }
 
     $data = [
-        'id_user' => $_SESSION['user']['id_user'],
+        'id_user'  => $_SESSION['user']['id_user'],
         'id_reply' => $id_reply,
-        'content' => $content
+        'content'  => $content
     ];
 
     createReply($data);
-    header('Location: /projet-final/index.php?action=showMessage&id=' . $id_reply);
+    header('Location: /projet-final/index.php?action=showMessage&id=' . $topic_id);
     exit;
 }

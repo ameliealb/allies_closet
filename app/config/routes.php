@@ -18,10 +18,17 @@ class Route
 
     public function route()
     {
-
         switch ($this->action) {
             case "default":
                 require RACINE . "/app/controllers/homeController.php";
+                break;
+
+            case "contact":
+                require RACINE . "/app/controllers/contactController.php";
+                break;
+
+            case "aPropos":
+                require RACINE . "/app/controllers/aboutController.php";
                 break;
 
             case "loginPage":
@@ -74,6 +81,18 @@ class Route
 
             case "submitReply":
                 submitReply();
+                break;
+
+            case "showProfile":
+                showProfile();
+                break;
+
+            case "editProfile":
+                showEditProfile();
+                break;
+
+            case "submitProfile":
+                submitProfile();
                 break;
         }
         //how it works : URL => action => switch => executing function
