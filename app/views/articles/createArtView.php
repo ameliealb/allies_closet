@@ -32,6 +32,7 @@
         </select>
 
         <input type="file" name="article_image" accept="image/*">
+        <p>Attention : le poids de l'image ne doit pas dépasser les 2MB et doit être de préférence, pour une meilleure visibilité, horizontale.</p>
 
         <button type="submit">publier</button>
 
