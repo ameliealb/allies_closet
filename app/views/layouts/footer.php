@@ -52,8 +52,8 @@
             <h3 class="footerSecondaryTitle">légal</h3>
             <div class="underLine">&nbsp</div>
             <ul class="footerPoliciesList">
-                <li><a href="#">mentions légales</a></li>
-                <li><a href="#">politique de confidentialité</a></li>
+                <li><a href="index.php?action=legal">mentions légales</a></li>
+                <li><a href="index.php?action=privacy">politique de confidentialité</a></li>
             </ul>
         </nav>
 

@@ -143,7 +143,17 @@ class Route
             case "submitProfile":
                 submitProfile();
                 break;
+
+            case "legal":
+                showLegal();
+                break;
+
+            case "privacy":
+                showPrivacy();
+                break;
         }
+
+
         //how it works : URL => action => switch => executing function
     }
 }

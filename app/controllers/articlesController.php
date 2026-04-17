@@ -64,7 +64,7 @@ function showCreateArticle() //displays creation article page, only for the admi
 {
     //if the user is NOT logged in OR the user hasn't 'admin' as role, the function leads it to the login page
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-        header('Location: /projet-final/index.php?action=loginPage');
+        show403();
         exit;
     }
 
@@ -76,7 +76,7 @@ function showCreateArticle() //displays creation article page, only for the admi
 function submitArticle()
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-        header('Location: /projet-final/index.php?action=loginPage');
+        show403();
         exit;
     }
 
@@ -136,7 +136,7 @@ function submitArticle()
 function showEditArticle()
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-        header('Location: /projet-final/index.php?action=loginPage');
+        show403();
         exit;
     }
 
@@ -156,7 +156,7 @@ function showEditArticle()
 function submitEditArticle()
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-        header('Location: /projet-final/index.php?action=loginPage');
+        show403();
         exit;
     }
 
@@ -211,7 +211,7 @@ function submitEditArticle()
 function submitDeleteArticle()
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-        header('Location: /projet-final/index.php?action=loginPage');
+        show403();
         exit;
     }
 
@@ -225,7 +225,7 @@ function submitDeleteArticle()
 function submitArchiveArticle() //allows the admin to archive an article
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') { //allowed only if admin
-        header('Location: /projet-final/index.php?action=loginPage');
+        show403();
         exit;
     }
 

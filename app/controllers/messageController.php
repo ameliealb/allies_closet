@@ -3,7 +3,7 @@
 //displays forum's page and all messages (topics and replies) in the database
 function showForum()
 {
-    $limit       = 10;
+    $limit       = 6;
     $page        = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset      = ($page - 1) * $limit;
     $total       = countMessages();
@@ -24,7 +24,7 @@ function showForumCategory()
         exit;
     }
 
-    $limit       = 10;
+    $limit       = 6;
     $page        = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset      = ($page - 1) * $limit;
     $total       = countMessagesByCategory($category);

@@ -6,7 +6,7 @@
         <div id="firstBlockPart1">
             <div id="subBlock1">
                 <div class="underLineSmall"></div>
-                <h2>le style, l'<span class="italicBold">attitude</span> : bienvenue dans mon dressing</h2>
+                <h2>le style, l'<span class="italicBold">attitude</span> : bienvenue sur mon blog</h2>
             </div>
             <h6>L'ART DE <span class="italicBig">VIVRE</span> <br>et de s'habiller <br>à contre-courant <br>des <span class="bold big">NORMES.</span> </h6>
             <button id="discoverButton"><a href="index.php?action=blog">découvrir le blog</a></button>

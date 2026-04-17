@@ -398,6 +398,127 @@ header {
   }
 }
 
+//==========LEGAL STUFF==========//
+
+#legalBlock {
+  padding: 4rem 8vw 7rem;
+  max-width: 860px;
+  margin: 0 auto;
+
+  // ── Hero ──────────────────────────────────
+  .legal-hero {
+    margin-bottom: 4rem;
+
+    &__eyebrow {
+      font-family: $otherText;
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.2rem;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background: $mainTextColor;
+      }
+    }
+
+    h2 {
+      font-family: $secondaryTitles;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: $thirdlyTextColor;
+      margin: 0 0 0.5rem;
+    }
+
+    .underLine {
+      width: 60px;
+      margin: 0;
+    }
+  }
+
+  // ── Contenu ───────────────────────────────
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  // ── Sections ──────────────────────────────
+  .legal-section {
+    border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
+    padding: 2.5rem 0;
+
+    &:last-of-type {
+      border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
+    }
+
+    h3 {
+      font-family: $otherText;
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      margin: 0 0 1.2rem;
+      font-weight: 400;
+    }
+
+    p {
+      font-family: $otherText;
+      font-size: 0.95rem;
+      color: rgba($thirdlyTextColor, 0.75);
+      line-height: 1.9;
+      margin: 0 0 0.8rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      strong {
+        color: $thirdlyTextColor;
+        font-weight: 600;
+      }
+    }
+
+    ul {
+      margin: 0 0 0.8rem;
+      padding-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      li {
+        font-family: $otherText;
+        font-size: 0.95rem;
+        color: rgba($thirdlyTextColor, 0.75);
+        line-height: 1.7;
+
+        strong {
+          color: $mainTextColor;
+          font-weight: 600;
+        }
+      }
+    }
+
+    a {
+      color: $mainTextColor;
+      text-decoration: none;
+      border-bottom: 0.5px solid rgba($mainTextColor, 0.3);
+      transition: border-color 0.2s ease;
+
+      &:hover {
+        border-color: $mainTextColor;
+      }
+    }
+  }
+}
+
 /*==========HOME PAGE==========*/
 
 #homeMain {

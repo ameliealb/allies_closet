@@ -386,6 +386,105 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 
+#legalBlock {
+  padding: 4rem 8vw 7rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+#legalBlock .legal-hero {
+  margin-bottom: 4rem;
+}
+#legalBlock .legal-hero__eyebrow {
+  font-family: "Poppins";
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #DAAF50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.2rem;
+}
+#legalBlock .legal-hero__eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: #DAAF50;
+}
+#legalBlock .legal-hero h2 {
+  font-family: "Playfair Display";
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0 0 0.5rem;
+}
+#legalBlock .legal-hero .underLine {
+  width: 60px;
+  margin: 0;
+}
+#legalBlock .legal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+#legalBlock .legal-section {
+  border-top: 0.5px solid rgba(218, 175, 80, 0.25);
+  padding: 2.5rem 0;
+}
+#legalBlock .legal-section:last-of-type {
+  border-bottom: 0.5px solid rgba(218, 175, 80, 0.25);
+}
+#legalBlock .legal-section h3 {
+  font-family: "Poppins";
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #DAAF50;
+  margin: 0 0 1.2rem;
+  font-weight: 400;
+}
+#legalBlock .legal-section p {
+  font-family: "Poppins";
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.9;
+  margin: 0 0 0.8rem;
+}
+#legalBlock .legal-section p:last-of-type {
+  margin-bottom: 0;
+}
+#legalBlock .legal-section p strong {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+#legalBlock .legal-section ul {
+  margin: 0 0 0.8rem;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+#legalBlock .legal-section ul li {
+  font-family: "Poppins";
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+}
+#legalBlock .legal-section ul li strong {
+  color: #DAAF50;
+  font-weight: 600;
+}
+#legalBlock .legal-section a {
+  color: #DAAF50;
+  text-decoration: none;
+  border-bottom: 0.5px solid rgba(218, 175, 80, 0.3);
+  transition: border-color 0.2s ease;
+}
+#legalBlock .legal-section a:hover {
+  border-color: #DAAF50;
+}
+
 /*==========HOME PAGE==========*/
 #homeMain {
   margin: 16x 0 0 40px;
