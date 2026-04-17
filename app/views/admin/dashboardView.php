@@ -32,6 +32,7 @@
             <div class="userRow">
                 <p><?php echo htmlspecialchars($user['username']); ?></p>
                 <p><?php echo htmlspecialchars($user['email']); ?></p>
+                <p><?php echo htmlspecialchars($user['role']); ?></p>
             </div>
         <?php endforeach; ?>
     </section>
