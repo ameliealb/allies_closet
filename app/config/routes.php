@@ -19,8 +19,8 @@ class Route
     public function route()
     {
         switch ($this->action) {
-            case "default":
-                require RACINE . "/app/controllers/homeController.php";
+            default:
+                show404();
                 break;
 
             case "contact":

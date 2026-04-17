@@ -342,6 +342,62 @@ header {
   }
 }
 
+/*==========ERROR PAGES (403, 404==========*/
+
+#errorBlock {
+  padding: 4rem 6rem;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .errorCode {
+    font-family: $mainTitleFont;
+    font-size: 10rem;
+    font-weight: 700;
+    color: rgba($secondaryBackgroundColor, 0.2);
+    line-height: 1;
+    margin: 0 0 1rem;
+  }
+
+  h2 {
+    font-family: $secondaryTitles;
+    font-size: 2rem;
+    font-weight: 400;
+    color: $thirdlyTextColor;
+    margin: 0 0 0.5rem;
+  }
+
+  .underLine {
+    width: 60px;
+    margin: 0 auto 2rem;
+  }
+
+  .errorMessage {
+    font-family: $otherText;
+    font-size: 1rem;
+    color: rgba($thirdlyTextColor, 0.6);
+    margin: 0 0 3rem;
+  }
+
+  button {
+    background-color: $secondaryBackgroundColor;
+    color: $secondaryTextColor;
+    border: 1px solid $secondaryBackgroundColor;
+    padding: 10px 28px;
+    font-family: $otherText;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $mainBackgroundColor;
+      color: $mainTextColor;
+    }
+  }
+}
+
 /*==========HOME PAGE==========*/
 
 #homeMain {

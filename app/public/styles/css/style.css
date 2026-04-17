@@ -337,6 +337,55 @@ header #navHeader button:hover a {
   font-weight: bolder;
 }
 
+/*==========ERROR PAGES (403, 404==========*/
+#errorBlock {
+  padding: 4rem 6rem;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#errorBlock .errorCode {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 10rem;
+  font-weight: 700;
+  color: rgba(218, 175, 80, 0.2);
+  line-height: 1;
+  margin: 0 0 1rem;
+}
+#errorBlock h2 {
+  font-family: "Playfair Display";
+  font-size: 2rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0 0 0.5rem;
+}
+#errorBlock .underLine {
+  width: 60px;
+  margin: 0 auto 2rem;
+}
+#errorBlock .errorMessage {
+  font-family: "Poppins";
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 3rem;
+}
+#errorBlock button {
+  background-color: #DAAF50;
+  color: #000000;
+  border: 1px solid #DAAF50;
+  padding: 10px 28px;
+  font-family: "Poppins";
+  font-size: 1rem;
+  cursor: pointer;
+}
+#errorBlock button:hover {
+  background-color: #000000;
+  color: #DAAF50;
+}
+
 /*==========HOME PAGE==========*/
 #homeMain {
   margin: 16x 0 0 40px;

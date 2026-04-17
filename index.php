@@ -20,6 +20,7 @@ require_once RACINE . "/app/controllers/messageController.php";
 require_once RACINE . "/app/controllers/userController.php";
 require_once RACINE . "/app/models/commentaryModel.php";
 require_once RACINE . "/app/controllers/commentaryController.php";
+require_once RACINE . "/app/controllers/errorController.php";
 
 require_once RACINE . "/app/config/routes.php";
 
