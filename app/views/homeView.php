@@ -9,8 +9,8 @@
                 <h2>le style, l'<span class="italicBold">attitude</span> : bienvenue dans mon dressing</h2>
             </div>
             <h6>L'ART DE <span class="italicBig">VIVRE</span> <br>et de s'habiller <br>à contre-courant <br>des <span class="bold big">NORMES.</span> </h6>
-            <a href="index.php?action=blog"><button id="discoverButton">découvrir le blog</button></a>
-            <a href="index.php?action=forum"><button id="contactButton">aller sur le forum</button></a>
+            <button id="discoverButton"><a href="index.php?action=blog">découvrir le blog</a></button>
+            <button id="contactButton"><a href="index.php?action=forum">aller sur le forum</a></button>
         </div>
         <div id="firstBlockPart2">
             <a href="#">
@@ -82,9 +82,10 @@
     </section>
 
     <section id="communityBlock">
-        <div class="underLineSmall"></div>
-        <p id="communityLabel">notre communauté</p>
-
+        <div id="communityLabelRow">
+            <div class="underLineSmall"></div>
+            <p id="communityLabel">notre communauté</p>
+        </div>
         <div id="communityContent">
             <h2>rejoignez <br> les <span>ALLIEGATORS</span></h2>
             <p>découvrez les avant-premières <br> et ne ratez aucune actualité.</p>

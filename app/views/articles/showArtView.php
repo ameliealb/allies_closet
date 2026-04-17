@@ -17,7 +17,7 @@
 
             <?php if (isset($_SESSION['user'])): ?>
                 <a href="index.php?action=toggleLikeArticle&id_article=<?php echo $article['id_article']; ?>">
-                    <?php echo $hasLiked ? '♥ retirer le like' : '♡ liker'; ?>
+                    <?php echo $hasLiked ? '♡ retirer le like' : '♥︎ liker'; ?>
                 </a>
             <?php endif; ?>
         </div>

@@ -3,7 +3,7 @@
 
 function showBlog() //displays blog and paging
 {
-    $limit = 10;
+    $limit = 6;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset = ($page - 1) * $limit;
 
@@ -32,7 +32,7 @@ function showCategory() //displays catogories, users are able to look for articl
     }
 
     //paging
-    $limit = 10;
+    $limit = 6;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset = ($page - 1) * $limit;
     $total = countArticlesByCategory($category);

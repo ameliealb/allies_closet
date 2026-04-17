@@ -12,7 +12,7 @@
     <h3>bienvenue sur le forum : <br>crééer vos propres sujets et partagez vos visions <br>avec d'autres ALLIEGATORS. <br> <br> amicalement vôtre, <br><span class="signatureFont">Allie</span></h3>
     <div class="underLineSmall"></div>
 </div>
-<nav id="categoriesNav">
+<nav class="categoriesNav">
     <a href="index.php?action=forum">tous</a>
     <a href="index.php?action=showForumCategory&category=mode">mode</a>
     <a href="index.php?action=showForumCategory&category=maquillage">maquillage</a>

@@ -11,7 +11,7 @@
         <button type="submit">rechercher</button>
     </form>
 
-    <nav id="categoriesNav">
+    <nav class="categoriesNav">
                     <a href="index.php?action=blog">tous</a>
                     <a href="index.php?action=showCategory&category=mode">mode</a>
                     <a href="index.php?action=showCategory&category=maquillage">maquillage</a>
@@ -28,6 +28,7 @@
         <?php foreach ($articles as $article): ?>
             <article class="articleCard">
                 <div class="articleContent">
+                    <p><?php echo htmlspecialchars($article['category']); ?></p>
                     <h3><?php echo htmlspecialchars($article['title']); ?></h3>
                     <p><?php echo htmlspecialchars($article['date_of_creation']); ?></p>
                     <p><?php echo htmlspecialchars(substr($article['content'], 0, 150)); ?>...</p>
