@@ -23,6 +23,19 @@
         <a href="index.php?action=createArticle">+ créer un article</a>
     </section>
 
+    <section id="manageUsers">
+        <h3>les membres</h3>
+        <?php
+        $users = getAllUsers(); // ← fonction à appeler depuis userModel
+        foreach ($users as $user):
+        ?>
+            <div class="userRow">
+                <p><?php echo htmlspecialchars($user['username']); ?></p>
+                <p><?php echo htmlspecialchars($user['email']); ?></p>
+            </div>
+        <?php endforeach; ?>
+    </section>
+
 </div>
 
 <?php require RACINE . '/app/views/layouts/footer.php'; ?>

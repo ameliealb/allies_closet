@@ -580,16 +580,16 @@ header #navHeader button:hover a {
 #dashboard-container {
   padding: 4rem 6rem;
 }
-#dashboard-container #manageArticles {
-  margin-top: 3rem;
-}
-#dashboard-container #manageArticles h3 {
+#dashboard-container h3 {
   font-family: "Playfair Display";
   font-size: 24px;
   font-weight: 400;
   color: #FFFFFF;
   margin: 0 0 1.5rem;
   letter-spacing: 1px;
+}
+#dashboard-container #manageArticles {
+  margin-top: 3rem;
 }
 #dashboard-container #manageArticles .articleRow {
   display: flex;
@@ -655,6 +655,38 @@ header #navHeader button:hover a {
 }
 #dashboard-container #manageArticles > a:hover {
   background-color: rgba(218, 175, 80, 0.1);
+}
+
+#manageUsers {
+  padding-top: 80px;
+}
+#manageUsers .userRow {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 0.5px solid rgba(218, 175, 80, 0.3);
+  padding: 1.2rem 2rem;
+  margin-bottom: 1px;
+  background-color: rgb(5.1, 5.1, 5.1);
+}
+#manageUsers .userRow:hover {
+  border-color: rgba(218, 175, 80, 0.6);
+}
+#manageUsers .userRow p {
+  font-family: "Poppins";
+  margin: 0;
+}
+#manageUsers .userRow p:first-of-type {
+  font-size: 15px;
+  color: #FFFFFF;
+  flex: 1;
+}
+#manageUsers .userRow p:last-of-type {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #DAAF50;
+  opacity: 0.6;
 }
 
 /*==========CREATE ARTICLE PAGE==========*/

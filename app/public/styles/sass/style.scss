@@ -631,17 +631,17 @@ header {
 #dashboard-container {
   padding: 4rem 6rem;
 
+  h3 {
+    font-family: $secondaryTitles;
+    font-size: 24px;
+    font-weight: 400;
+    color: $thirdlyTextColor;
+    margin: 0 0 1.5rem;
+    letter-spacing: 1px;
+  }
+
   #manageArticles {
     margin-top: 3rem;
-
-    h3 {
-      font-family: $secondaryTitles;
-      font-size: 24px;
-      font-weight: 400;
-      color: $thirdlyTextColor;
-      margin: 0 0 1.5rem;
-      letter-spacing: 1px;
-    }
 
     .articleRow {
       display: flex;
@@ -721,230 +721,268 @@ header {
   }
 }
 
+#manageUsers {
+
+  padding-top:80px;
+
+  .userRow {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+    padding: 1.2rem 2rem;
+    margin-bottom: 1px;
+    background-color: lighten($mainBackgroundColor, 2%);
+
+    &:hover {
+      border-color: rgba($secondaryBackgroundColor, 0.6);
+    }
+
+    p {
+      font-family: $otherText;
+      margin: 0;
+
+      &:first-of-type {
+        font-size: 15px;
+        color: $thirdlyTextColor;
+        flex: 1;
+      }
+
+      &:last-of-type {
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: $mainTextColor;
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
 /*==========CREATE ARTICLE PAGE==========*/
 
 #createArticleView {
-    padding: 4rem 6rem;
-    max-width: 800px;
-    margin: 0 auto;
+  padding: 4rem 6rem;
+  max-width: 800px;
+  margin: 0 auto;
 
-    .error {
-        font-family: $otherText;
-        font-size: 12px;
-        color: red;
-        margin-bottom: 1rem;
+  .error {
+    font-family: $otherText;
+    font-size: 12px;
+    color: red;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    input[type="text"] {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 12px 16px;
+      font-family: $otherText;
+      font-size: 14px;
+      outline: none;
+
+      &::placeholder {
+        color: rgba($thirdlyTextColor, 0.4);
+      }
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
+    textarea {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 12px 16px;
+      font-family: $otherText;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 400px;
+      outline: none;
 
-        input[type="text"] {
-            background-color: lighten($mainBackgroundColor, 3%);
-            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-            color: $thirdlyTextColor;
-            padding: 12px 16px;
-            font-family: $otherText;
-            font-size: 14px;
-            outline: none;
+      &::placeholder {
+        color: rgba($thirdlyTextColor, 0.4);
+      }
 
-            &::placeholder {
-                color: rgba($thirdlyTextColor, 0.4);
-            }
-
-            &:focus {
-                border-color: $secondaryBackgroundColor;
-            }
-        }
-
-        textarea {
-            background-color: lighten($mainBackgroundColor, 3%);
-            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-            color: $thirdlyTextColor;
-            padding: 12px 16px;
-            font-family: $otherText;
-            font-size: 14px;
-            resize: vertical;
-            min-height: 400px;
-            outline: none;
-
-            &::placeholder {
-                color: rgba($thirdlyTextColor, 0.4);
-            }
-
-            &:focus {
-                border-color: $secondaryBackgroundColor;
-            }
-        }
-
-        label {
-            font-family: $otherText;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: $mainTextColor;
-            opacity: 0.7;
-            margin-bottom: -0.8rem;
-        }
-
-        select {
-            background-color: lighten($mainBackgroundColor, 3%);
-            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-            color: $thirdlyTextColor;
-            padding: 10px 16px;
-            font-family: $otherText;
-            font-size: 13px;
-            outline: none;
-            cursor: pointer;
-
-            option {
-                background-color: $mainBackgroundColor;
-                color: $thirdlyTextColor;
-            }
-
-            &:focus {
-                border-color: $secondaryBackgroundColor;
-            }
-        }
-
-        input[type="file"] {
-            font-family: $otherText;
-            font-size: 12px;
-            color: $thirdlyTextColor;
-            cursor: pointer;
-        }
-
-        button {
-            display: block;
-            align-self: flex-start;
-            border: 1px solid $secondaryBackgroundColor;
-            color: $secondaryTextColor;
-            padding: 10px 28px;
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            background: transparent;
-            cursor: pointer;
-            font-family: $otherText;
-            margin-top: 0.5rem;
-
-            &:hover {
-                background-color: rgba($secondaryBackgroundColor, 0.1);
-            }
-        }
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
     }
+
+    label {
+      font-family: $otherText;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      opacity: 0.7;
+      margin-bottom: -0.8rem;
+    }
+
+    select {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 10px 16px;
+      font-family: $otherText;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+
+      option {
+        background-color: $mainBackgroundColor;
+        color: $thirdlyTextColor;
+      }
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
+    }
+
+    input[type="file"] {
+      font-family: $otherText;
+      font-size: 12px;
+      color: $thirdlyTextColor;
+      cursor: pointer;
+    }
+
+    button {
+      display: block;
+      align-self: flex-start;
+      border: 1px solid $secondaryBackgroundColor;
+      color: $secondaryTextColor;
+      padding: 10px 28px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: transparent;
+      cursor: pointer;
+      font-family: $otherText;
+      margin-top: 0.5rem;
+
+      &:hover {
+        background-color: rgba($secondaryBackgroundColor, 0.1);
+      }
+    }
+  }
 }
 
 /*==========EDIT ARTICLE PAGE==========*/
 
 #editArticleBlock {
-    padding: 4rem 6rem;
+  padding: 4rem 6rem;
 
-    h1 {
-        font-family: $mainTitleFont;
-        font-size: 48px;
-        font-weight: 400;
-        color: $mainTextColor;
-        letter-spacing: 2px;
-        margin: 0 0 0.5rem;
+  h1 {
+    font-family: $mainTitleFont;
+    font-size: 48px;
+    font-weight: 400;
+    color: $mainTextColor;
+    letter-spacing: 2px;
+    margin: 0 0 0.5rem;
+  }
+
+  .underLine {
+    height: 1px;
+    background-color: $secondaryBackgroundColor;
+    margin: 0 0 3rem;
+  }
+
+  .error {
+    font-family: $otherText;
+    font-size: 12px;
+    color: red;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 800px;
+
+    label {
+      font-family: $otherText;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      opacity: 0.7;
+      margin-bottom: -0.5rem;
     }
 
-    .underLine {
-        height: 1px;
-        background-color: $secondaryBackgroundColor;
-        margin: 0 0 3rem;
+    input[type="text"],
+    select {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 10px 16px;
+      font-family: $otherText;
+      font-size: 13px;
+      outline: none;
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
     }
 
-    .error {
-        font-family: $otherText;
-        font-size: 12px;
-        color: red;
-        margin-bottom: 1rem;
+    textarea {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 12px 16px;
+      font-family: $otherText;
+      font-size: 13px;
+      resize: vertical;
+      min-height: 300px;
+      outline: none;
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
+
+      &::placeholder {
+        color: rgba($thirdlyTextColor, 0.4);
+      }
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 800px;
-
-        label {
-            font-family: $otherText;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: $mainTextColor;
-            opacity: 0.7;
-            margin-bottom: -0.5rem;
-        }
-
-        input[type="text"],
-        select {
-            background-color: lighten($mainBackgroundColor, 3%);
-            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-            color: $thirdlyTextColor;
-            padding: 10px 16px;
-            font-family: $otherText;
-            font-size: 13px;
-            outline: none;
-
-            &:focus {
-                border-color: $secondaryBackgroundColor;
-            }
-        }
-
-        textarea {
-            background-color: lighten($mainBackgroundColor, 3%);
-            border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-            color: $thirdlyTextColor;
-            padding: 12px 16px;
-            font-family: $otherText;
-            font-size: 13px;
-            resize: vertical;
-            min-height: 300px;
-            outline: none;
-
-            &:focus {
-                border-color: $secondaryBackgroundColor;
-            }
-
-            &::placeholder {
-                color: rgba($thirdlyTextColor, 0.4);
-            }
-        }
-
-        img {
-            width: 200px;
-            height: 130px;
-            object-fit: cover;
-        }
-
-        input[type="file"] {
-            font-family: $otherText;
-            font-size: 12px;
-            color: $thirdlyTextColor;
-        }
-
-        button {
-            display: block;
-            align-self: flex-start;
-            border: 1px solid $secondaryBackgroundColor;
-            color: $secondaryTextColor;
-            padding: 10px 28px;
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            background: transparent;
-            cursor: pointer;
-            font-family: $otherText;
-            margin-top: 1rem;
-
-            &:hover {
-                background-color: rgba($secondaryBackgroundColor, 0.1);
-            }
-        }
+    img {
+      width: 200px;
+      height: 130px;
+      object-fit: cover;
     }
+
+    input[type="file"] {
+      font-family: $otherText;
+      font-size: 12px;
+      color: $thirdlyTextColor;
+    }
+
+    button {
+      display: block;
+      align-self: flex-start;
+      border: 1px solid $secondaryBackgroundColor;
+      color: $secondaryTextColor;
+      padding: 10px 28px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: transparent;
+      cursor: pointer;
+      font-family: $otherText;
+      margin-top: 1rem;
+
+      &:hover {
+        background-color: rgba($secondaryBackgroundColor, 0.1);
+      }
+    }
+  }
 }
 
 /*==========LOGIN/REGISTER PAGE==========*/
@@ -1148,200 +1186,200 @@ header {
 /*==========FOR EACH ARTICLE PAGE==========*/
 
 #showArticleBlock {
-    padding: 4rem 6rem;
-    max-width: 900px;
-    margin: 0 auto;
+  padding: 4rem 6rem;
+  max-width: 900px;
+  margin: 0 auto;
 
-    & > p {
+  &>p {
+    font-family: $otherText;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $mainTextColor;
+    opacity: 0.6;
+    margin: 0 0 2rem;
+  }
+
+  &>img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 3rem;
+  }
+
+  #articleContent {
+    border-left: 2px solid rgba($secondaryBackgroundColor, 0.5);
+    padding: 0 0 0 2rem;
+    margin-bottom: 4rem;
+
+    p {
+      font-family: $otherText;
+      font-size: 16px;
+      line-height: 2;
+      color: $thirdlyTextColor;
+      margin: 0;
+    }
+  }
+
+  #commentsBlock {
+    border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+    padding-top: 3rem;
+
+    h2 {
+      font-family: $secondaryTitles;
+      font-size: 28px;
+      font-weight: 400;
+      color: $thirdlyTextColor;
+      margin: 0 0 2rem;
+      letter-spacing: 1px;
+    }
+
+    &>p {
+      font-family: $otherText;
+      font-size: 13px;
+      color: $thirdlyTextColor;
+      opacity: 0.5;
+    }
+
+    .commentCard {
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1px;
+      background-color: lighten($mainBackgroundColor, 2%);
+
+      &:hover {
+        border-color: rgba($secondaryBackgroundColor, 0.5);
+      }
+
+      .commentAuthor {
         font-family: $otherText;
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 2px;
         text-transform: uppercase;
+        margin: 0 0 0.3rem;
+
+        a {
+          color: $mainTextColor;
+          text-decoration: none;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+
+      .commentDate {
+        font-family: $otherText;
+        font-size: 10px;
+        letter-spacing: 1px;
         color: $mainTextColor;
-        opacity: 0.6;
-        margin: 0 0 2rem;
+        opacity: 0.5;
+        margin: 0 0 0.8rem;
+        text-transform: uppercase;
+      }
+
+      .commentContent {
+        font-family: $otherText;
+        font-size: 14px;
+        line-height: 1.8;
+        color: $thirdlyTextColor;
+        margin: 0 0 1rem;
+      }
+
+      a {
+        font-family: $otherText;
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: lighten(red, 20%);
+        text-decoration: none;
+        border-bottom: 0.5px solid rgba(red, 0.3);
+
+        &:hover {
+          border-color: red;
+        }
+      }
     }
 
-    & > img {
+    #commentForm {
+      margin-top: 3rem;
+      border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
+      padding-top: 2rem;
+
+      h3 {
+        font-family: $secondaryTitles;
+        font-size: 22px;
+        font-weight: 400;
+        color: $thirdlyTextColor;
+        margin: 0 0 1.5rem;
+      }
+
+      .error {
+        font-family: $otherText;
+        font-size: 12px;
+        color: red;
+        margin-bottom: 1rem;
+      }
+
+      textarea {
         width: 100%;
-        height: 500px;
-        object-fit: cover;
+        background-color: lighten($mainBackgroundColor, 3%);
+        border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+        color: $thirdlyTextColor;
+        padding: 12px 16px;
+        font-family: $otherText;
+        font-size: 13px;
+        resize: vertical;
+        min-height: 120px;
+        box-sizing: border-box;
+        margin-bottom: 1rem;
+        outline: none;
+
+        &::placeholder {
+          color: rgba($thirdlyTextColor, 0.4);
+        }
+
+        &:focus {
+          border-color: $secondaryBackgroundColor;
+        }
+      }
+
+      button {
         display: block;
-        margin-bottom: 3rem;
+        border: 1px solid $secondaryBackgroundColor;
+        color: $secondaryTextColor;
+        padding: 10px 28px;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        background: transparent;
+        cursor: pointer;
+        font-family: $otherText;
+
+        &:hover {
+          background-color: rgba($secondaryBackgroundColor, 0.1);
+        }
+      }
     }
 
-    #articleContent {
-        border-left: 2px solid rgba($secondaryBackgroundColor, 0.5);
-        padding: 0 0 0 2rem;
-        margin-bottom: 4rem;
+    &>p:last-of-type {
+      margin-top: 2rem;
+      font-family: $otherText;
+      font-size: 12px;
+      color: $mainTextColor;
+      opacity: 0.6;
 
-        p {
-            font-family: $otherText;
-            font-size: 16px;
-            line-height: 2;
-            color: $thirdlyTextColor;
-            margin: 0;
+      a {
+        color: $mainTextColor;
+        text-decoration: underline;
+
+        &:hover {
+          opacity: 1;
         }
+      }
     }
-
-    #commentsBlock {
-        border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-        padding-top: 3rem;
-
-        h2 {
-            font-family: $secondaryTitles;
-            font-size: 28px;
-            font-weight: 400;
-            color: $thirdlyTextColor;
-            margin: 0 0 2rem;
-            letter-spacing: 1px;
-        }
-
-        & > p {
-            font-family: $otherText;
-            font-size: 13px;
-            color: $thirdlyTextColor;
-            opacity: 0.5;
-        }
-
-        .commentCard {
-            border: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
-            padding: 1.5rem 2rem;
-            margin-bottom: 1px;
-            background-color: lighten($mainBackgroundColor, 2%);
-
-            &:hover {
-                border-color: rgba($secondaryBackgroundColor, 0.5);
-            }
-
-            .commentAuthor {
-                font-family: $otherText;
-                font-size: 10px;
-                letter-spacing: 2px;
-                text-transform: uppercase;
-                margin: 0 0 0.3rem;
-
-                a {
-                    color: $mainTextColor;
-                    text-decoration: none;
-
-                    &:hover {
-                        opacity: 0.7;
-                    }
-                }
-            }
-
-            .commentDate {
-                font-family: $otherText;
-                font-size: 10px;
-                letter-spacing: 1px;
-                color: $mainTextColor;
-                opacity: 0.5;
-                margin: 0 0 0.8rem;
-                text-transform: uppercase;
-            }
-
-            .commentContent {
-                font-family: $otherText;
-                font-size: 14px;
-                line-height: 1.8;
-                color: $thirdlyTextColor;
-                margin: 0 0 1rem;
-            }
-
-            a {
-                font-family: $otherText;
-                font-size: 9px;
-                letter-spacing: 2px;
-                text-transform: uppercase;
-                color: lighten(red, 20%);
-                text-decoration: none;
-                border-bottom: 0.5px solid rgba(red, 0.3);
-
-                &:hover {
-                    border-color: red;
-                }
-            }
-        }
-
-        #commentForm {
-            margin-top: 3rem;
-            border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
-            padding-top: 2rem;
-
-            h3 {
-                font-family: $secondaryTitles;
-                font-size: 22px;
-                font-weight: 400;
-                color: $thirdlyTextColor;
-                margin: 0 0 1.5rem;
-            }
-
-            .error {
-                font-family: $otherText;
-                font-size: 12px;
-                color: red;
-                margin-bottom: 1rem;
-            }
-
-            textarea {
-                width: 100%;
-                background-color: lighten($mainBackgroundColor, 3%);
-                border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-                color: $thirdlyTextColor;
-                padding: 12px 16px;
-                font-family: $otherText;
-                font-size: 13px;
-                resize: vertical;
-                min-height: 120px;
-                box-sizing: border-box;
-                margin-bottom: 1rem;
-                outline: none;
-
-                &::placeholder {
-                    color: rgba($thirdlyTextColor, 0.4);
-                }
-
-                &:focus {
-                    border-color: $secondaryBackgroundColor;
-                }
-            }
-
-            button {
-                display: block;
-                border: 1px solid $secondaryBackgroundColor;
-                color: $secondaryTextColor;
-                padding: 10px 28px;
-                font-size: 11px;
-                letter-spacing: 3px;
-                text-transform: uppercase;
-                background: transparent;
-                cursor: pointer;
-                font-family: $otherText;
-
-                &:hover {
-                    background-color: rgba($secondaryBackgroundColor, 0.1);
-                }
-            }
-        }
-
-        & > p:last-of-type {
-            margin-top: 2rem;
-            font-family: $otherText;
-            font-size: 12px;
-            color: $mainTextColor;
-            opacity: 0.6;
-
-            a {
-                color: $mainTextColor;
-                text-decoration: underline;
-
-                &:hover {
-                    opacity: 1;
-                }
-            }
-        }
-    }
+  }
 }
 
 /*====================FORUM====================*/

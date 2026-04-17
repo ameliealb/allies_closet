@@ -57,3 +57,11 @@ function updateProfile($id, $data)
         $id
     ]);
 }
+
+function getAllUsers()
+{
+    global $dbConnector;
+    $stmt = $dbConnector->prepare("SELECT * FROM USER_ ORDER BY id_user DESC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
