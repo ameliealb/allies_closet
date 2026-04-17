@@ -23,6 +23,10 @@ class Route
                 show404();
                 break;
 
+            case "default":
+                require RACINE . "/app/controllers/homeController.php";
+                break;
+
             case "contact":
                 require RACINE . "/app/controllers/contactController.php";
                 break;

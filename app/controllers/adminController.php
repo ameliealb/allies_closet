@@ -9,8 +9,7 @@ function showDashboard()
     }
 
     if ($_SESSION['user']['role'] !== 'admin') {
-        header('Location: /projet-final/index.php?action=default');
-        exit;
+        show403();
     }
 
     require RACINE . '/app/views/admin/dashboardView.php';
