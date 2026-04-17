@@ -986,6 +986,9 @@ header #navHeader button:hover a {
 
 /*====================BLOG====================*/
 /*==========INDEX BLOG PAGE==========*/
+#blogBlock .categoriesNav {
+  margin: 0 0 32px 0;
+}
 #blogBlock form {
   display: flex;
   gap: 16px;
@@ -1501,6 +1504,98 @@ header #navHeader button:hover a {
   background-color: #000000;
 }
 #forumBlock #joinOrContact #joinOrContactCase button:hover a {
+  color: #DAAF50;
+}
+
+/*==========CREATION TOPIC PAGE (FORUM)==========*/
+#createMessageBlock {
+  padding: 4rem 6rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+#createMessageBlock .error {
+  font-family: "Poppins";
+  font-size: 12px;
+  color: red;
+  margin-bottom: 1rem;
+}
+#createMessageBlock form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+#createMessageBlock form input[type=text] {
+  background-color: rgb(7.65, 7.65, 7.65);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
+  color: #FFFFFF;
+  padding: 12px 16px;
+  font-family: "Poppins";
+  font-size: 14px;
+  outline: none;
+}
+#createMessageBlock form input[type=text]::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#createMessageBlock form input[type=text]:focus {
+  border-color: #DAAF50;
+}
+#createMessageBlock form textarea {
+  background-color: rgb(7.65, 7.65, 7.65);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
+  color: #FFFFFF;
+  padding: 12px 16px;
+  font-family: "Poppins";
+  font-size: 14px;
+  resize: vertical;
+  min-height: 300px;
+  outline: none;
+}
+#createMessageBlock form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#createMessageBlock form textarea:focus {
+  border-color: #DAAF50;
+}
+#createMessageBlock form label {
+  font-family: "Poppins";
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #DAAF50;
+  opacity: 0.7;
+  margin-bottom: -0.8rem;
+}
+#createMessageBlock form select {
+  background-color: rgb(7.65, 7.65, 7.65);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
+  color: #FFFFFF;
+  padding: 10px 16px;
+  font-family: "Poppins";
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+#createMessageBlock form select option {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+#createMessageBlock form select:focus {
+  border-color: #DAAF50;
+}
+#createMessageBlock form button {
+  display: block;
+  align-self: flex-start;
+  border: 1px solid #DAAF50;
+  background-color: #DAAF50;
+  color: #000000;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: "Poppins";
+  margin-top: 0.5rem;
+}
+#createMessageBlock form button:hover {
+  background-color: #000000;
   color: #DAAF50;
 }
 

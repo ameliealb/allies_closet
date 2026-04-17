@@ -1100,6 +1100,10 @@ header {
 
 #blogBlock {
 
+  .categoriesNav{
+    margin:0 0 32px 0;
+  }
+
   form {
     display: flex;
     gap: 16px;
@@ -1722,6 +1726,113 @@ header {
             color: $mainTextColor;
           }
         }
+      }
+    }
+  }
+}
+
+/*==========CREATION TOPIC PAGE (FORUM)==========*/
+
+#createMessageBlock {
+  padding: 4rem 6rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .error {
+    font-family: $otherText;
+    font-size: 12px;
+    color: red;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    input[type="text"] {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 12px 16px;
+      font-family: $otherText;
+      font-size: 14px;
+      outline: none;
+
+      &::placeholder {
+        color: rgba($thirdlyTextColor, 0.4);
+      }
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
+    }
+
+    textarea {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 12px 16px;
+      font-family: $otherText;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 300px;
+      outline: none;
+
+      &::placeholder {
+        color: rgba($thirdlyTextColor, 0.4);
+      }
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
+    }
+
+    label {
+      font-family: $otherText;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      opacity: 0.7;
+      margin-bottom: -0.8rem;
+    }
+
+    select {
+      background-color: lighten($mainBackgroundColor, 3%);
+      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+      color: $thirdlyTextColor;
+      padding: 10px 16px;
+      font-family: $otherText;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+
+      option {
+        background-color: $mainBackgroundColor;
+        color: $thirdlyTextColor;
+      }
+
+      &:focus {
+        border-color: $secondaryBackgroundColor;
+      }
+    }
+
+    button {
+      display: block;
+      align-self: flex-start;
+      border: 1px solid $secondaryBackgroundColor;
+      background-color: $secondaryBackgroundColor;
+      color: $secondaryTextColor;
+      padding: 8px 16px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: $otherText;
+      margin-top: 0.5rem;
+
+      &:hover {
+        background-color: $mainBackgroundColor;
+        color: $mainTextColor;
       }
     }
   }
