@@ -107,17 +107,26 @@ body {
     }
   }
 
-  .categoriesNav {
-    margin-bottom: 32px;
+  #categoriesNav{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 
     a {
-      text-decoration: none;
-      color: $mainTextColor;
       font-family: $otherText;
-      margin-right: 7px;
-      border: 1px solid $secondaryBackgroundColor;
-      background-color: $mainBackgroundColor;
+      font-size: 1rem;
+      text-decoration: none;
+      color: rgba($thirdlyTextColor, 0.5);
+      border: 1px solid rgba($secondaryBackgroundColor, 0.15);
       padding: 8px 16px;
+      transition: color 0.25s ease, border-color 1s ease, background 1s ease;
+
+      &:hover,
+      &.active {
+        color: $secondaryTextColor;
+        background: $secondaryBackgroundColor;
+        border-color: $secondaryBackgroundColor;
+      }
     }
   }
 }
@@ -325,7 +334,7 @@ header {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      height: 62.5%;
+      height: 77%;
     }
   }
 
@@ -412,7 +421,6 @@ header {
     &__eyebrow {
       font-family: $otherText;
       font-size: 0.78rem;
-      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: $mainTextColor;
       display: flex;
@@ -462,7 +470,6 @@ header {
     h3 {
       font-family: $otherText;
       font-size: 0.78rem;
-      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: $mainTextColor;
       margin: 0 0 1.2rem;
@@ -1228,23 +1235,55 @@ header {
       background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
     }
 
-    button {
-      display: block;
-      margin: 16px auto;
-      padding: 12px 16px;
-      border: 1px solid $secondaryBackgroundColor;
-      background-color: $mainBackgroundColor;
-      color: $mainTextColor;
-      font-size: 1rem;
-      font-family: $otherText;
+    #checkboxGroup {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%; // ← était 5%
+      margin: 8px 0;
     }
 
-    button:hover {
-      background-color: $secondaryBackgroundColor;
-      color: $secondaryTextColor;
+    input[type="checkbox"] {
+      width: auto; // ← annule le width: 100% du input général
+      margin-top: 3px;
+      accent-color: $secondaryBackgroundColor;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    label {
+      font-family: $otherText;
+      font-size: 13px;
+      color: rgba($thirdlyTextColor, 0.7);
+      line-height: 1.5;
+      cursor: pointer;
+
+      a {
+        color: $mainTextColor;
+        text-decoration: underline;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
     }
   }
 
+  button {
+    display: block;
+    margin: 16px auto;
+    padding: 12px 16px;
+    border: 1px solid $secondaryBackgroundColor;
+    background-color: $mainBackgroundColor;
+    color: $mainTextColor;
+    font-size: 1rem;
+    font-family: $otherText;
+  }
+
+  button:hover {
+    background-color: $secondaryBackgroundColor;
+    color: $secondaryTextColor;
+  }
 }
 
 #quoteCoco {
@@ -1277,8 +1316,12 @@ header {
 
 #blogBlock {
 
-  .categoriesNav{
-    margin:0 0 32px 0;
+  .categoriesNav {
+    margin: 0 0 32px 0;
+  }
+
+  &>p {
+    font-family: $otherText;
   }
 
   form {
@@ -1637,8 +1680,28 @@ header {
   }
 }
 
-.categoriesNav {
-  margin: 64px 64px;
+#categoriesNavForum {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 64px 0 16px 64px;
+
+  a {
+    font-family: $otherText;
+    font-size: 1rem;
+    text-decoration: none;
+    color: rgba($thirdlyTextColor, 0.5);
+    border: 1px solid rgba($secondaryBackgroundColor, 0.15);
+    padding: 8px 16px;
+    transition: color 0.25s ease, border-color 1s ease, background 1s ease;
+
+    &:hover,
+    &.active {
+      color: $secondaryTextColor;
+      background: $secondaryBackgroundColor;
+      border-color: $secondaryBackgroundColor;
+    }
+  }
 }
 
 #forumBlock {
@@ -1651,7 +1714,7 @@ header {
 
   p {
     font-family: $otherText;
-    font-size: 1.5rem;
+    font-size: 1rem ;
     color: $mainTextColor;
   }
 
@@ -1669,11 +1732,6 @@ header {
   #mainForumBlock {
     display: flex;
     flex-direction: column;
-
-    p {
-      color: $mainTextColor;
-      font-size: 1rem;
-    }
 
     .messageCard {
       position: relative;
@@ -2774,6 +2832,265 @@ header {
   &:hover {
     background: transparent;
     color: $mainTextColor;
+  }
+}
+
+// ══════════════════════════════════════════════
+// _profile.scss — Allie's Closet
+// ══════════════════════════════════════════════
+
+#profileBlock {
+  padding: 4rem 8vw 7rem;
+  max-width: 900px;
+  margin: 0 auto;
+
+  // ── Header profil ─────────────────────────
+  #profileHeader {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
+    margin-bottom: 4rem;
+
+
+    img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid rgba($secondaryBackgroundColor, 0.4);
+      flex-shrink: 0;
+    }
+
+
+    #defaultAvatar {
+      width: 120px;
+      height: 120px;
+      border: 1px solid rgba($secondaryBackgroundColor, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $mainTitleFont;
+      font-size: 3rem;
+      font-weight: 700;
+      color: $mainTextColor;
+      background: linear-gradient(135deg, lighten($mainBackgroundColor, 5%), $mainBackgroundColor);
+      flex-shrink: 0;
+    }
+
+    #profileInfo {
+      flex: 1;
+
+      h1 {
+        font-family: $secondaryTitles;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 400;
+        color: $thirdlyTextColor;
+        margin: 0 0 0.8rem;
+      }
+
+      p {
+        font-family: $otherText;
+        font-size: 0.95rem;
+        color: rgba($thirdlyTextColor, 0.6);
+        line-height: 1.7;
+        margin: 0;
+        max-width: 500px;
+      }
+    }
+  }
+
+  // ── Formulaire d'édition ──────────────────
+  #editProfileForm {
+    h2 {
+      font-family: $secondaryTitles;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: $thirdlyTextColor;
+      margin: 0 0 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 600px;
+
+      label {
+        font-family: $otherText;
+        font-size: 10px;
+        text-transform: uppercase;
+        color: $mainTextColor;
+        opacity: 0.7;
+        margin-bottom: -0.6rem;
+      }
+
+      input[type="file"] {
+        font-family: $otherText;
+        font-size: 12px;
+        color: $thirdlyTextColor;
+        padding: 8px 0;
+      }
+
+      textarea {
+        background-color: lighten($mainBackgroundColor, 3%);
+        border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+        color: $thirdlyTextColor;
+        padding: 12px 16px;
+        font-family: $otherText;
+        font-size: 14px;
+        resize: vertical;
+        min-height: 150px;
+        outline: none;
+
+        &::placeholder {
+          color: rgba($thirdlyTextColor, 0.4);
+        }
+
+        &:focus {
+          border-color: $secondaryBackgroundColor;
+        }
+      }
+
+      button {
+        align-self: flex-start;
+        background-color: $secondaryBackgroundColor;
+        border: 1px solid $secondaryBackgroundColor;
+        color: $secondaryTextColor;
+        padding: 8px 16px;
+        font-family: $otherText;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.25s ease, color 0.25s ease;
+
+        &:hover {
+          background-color: $mainBackgroundColor;
+          color: $mainTextColor;
+        }
+      }
+    }
+  }
+}
+
+// ══════════════════════════════════════════════
+// _rules.scss — Règles du forum
+// ══════════════════════════════════════════════
+
+#rulesBlock {
+  padding: 4rem 8vw 7rem;
+  max-width: 860px;
+  margin: 0 auto;
+
+  // ── Hero ──────────────────────────────────
+  .rules-hero {
+    margin-bottom: 4rem;
+
+    &__eyebrow {
+      font-family: $otherText;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.2rem;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background: $mainTextColor;
+      }
+    }
+
+    h2 {
+      font-family: $secondaryTitles;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: $thirdlyTextColor;
+      margin: 0 0 0.5rem;
+    }
+
+    .underLine {
+      width: 60px;
+      margin: 0 0 2rem;
+    }
+
+    &__intro {
+      font-family: $otherText;
+      font-size: 1rem;
+      color: rgba($thirdlyTextColor, 0.65);
+      line-height: 1.9;
+      margin: 0;
+      max-width: 640px;
+    }
+  }
+
+  // ── Contenu ───────────────────────────────
+  .rules-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  // ── Sections ──────────────────────────────
+  .rules-section {
+    border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
+    padding: 2.5rem 0;
+    transition: background 0.2s ease;
+
+    h3 {
+      font-family: $otherText;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      margin: 0 0 1.2rem;
+      font-weight: 400;
+    }
+
+    p {
+      font-family: $otherText;
+      font-size: 0.95rem;
+      color: rgba($thirdlyTextColor, 0.75);
+      line-height: 1.9;
+      margin: 0;
+
+      a {
+        color: $mainTextColor;
+        text-decoration: none;
+        border-bottom: 0.5px solid rgba($mainTextColor, 0.3);
+        transition: border-color 0.2s ease;
+
+      }
+    }
+  }
+
+  // ── Footer règles ─────────────────────────
+  .rules-footer {
+    border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
+    border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
+    padding: 2.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+
+    &__icon {
+      color: $mainTextColor;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    p {
+      font-family: $otherText;
+      font-size: 0.9rem;
+      color: rgba($thirdlyTextColor, 0.55);
+      line-height: 1.8;
+      margin: 0;
+      font-style: italic;
+    }
   }
 }
 

@@ -54,6 +54,7 @@
             <ul class="footerPoliciesList">
                 <li><a href="index.php?action=legal">mentions légales</a></li>
                 <li><a href="index.php?action=privacy">politique de confidentialité</a></li>
+                <li><a href="index.php?action=rules" target="_blank">règles du forum</a></li>
             </ul>
         </nav>
 

@@ -45,7 +45,7 @@ function login()
     } else {
         header('Location: /projet-final/index.php?action=default');
     }
-    exit;   
+    exit;
 }
 
 //creates a new user
@@ -93,6 +93,12 @@ function register()
     if (findByEmail($email)) {
         $error = "Cet email est déjà utilisé.";
         require RACINE . '/app/views/login/loginRegisterView.php';
+        return;
+    }
+
+    if (!isset($_POST['acceptTerms'])) {
+        $error = "Tu dois accepter les politiques de confidentialité pour t'inscrire.";
+        require RACINE . '/app/views/auth/loginRegisterView.php';
         return;
     }
 

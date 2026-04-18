@@ -11,14 +11,38 @@
         <button type="submit">rechercher</button>
     </form>
 
-    <nav class="categoriesNav">
-        <a href="index.php?action=blog">tous</a>
-        <a href="index.php?action=showCategory&category=mode">mode</a>
-        <a href="index.php?action=showCategory&category=maquillage">maquillage</a>
-        <a href="index.php?action=showCategory&category=chaussures">chaussures</a>
-        <a href="index.php?action=showCategory&category=cheveux">cheveux</a>
-        <a href="index.php?action=showCategory&category=skincare">skincare</a>
-        <a href="index.php?action=showCategory&category=lifestyle">lifestyle</a>
+    <nav id="categoriesNav">
+        <?php $currentCategory = $_GET['category'] ?? ''; ?>
+        <?php $currentAction = $_GET['action'] ?? ''; ?>
+
+        <a href="index.php?action=blog"
+            class="<?php echo $currentAction === 'blog' && empty($currentCategory) ? 'active' : ''; ?>">
+            tous
+        </a>
+        <a href="index.php?action=showCategory&category=mode"
+            class="<?php echo $currentCategory === 'mode' ? 'active' : ''; ?>">
+            mode
+        </a>
+        <a href="index.php?action=showCategory&category=maquillage"
+            class="<?php echo $currentCategory === 'maquillage' ? 'active' : ''; ?>">
+            maquillage
+        </a>
+        <a href="index.php?action=showCategory&category=chaussures"
+            class="<?php echo $currentCategory === 'chaussures' ? 'active' : ''; ?>">
+            chaussures
+        </a>
+        <a href="index.php?action=showCategory&category=cheveux"
+            class="<?php echo $currentCategory === 'cheveux' ? 'active' : ''; ?>">
+            cheveux
+        </a>
+        <a href="index.php?action=showCategory&category=skincare"
+            class="<?php echo $currentCategory === 'skincare' ? 'active' : ''; ?>">
+            skincare
+        </a>
+        <a href="index.php?action=showCategory&category=lifestyle"
+            class="<?php echo $currentCategory === 'lifestyle' ? 'active' : ''; ?>">
+            lifestyle
+        </a>
     </nav>
 
     <?php if (empty($articles)): ?>

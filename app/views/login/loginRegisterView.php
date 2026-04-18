@@ -25,6 +25,15 @@
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="username" placeholder="Pseudonyme" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
+            <div id="checkboxGroup">
+                <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+                <label for="acceptTerms">
+                    j'accepte les
+                    <a href="index.php?action=privacy" target="_blank">politiques de confidentialité</a>
+                    et les
+                    <a href="index.php?action=rules" target="_blank">règles du forum</a>
+                </label>
+            </div>
             <button type="submit">s'inscrire</button>
         </form>
     </section>

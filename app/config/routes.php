@@ -151,7 +151,12 @@ class Route
             case "privacy":
                 showPrivacy();
                 break;
+
+            case "rules":
+                showRules();
+                break;
         }
+
 
 
         //how it works : URL => action => switch => executing function

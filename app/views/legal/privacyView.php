@@ -5,7 +5,6 @@
     <div class="legal-hero">
         <span class="legal-hero__eyebrow">juridique</span>
         <h2>politique de confidentialité</h2>
-        <div class="underLine"></div>
     </div>
 
     <div class="legal-content">
@@ -14,7 +13,8 @@
             <h3>01 — responsable du traitement</h3>
             <p>
                 Allison J. BOLDWIN<br>
-                5 Avenue Marceau, 75116 PARIS (FRANCE)<br>
+                5 Avenue Marceau, 75116 PARIS (FRANCE) et<br>
+                287 Chenery Street, SAN FRANCISCO CA 94131 (UNITED STATES OF AMERICA)<br>
                 Email : <a href="mailto:allisonboldwin@gmail.com">allisonboldwin@gmail.com</a>
             </p>
         </section>
@@ -24,7 +24,6 @@
             <p>Dans le cadre de l'utilisation du site, les données suivantes peuvent être collectées :</p>
             <ul>
                 <li>Lors de l'inscription : nom d'utilisateur, adresse email, mot de passe (chiffré)</li>
-                <li>Lors de la navigation : données de session (cookie de session)</li>
                 <li>Lors de l'utilisation du formulaire de contact : nom, adresse email, message</li>
                 <li>Lors de la mise à jour du profil : avatar, description</li>
             </ul>
@@ -64,12 +63,7 @@
         </section>
 
         <section class="legal-section">
-            <h3>07 — cookies</h3>
-            <p>Ce site utilise uniquement des cookies de session nécessaires au fonctionnement de l'authentification. Ces cookies sont supprimés à la fermeture du navigateur ou lors de la déconnexion.</p>
-        </section>
-
-        <section class="legal-section">
-            <h3>08 — contact & réclamations</h3>
+            <h3>07 — contact & réclamations</h3>
             <p>Pour toute question relative à cette politique ou pour exercer vos droits, contactez : <a href="mailto:allisonboldwin@gmail.com">allisonboldwin@gmail.com</a></p>
             <p>Vous disposez également du droit d'introduire une réclamation auprès de la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">CNIL</a>.</p>
         </section>

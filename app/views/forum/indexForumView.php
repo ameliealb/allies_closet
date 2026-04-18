@@ -12,14 +12,38 @@
     <h3>bienvenue sur le forum : <br>crééer vos propres sujets et partagez vos visions <br>avec d'autres ALLIEGATORS. <br> <br> amicalement vôtre, <br><span class="signatureFont">Allie</span></h3>
     <div class="underLineSmall"></div>
 </div>
-<nav class="categoriesNav">
-    <a href="index.php?action=forum">tous</a>
-    <a href="index.php?action=showForumCategory&category=mode">mode</a>
-    <a href="index.php?action=showForumCategory&category=maquillage">maquillage</a>
-    <a href="index.php?action=showForumCategory&category=chaussures">chaussures</a>
-    <a href="index.php?action=showForumCategory&category=cheveux">cheveux</a>
-    <a href="index.php?action=showForumCategory&category=skincare">skincare</a>
-    <a href="index.php?action=showForumCategory&category=lifestyle">lifestyle</a>
+<nav id="categoriesNavForum">
+    <?php $currentCategory = $_GET['category'] ?? ''; ?>
+    <?php $currentAction = $_GET['action'] ?? ''; ?>
+
+    <a href="index.php?action=forum"
+        class="<?php echo $currentAction === 'forum' && empty($currentCategory) ? 'active' : ''; ?>">
+        tous
+    </a>
+    <a href="index.php?action=showForumCategory&category=mode"
+        class="<?php echo $currentCategory === 'mode' ? 'active' : ''; ?>">
+        mode
+    </a>
+    <a href="index.php?action=showForumCategory&category=maquillage"
+        class="<?php echo $currentCategory === 'maquillage' ? 'active' : ''; ?>">
+        maquillage
+    </a>
+    <a href="index.php?action=showForumCategory&category=chaussures"
+        class="<?php echo $currentCategory === 'chaussures' ? 'active' : ''; ?>">
+        chaussures
+    </a>
+    <a href="index.php?action=showForumCategory&category=cheveux"
+        class="<?php echo $currentCategory === 'cheveux' ? 'active' : ''; ?>">
+        cheveux
+    </a>
+    <a href="index.php?action=showForumCategory&category=skincare"
+        class="<?php echo $currentCategory === 'skincare' ? 'active' : ''; ?>">
+        skincare
+    </a>
+    <a href="index.php?action=showForumCategory&category=lifestyle"
+        class="<?php echo $currentCategory === 'lifestyle' ? 'active' : ''; ?>">
+        lifestyle
+    </a>
 </nav>
 <div id="forumBlock">
 
@@ -56,9 +80,9 @@
                             sur <a href="index.php?action=showMessage&id=<?php echo $reply['id_reply']; ?>">
                                 <?php echo htmlspecialchars($reply['topic_title']); ?>
                             </a>
-                            <p> >> <?php echo htmlspecialchars(substr($reply['content'], 0, 80)); ?></p>
+                        <p> >> <?php echo htmlspecialchars(substr($reply['content'], 0, 80)); ?></p>
                         </p>
-                        
+
                     </div>
                 <?php endforeach; ?>
             </div>

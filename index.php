@@ -22,6 +22,7 @@ require_once RACINE . "/app/models/commentaryModel.php";
 require_once RACINE . "/app/controllers/commentaryController.php";
 require_once RACINE . "/app/controllers/errorController.php";
 require_once RACINE . "/app/controllers/legalController.php";
+require_once RACINE . "/app/controllers/rulesController.php";
 
 require_once RACINE . "/app/config/routes.php";
 

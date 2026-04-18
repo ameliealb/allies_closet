@@ -13,10 +13,6 @@
             <h1><?php echo htmlspecialchars($profile['username']); ?></h1>
             <p><?php echo htmlspecialchars($profile['profile_description'] ?? 'aucune description.'); ?></p>
         </div>
-
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_user'] == $profile['id_user']): ?>
-            <a href="index.php?action=editProfile">modifier mon profil</a>
-        <?php endif; ?>
     </div>
 
     <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_user'] == $profile['id_user']): ?>
@@ -29,7 +25,7 @@
                 <input type="file" name="avatar" accept="image/*">
 
                 <label>description</label>
-                <textarea name="profile_description" placeholder="parle de toi..."><?php echo htmlspecialchars($profile['profile_description'] ?? ''); ?></textarea>
+                <textarea name="profile_description" placeholder="parlez de vous."><?php echo htmlspecialchars($profile['profile_description'] ?? ''); ?></textarea>
 
                 <button type="submit">sauvegarder</button>
             </form>
