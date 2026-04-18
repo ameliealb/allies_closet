@@ -23,6 +23,7 @@
 
                 <label>avatar</label>
                 <input type="file" name="avatar" accept="image/*">
+                <p>Attention : le poids de votre image ne doit pas dépasser les 2MB.</p>
 
                 <label>description</label>
                 <textarea name="profile_description" placeholder="parlez de vous."><?php echo htmlspecialchars($profile['profile_description'] ?? ''); ?></textarea>

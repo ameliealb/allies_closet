@@ -81,6 +81,10 @@ body {
   color: #DAAF50;
   padding: 0 40px;
 }
+body a {
+  text-decoration: none;
+  color: #DAAF50;
+}
 body h2 {
   font-family: "Playfair Display";
   font-size: 2.5rem;
@@ -158,6 +162,16 @@ body #categoriesNav a:hover, body #categoriesNav a.active {
   color: #000000;
   background: #DAAF50;
   border-color: #DAAF50;
+}
+body #likeBlock {
+  margin-top: 32px;
+  font-family: "Poppins";
+}
+body #likeBlock a {
+  text-decoration: none;
+  color: #DAAF50;
+  margin-left: 16px;
+  font-weight: bold;
 }
 
 button {
@@ -1170,7 +1184,7 @@ header #navHeader button:hover a {
 
 /*====================BLOG====================*/
 /*==========INDEX BLOG PAGE==========*/
-#blogBlock .categoriesNav {
+#blogBlock #categoriesNav {
   margin: 0 0 32px 0;
 }
 #blogBlock > p {
@@ -1309,16 +1323,6 @@ header #navHeader button:hover a {
   line-height: 2;
   color: #FFFFFF;
   margin: 0;
-}
-#showArticleBlock #articleContent #likeBlock {
-  margin-top: 32px;
-  font-family: "Poppins";
-}
-#showArticleBlock #articleContent #likeBlock a {
-  text-decoration: none;
-  color: #DAAF50;
-  margin-left: 16px;
-  font-weight: bold;
 }
 #showArticleBlock #commentsBlock {
   border-top: 0.5px solid rgba(218, 175, 80, 0.3);
@@ -1589,8 +1593,8 @@ header #navHeader button:hover a {
 #forumBlock #sidebarForumBlock #sidenavBlock p {
   font-size: 1rem;
   color: #FFFFFF;
-  padding: 8px;
-  margin-top: 0;
+  padding: 4px;
+  margin: 0;
 }
 #forumBlock #sidebarForumBlock #sidenavBlock p a {
   text-decoration: none;
@@ -2515,6 +2519,9 @@ header #navHeader button:hover a {
   font-size: 12px;
   color: #FFFFFF;
   padding: 8px 0;
+}
+#profileBlock #editProfileForm form p {
+  font-family: "Poppins";
 }
 #profileBlock #editProfileForm form textarea {
   background-color: rgb(7.65, 7.65, 7.65);
