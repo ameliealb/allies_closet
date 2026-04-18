@@ -7,7 +7,6 @@
     <span class="contact-hero__eyebrow">contact</span>
     <h1 class="contact-hero__title">parlons <em>style</em>.</h1>
     <p class="contact-hero__sub">une question, une collab, un simple bonjour — je lis tout.</p>
-    <div class="contact-hero__line"></div>
   </section>
 
   <div class="contact-wrapper">
@@ -20,11 +19,11 @@
         <div class="contact-form__row">
           <div class="contact-form__group">
             <label for="name">nom</label>
-            <input type="text" id="name" name="name" placeholder="ton prénom" required />
+            <input type="text" id="name" name="name" placeholder="votre prénom" required />
           </div>
           <div class="contact-form__group">
             <label for="email">email</label>
-            <input type="email" id="email" name="email" placeholder="ton@email.com" required />
+            <input type="email" id="email" name="email" placeholder="votre@email.com" required />
           </div>
         </div>
 
@@ -35,7 +34,7 @@
 
         <div class="contact-form__group">
           <label for="message">message</label>
-          <textarea id="message" name="message" rows="6" placeholder="dis-moi tout..." required></textarea>
+          <textarea id="message" name="message" rows="6" placeholder="dites-moi tout..." required></textarea>
         </div>
 
         <button type="submit" class="contact-form__submit">envoyer le message</button>

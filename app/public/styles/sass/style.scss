@@ -1817,7 +1817,7 @@ header {
         font-size: 1rem;
         color: $thirdlyTextColor;
         padding: 4px;
-        margin:0;
+        margin: 0;
 
         a {
           text-decoration: none;
@@ -2566,13 +2566,13 @@ header {
 
   // ── Hero ──────────────────────────────────
   .contact-hero {
-    padding: 7rem 8vw 4rem;
-    animation: fadeUp 0.7s ease both;
+    margin:64px;
+    margin-top:280px;
+    animation: fadeUp 1s ease both;
 
     &__eyebrow {
       font-family: $otherText;
       font-size: 0.8rem;
-      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: $mainTextColor;
       display: flex;
@@ -2590,7 +2590,7 @@ header {
     }
 
     &__title {
-      font-family: $mainTitleFont;
+      font-family: $secondaryTitles;
       font-size: clamp(3rem, 6vw, 5rem);
       font-weight: 700;
       color: $mainTextColor;
@@ -2608,7 +2608,6 @@ header {
       font-size: 1rem;
       color: rgba($mainTextColor, 0.55);
       margin: 0 0 2.5rem;
-      letter-spacing: 0.04em;
     }
 
     &__line {
@@ -2623,7 +2622,7 @@ header {
     display: grid;
     grid-template-columns: 1fr 380px;
     gap: 5rem;
-    padding: 4rem 8vw 7rem;
+    margin: 64px;
     align-items: start;
 
     @media (max-width: 900px) {
@@ -2635,11 +2634,10 @@ header {
   // ── Formulaire ────────────────────────────
   .contact-form-section {
     &__title {
-      font-family: $mainTitleFont;
+      font-family: $secondaryTitles;
       font-size: 1.3rem;
       font-weight: 400;
       color: $mainTextColor;
-      letter-spacing: 0.15em;
       margin: 0 0 2.5rem;
       text-transform: lowercase;
     }
@@ -2668,25 +2666,25 @@ header {
       label {
         font-family: $otherText;
         font-size: 0.78rem;
-        letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: rgba($mainTextColor, 0.5);
+        color: $mainTextColor;
       }
 
       input,
       textarea {
-        background: transparent;
-        border: 1px solid rgba($mainTextColor, 0.2);
+        border: 1px solid $secondaryBackgroundColor;
         color: $mainTextColor;
         font-family: $otherText;
         font-size: 0.95rem;
         padding: 0.9rem 1.2rem;
         outline: none;
-        transition: border-color 0.25s ease;
+        transition: border-color 1s ease;
         resize: none;
+        background: #211d0d;
+        background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
 
         &::placeholder {
-          color: rgba($mainTextColor, 0.25);
+          color: $mainTextColor;
         }
 
         &:focus {
@@ -2700,13 +2698,11 @@ header {
       background: $mainTextColor;
       color: $secondaryTextColor;
       font-family: $otherText;
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-size: 1rem;
       border: 1px solid $mainTextColor;
-      padding: 1rem 2.5rem;
+      padding: 8px 16px;
       cursor: pointer;
-      transition: background 0.25s ease, color 0.25s ease;
+      transition: background 1s ease, color 1s ease;
 
       &:hover {
         background: transparent;
@@ -2721,11 +2717,10 @@ header {
     top: 2rem;
 
     &__title {
-      font-family: $mainTitleFont;
+      font-family: $secondaryTitles;
       font-size: 1.3rem;
       font-weight: 400;
       color: $mainTextColor;
-      letter-spacing: 0.15em;
       margin: 0 0 2rem;
       text-transform: lowercase;
     }
@@ -2774,7 +2769,7 @@ header {
     padding: 1.1rem 1.2rem;
     border: 1px solid rgba($mainTextColor, 0.12);
     text-decoration: none;
-    transition: border-color 0.25s ease, background 0.25s ease;
+    transition: border-color 1s ease, background 1s ease;
 
     &:hover {
       border-color: $mainTextColor;
@@ -2797,21 +2792,19 @@ header {
       font-size: 0.75rem;
       color: $mainTextColor;
       text-transform: lowercase;
-      transition: background 0.25s ease, color 0.25s ease;
+      transition: background 1s ease, color 1s ease;
     }
 
     &__label {
       font-family: $otherText;
       font-size: 0.9rem;
       color: $mainTextColor;
-      letter-spacing: 0.05em;
     }
 
     &__handle {
       font-family: $otherText;
       font-size: 0.78rem;
-      color: rgba($mainTextColor, 0.4);
-      letter-spacing: 0.05em;
+      color: $mainTextColor;
     }
   }
 }
@@ -2823,16 +2816,15 @@ header {
 
 .btn-gold {
   display: inline-block;
-  background: $mainTextColor;
+  background: $secondaryBackgroundColor;
   color: $secondaryTextColor;
   font-family: $otherText;
   font-size: 0.85rem;
-  letter-spacing: 0.2em;
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid $mainTextColor;
   padding: 1rem 2.5rem;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 1s ease, color 1s ease;
 
   &:hover {
     background: transparent;

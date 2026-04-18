@@ -2204,13 +2204,13 @@ header #navHeader button:hover a {
 }
 
 #contactPage .contact-hero {
-  padding: 7rem 8vw 4rem;
-  animation: fadeUp 0.7s ease both;
+  margin: 64px;
+  margin-top: 280px;
+  animation: fadeUp 1s ease both;
 }
 #contactPage .contact-hero__eyebrow {
   font-family: "Poppins";
   font-size: 0.8rem;
-  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #DAAF50;
   display: flex;
@@ -2226,7 +2226,7 @@ header #navHeader button:hover a {
   background: #DAAF50;
 }
 #contactPage .contact-hero__title {
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Playfair Display";
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 700;
   color: #DAAF50;
@@ -2242,7 +2242,6 @@ header #navHeader button:hover a {
   font-size: 1rem;
   color: rgba(218, 175, 80, 0.55);
   margin: 0 0 2.5rem;
-  letter-spacing: 0.04em;
 }
 #contactPage .contact-hero__line {
   width: 60px;
@@ -2253,7 +2252,7 @@ header #navHeader button:hover a {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 5rem;
-  padding: 4rem 8vw 7rem;
+  margin: 64px;
   align-items: start;
 }
 @media (max-width: 900px) {
@@ -2263,11 +2262,10 @@ header #navHeader button:hover a {
   }
 }
 #contactPage .contact-form-section__title {
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Playfair Display";
   font-size: 1.3rem;
   font-weight: 400;
   color: #DAAF50;
-  letter-spacing: 0.15em;
   margin: 0 0 2.5rem;
   text-transform: lowercase;
 }
@@ -2294,25 +2292,25 @@ header #navHeader button:hover a {
 #contactPage .contact-form__group label {
   font-family: "Poppins";
   font-size: 0.78rem;
-  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(218, 175, 80, 0.5);
+  color: #DAAF50;
 }
 #contactPage .contact-form__group input,
 #contactPage .contact-form__group textarea {
-  background: transparent;
-  border: 1px solid rgba(218, 175, 80, 0.2);
+  border: 1px solid #DAAF50;
   color: #DAAF50;
   font-family: "Poppins";
   font-size: 0.95rem;
   padding: 0.9rem 1.2rem;
   outline: none;
-  transition: border-color 0.25s ease;
+  transition: border-color 1s ease;
   resize: none;
+  background: #211d0d;
+  background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
 }
 #contactPage .contact-form__group input::placeholder,
 #contactPage .contact-form__group textarea::placeholder {
-  color: rgba(218, 175, 80, 0.25);
+  color: #DAAF50;
 }
 #contactPage .contact-form__group input:focus,
 #contactPage .contact-form__group textarea:focus {
@@ -2323,13 +2321,11 @@ header #navHeader button:hover a {
   background: #DAAF50;
   color: #000000;
   font-family: "Poppins";
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 1rem;
   border: 1px solid #DAAF50;
-  padding: 1rem 2.5rem;
+  padding: 8px 16px;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 1s ease, color 1s ease;
 }
 #contactPage .contact-form__submit:hover {
   background: transparent;
@@ -2340,11 +2336,10 @@ header #navHeader button:hover a {
   top: 2rem;
 }
 #contactPage .contact-aside__title {
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Playfair Display";
   font-size: 1.3rem;
   font-weight: 400;
   color: #DAAF50;
-  letter-spacing: 0.15em;
   margin: 0 0 2rem;
   text-transform: lowercase;
 }
@@ -2386,7 +2381,7 @@ header #navHeader button:hover a {
   padding: 1.1rem 1.2rem;
   border: 1px solid rgba(218, 175, 80, 0.12);
   text-decoration: none;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  transition: border-color 1s ease, background 1s ease;
 }
 #contactPage .contact-social:hover {
   border-color: #DAAF50;
@@ -2407,19 +2402,17 @@ header #navHeader button:hover a {
   font-size: 0.75rem;
   color: #DAAF50;
   text-transform: lowercase;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 1s ease, color 1s ease;
 }
 #contactPage .contact-social__label {
   font-family: "Poppins";
   font-size: 0.9rem;
   color: #DAAF50;
-  letter-spacing: 0.05em;
 }
 #contactPage .contact-social__handle {
   font-family: "Poppins";
   font-size: 0.78rem;
-  color: rgba(218, 175, 80, 0.4);
-  letter-spacing: 0.05em;
+  color: #DAAF50;
 }
 
 .btn-gold {
@@ -2428,12 +2421,11 @@ header #navHeader button:hover a {
   color: #000000;
   font-family: "Poppins";
   font-size: 0.85rem;
-  letter-spacing: 0.2em;
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid #DAAF50;
   padding: 1rem 2.5rem;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 1s ease, color 1s ease;
 }
 .btn-gold:hover {
   background: transparent;
