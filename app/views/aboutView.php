@@ -7,7 +7,7 @@
         <div class="about-hero__bg"></div>
         <div class="about-hero__content">
             <span class="about-hero__eyebrow">à propos</span>
-            <h1 class="about-hero__title">je suis <em>Allie</em>,<br>et voici mon dressing.</h1>
+            <h1 class="about-hero__title">je suis <em>Allison</em>,<br>et voici mon dressing.</h1>
         </div>
     </section>
 

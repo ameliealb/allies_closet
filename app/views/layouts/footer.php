@@ -35,7 +35,7 @@
 
         <!-- third column : footer subjects -->
         <nav id="footerThirdColumn">
-            <h3 class="footerSecondaryTitle">catégories</h3>
+            <h3 class="footerSecondaryTitle">catégoriesw</h3>
             <div class="underLine">&nbsp</div>
             <ul id="footerSubjectsList">
                 <li><a href="#">mode</a></li>
