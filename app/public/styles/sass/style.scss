@@ -2298,27 +2298,27 @@ header {
 // ══════════════════════════════════════════════
 
 #aboutPage {
+  margin:280px 0 0 64px;
 
   // ── Hero ──────────────────────────────────
   .about-hero {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 90vh;
+    min-height: 10vh;
     overflow: hidden;
 
     &__bg {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba($secondaryBackgroundColor, 0.15) 0%, transparent 60%);
       pointer-events: none;
     }
 
     &__content {
+      margin:0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 6rem 5vw 6rem 8vw;
       z-index: 1;
       animation: fadeUp 0.8s ease both;
     }
@@ -2326,7 +2326,6 @@ header {
     &__eyebrow {
       font-family: $otherText;
       font-size: 0.8rem;
-      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: $mainTextColor;
       margin-bottom: 1.5rem;
@@ -2384,7 +2383,7 @@ header {
       object-position: top center;
       display: block;
       filter: grayscale(20%);
-      transition: filter 0.5s ease;
+      transition: filter 1s ease;
 
       &:hover {
         filter: grayscale(0%);
@@ -2402,7 +2401,7 @@ header {
     animation: fadeUp 0.8s 0.2s ease both;
 
     &__number {
-      font-family: $mainTitleFont;
+      font-family: $secondaryTitles;
       font-size: 5rem;
       font-weight: 700;
       color: rgba($mainTextColor, 0.15);
@@ -2411,12 +2410,11 @@ header {
     }
 
     &__title {
-      font-family: $mainTitleFont;
+      font-family: $secondaryTitles;
       font-size: 1.8rem;
       font-weight: 400;
       color: $mainTextColor;
       margin: 0 0 1.5rem;
-      letter-spacing: 0.05em;
     }
 
     p {
@@ -2448,11 +2446,10 @@ header {
       margin-bottom: 4rem;
 
       h2 {
-        font-family: $mainTitleFont;
+        font-family: $secondaryTitles;
         font-size: 1.4rem;
         font-weight: 400;
         color: $mainTextColor;
-        letter-spacing: 0.2em;
         text-transform: lowercase;
         white-space: nowrap;
         margin: 0;
@@ -2486,7 +2483,6 @@ header {
         font-size: 1.2rem;
         font-weight: 400;
         color: $mainTextColor;
-        letter-spacing: 0.08em;
         margin: 1rem 0 0.8rem;
       }
 
@@ -2535,7 +2531,6 @@ header {
       font-family: $otherText;
       font-size: 0.85rem;
       font-style: normal;
-      letter-spacing: 0.15em;
       color: $mainTextColor;
       margin-top: 2rem;
     }
@@ -2551,7 +2546,6 @@ header {
       font-family: $otherText;
       font-size: 1rem;
       color: rgba($mainTextColor, 0.6);
-      letter-spacing: 0.08em;
       margin: 0 0 2rem;
     }
   }
@@ -2819,11 +2813,10 @@ header {
   background: $secondaryBackgroundColor;
   color: $secondaryTextColor;
   font-family: $otherText;
-  font-size: 0.85rem;
-  text-transform: uppercase;
+  font-size: 1rem;
   text-decoration: none;
   border: 1px solid $mainTextColor;
-  padding: 1rem 2.5rem;
+  padding: 8px 16px;
   transition: background 1s ease, color 1s ease;
 
   &:hover {

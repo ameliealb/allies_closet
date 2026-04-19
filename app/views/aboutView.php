@@ -8,10 +8,6 @@
         <div class="about-hero__content">
             <span class="about-hero__eyebrow">à propos</span>
             <h1 class="about-hero__title">je suis <em>Allie</em>,<br>et voici mon dressing.</h1>
-            <div class="about-hero__line"></div>
-        </div>
-        <div class="about-hero__image-wrap">
-            <img src="<?= BASE_URL ?>/app/public/images/allie-portrait.webp" alt="Portrait d'Allie" class="about-hero__image" />
         </div>
     </section>
 
@@ -21,7 +17,7 @@
         <div class="about-intro__text">
             <h2 class="about-intro__title">qui je suis</h2>
             <p>Bienvenue sur <strong>Allie's Closet</strong> — un espace pensé pour celles qui refusent de choisir entre le fond et la forme. Ici, la mode est un langage, une armure, une déclaration.</p>
-            <p>Je suis Allie, passionnée de style depuis toujours, convaincue que bien s'habiller n'est pas une question de budget mais d'intention. Ce blog, c'est mon carnet de bord ouvert au monde.</p>
+            <p>Je suis Allison, une américaine passionnée de style depuis toujours, convaincue que bien s'habiller n'est pas une question de budget mais d'intention. Ce blog, c'est mon carnet de bord ouvert au monde.</p>
         </div>
     </section>
 

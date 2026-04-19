@@ -1983,31 +1983,32 @@ header #navHeader button:hover a {
   opacity: 1;
 }
 
+#aboutPage {
+  margin: 280px 0 0 64px;
+}
 #aboutPage .about-hero {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 90vh;
+  min-height: 10vh;
   overflow: hidden;
 }
 #aboutPage .about-hero__bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(218, 175, 80, 0.15) 0%, transparent 60%);
   pointer-events: none;
 }
 #aboutPage .about-hero__content {
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem 5vw 6rem 8vw;
   z-index: 1;
   animation: fadeUp 0.8s ease both;
 }
 #aboutPage .about-hero__eyebrow {
   font-family: "Poppins";
   font-size: 0.8rem;
-  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #DAAF50;
   margin-bottom: 1.5rem;
@@ -2058,7 +2059,7 @@ header #navHeader button:hover a {
   object-position: top center;
   display: block;
   filter: grayscale(20%);
-  transition: filter 0.5s ease;
+  transition: filter 1s ease;
 }
 #aboutPage .about-hero__image:hover {
   filter: grayscale(0%);
@@ -2072,7 +2073,7 @@ header #navHeader button:hover a {
   animation: fadeUp 0.8s 0.2s ease both;
 }
 #aboutPage .about-intro__number {
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Playfair Display";
   font-size: 5rem;
   font-weight: 700;
   color: rgba(218, 175, 80, 0.15);
@@ -2080,12 +2081,11 @@ header #navHeader button:hover a {
   padding-top: 0.5rem;
 }
 #aboutPage .about-intro__title {
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Playfair Display";
   font-size: 1.8rem;
   font-weight: 400;
   color: #DAAF50;
   margin: 0 0 1.5rem;
-  letter-spacing: 0.05em;
 }
 #aboutPage .about-intro p {
   font-family: "Poppins";
@@ -2112,11 +2112,10 @@ header #navHeader button:hover a {
   margin-bottom: 4rem;
 }
 #aboutPage .about-values__header h2 {
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Playfair Display";
   font-size: 1.4rem;
   font-weight: 400;
   color: #DAAF50;
-  letter-spacing: 0.2em;
   text-transform: lowercase;
   white-space: nowrap;
   margin: 0;
@@ -2145,7 +2144,6 @@ header #navHeader button:hover a {
   font-size: 1.2rem;
   font-weight: 400;
   color: #DAAF50;
-  letter-spacing: 0.08em;
   margin: 1rem 0 0.8rem;
 }
 #aboutPage .about-values__card p {
@@ -2186,7 +2184,6 @@ header #navHeader button:hover a {
   font-family: "Poppins";
   font-size: 0.85rem;
   font-style: normal;
-  letter-spacing: 0.15em;
   color: #DAAF50;
   margin-top: 2rem;
 }
@@ -2199,7 +2196,6 @@ header #navHeader button:hover a {
   font-family: "Poppins";
   font-size: 1rem;
   color: rgba(218, 175, 80, 0.6);
-  letter-spacing: 0.08em;
   margin: 0 0 2rem;
 }
 
@@ -2420,11 +2416,10 @@ header #navHeader button:hover a {
   background: #DAAF50;
   color: #000000;
   font-family: "Poppins";
-  font-size: 0.85rem;
-  text-transform: uppercase;
+  font-size: 1rem;
   text-decoration: none;
   border: 1px solid #DAAF50;
-  padding: 1rem 2.5rem;
+  padding: 8px 16px;
   transition: background 1s ease, color 1s ease;
 }
 .btn-gold:hover {
