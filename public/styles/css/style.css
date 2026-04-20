@@ -63,7 +63,27 @@
     transform: translateX(-25%);
   }
 }
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /*==========FOR EVERY SINGLE PAGE==========*/
+body {
+  background-color: #000000;
+  color: #DAAF50;
+  padding: 0 16px;
+}
+@media (min-width: 1024px) {
+  body {
+    padding: 0 40px;
+  }
+}
 body .spotlight {
   position: fixed;
   z-index: -1;
@@ -76,26 +96,32 @@ body .spotlight {
   opacity: 0;
   transition: all 0.8s ease-out;
 }
-body {
-  background-color: #000000;
-  color: #DAAF50;
-  padding: 0 40px;
-}
 body a {
   text-decoration: none;
   color: #DAAF50;
 }
 body h2 {
   font-family: "Playfair Display";
-  font-size: 2.5rem;
-  margin-top: 280px;
+  font-size: 1.8rem;
+  margin-top: 120px;
   font-weight: 400;
+}
+@media (min-width: 1024px) {
+  body h2 {
+    font-size: 2.5rem;
+    margin-top: 280px;
+  }
 }
 body .underLine {
   height: 1px;
   background-color: #DAAF50;
-  width: 70%;
+  width: 100%;
   margin: -12px 0 32px 0;
+}
+@media (min-width: 1024px) {
+  body .underLine {
+    width: 70%;
+  }
 }
 body .underLineSmall {
   height: 1px;
@@ -144,6 +170,16 @@ body textarea:focus {
   box-shadow: 0 1px 4px rgba(212, 175, 55, 0.7137254902);
   transition: all 1s ease;
 }
+body .logoHeaderFooter {
+  width: 40px !important;
+  height: auto !important;
+  object-fit: unset !important;
+}
+@media (min-width: 1024px) {
+  body .logoHeaderFooter {
+    width: 56px !important;
+  }
+}
 body #categoriesNav {
   display: flex;
   flex-wrap: wrap;
@@ -151,12 +187,17 @@ body #categoriesNav {
 }
 body #categoriesNav a {
   font-family: "Poppins";
-  font-size: 1rem;
-  text-decoration: none;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(218, 175, 80, 0.15);
-  padding: 8px 16px;
+  padding: 6px 12px;
   transition: color 0.25s ease, border-color 1s ease, background 1s ease;
+}
+@media (min-width: 1024px) {
+  body #categoriesNav a {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
 }
 body #categoriesNav a:hover, body #categoriesNav a.active {
   color: #000000;
@@ -176,89 +217,217 @@ body #likeBlock a {
 
 button {
   background-color: #DAAF50;
-  color: #DAAF50;
+  border: 1px solid #AF7F26;
   padding: 8px 16px;
-  text-decoration: none;
-  font-size: 1rem;
+  cursor: pointer;
   font-family: "Poppins";
+  font-size: 1rem;
+  color: #000000;
+  text-decoration: none;
+  transition: all 1s ease;
+}
+button a {
+  color: #000000;
+  text-decoration: none;
+}
+button:hover {
+  background-color: #000000;
+  color: #DAAF50;
+}
+button:hover a {
+  color: #DAAF50;
 }
 
-/*==========FOR EVERY SINGLE PAGE - HEADER==========*/
+/*==========HEADER==========*/
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 128px;
+  height: 80px;
+  position: relative;
+}
+@media (min-width: 1024px) {
+  header {
+    height: 128px;
+  }
 }
 header #logoAndTitle {
   display: flex;
-}
-header #logoAndTitle #logoHeader {
-  width: 8%;
-  display: block;
+  align-items: center;
+  gap: 8px;
 }
 header #logoAndTitle h1 {
-  display: flex;
-  align-items: end;
-  margin: 0 0 4px 8px;
-  font-family: "Cinzel Decorative", serif;
-  font-weight: lighter;
-  background: linear-gradient(to left, #AF7F26 30%, #F5DBAA 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  display: none;
+}
+@media (min-width: 1024px) {
+  header #logoAndTitle h1 {
+    display: flex;
+    align-items: end;
+    margin: 0 0 4px 8px;
+    font-family: "Cinzel Decorative", serif;
+    font-weight: lighter;
+    background: linear-gradient(to left, #AF7F26 30%, #F5DBAA 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 header #navHeader {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1rem;
+}
+@media (min-width: 1280px) {
+  header #navHeader {
+    gap: 2.5rem;
+  }
+}
+header #navHeader #burgerBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 200;
+}
+@media (min-width: 1280px) {
+  header #navHeader #burgerBtn {
+    display: none;
+  }
+}
+header #navHeader #burgerBtn span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #DAAF50;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+header #navHeader #burgerBtn.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+header #navHeader #burgerBtn.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+header #navHeader #burgerBtn.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 header #navHeader #menuHeader {
-  display: flex;
-  flex-direction: row;
-  gap: 64px;
+  display: none;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
-header #navHeader #menuHeader li {
+header #navHeader #menuHeader.open {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  border-top: 1px solid rgba(218, 175, 80, 0.3);
+  border-bottom: 1px solid rgba(218, 175, 80, 0.3);
+  padding: 1rem 0;
+  z-index: 100;
+  animation: fadeUp 0.2s ease;
+}
+header #navHeader #menuHeader.open li {
+  padding: 0;
+  border-bottom: 0.5px solid rgba(218, 175, 80, 0.1);
+}
+header #navHeader #menuHeader.open li a {
+  display: block;
+  padding: 1rem 1.5rem;
   font-family: "Playfair Display";
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-header #navHeader #menuHeader li a {
-  text-decoration: none;
+  font-size: 2.5rem;
   color: #FFFFFF;
 }
-header #navHeader #menuHeader li a:hover {
+header #navHeader #menuHeader.open li a:hover {
   color: #DAAF50;
+  background-color: rgba(218, 175, 80, 0.05);
 }
-header #navHeader button {
+@media (min-width: 1280px) {
+  header #navHeader #menuHeader {
+    display: flex;
+    flex-direction: row;
+    gap: 64px;
+    position: static;
+    background: transparent;
+    border: none;
+    padding: 0;
+    animation: none;
+  }
+  header #navHeader #menuHeader li {
+    border: none;
+    font-family: "Playfair Display";
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  header #navHeader #menuHeader li a {
+    display: block;
+    padding: 0;
+    color: #FFFFFF;
+  }
+  header #navHeader #menuHeader li a:hover {
+    color: #DAAF50;
+  }
+}
+header #navHeader button:not(#burgerBtn) {
   background-color: #DAAF50;
   border: 1px solid #AF7F26;
-  padding: 8px 16px;
+  padding: 8px 12px;
   cursor: pointer;
 }
-header #navHeader button a {
-  color: #000000;
-  text-decoration: none;
-  font-family: "Poppins";
-  font-size: 1rem;
+@media (min-width: 1024px) {
+  header #navHeader button:not(#burgerBtn) {
+    padding: 8px 16px;
+  }
 }
-header #navHeader button:hover {
+header #navHeader button:not(#burgerBtn) a {
+  color: #000000;
+  font-family: "Poppins";
+  font-size: 0.9rem;
+}
+@media (min-width: 1024px) {
+  header #navHeader button:not(#burgerBtn) a {
+    font-size: 1rem;
+  }
+}
+header #navHeader button:not(#burgerBtn):hover {
   background-color: transparent;
 }
-header #navHeader button:hover a {
+header #navHeader button:not(#burgerBtn):hover a {
   color: #DAAF50;
 }
 
-/*==========FOR EVERY SINGLE PAGE - FOOTER==========*/
+/*==========FOOTER==========*/
 .footer {
-  margin-top: 160px;
+  margin-top: 80px;
+}
+@media (min-width: 1024px) {
+  .footer {
+    margin-top: 160px;
+  }
 }
 .footer .footerContainer {
   display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   width: 100%;
-  grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr;
   margin: 0 auto;
+}
+@media (min-width: 1024px) {
+  .footer .footerContainer {
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr;
+    gap: 0;
+  }
 }
 .footer .footerContainer h3 {
   font-family: "Playfair Display";
@@ -270,18 +439,28 @@ header #navHeader button:hover a {
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  gap: 0.8rem;
+}
+@media (min-width: 1024px) {
+  .footer .footerContainer ul {
+    justify-content: space-between;
+    height: 100%;
+    gap: 0;
+  }
 }
 .footer .footerContainer ul li {
   font-family: "Poppins";
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: lighter;
   list-style-type: none;
   cursor: pointer;
 }
+@media (min-width: 1024px) {
+  .footer .footerContainer ul li {
+    font-size: 1.1rem;
+  }
+}
 .footer .footerContainer ul li a {
-  text-decoration: none;
   color: #FFFFFF;
 }
 .footer .footerContainer ul li a:hover {
@@ -290,17 +469,20 @@ header #navHeader button:hover a {
 .footer .footerContainer #footerFirstColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 110%;
-  margin: 50px 0 0 50px;
+  gap: 1.5rem;
+  margin: 0;
+}
+@media (min-width: 1024px) {
+  .footer .footerContainer #footerFirstColumn {
+    justify-content: space-around;
+    height: 110%;
+    margin: 50px 0 0 50px;
+    gap: 0;
+  }
 }
 .footer .footerContainer #footerFirstColumn #footerLogo {
   display: flex;
   align-items: center;
-}
-.footer .footerContainer #footerFirstColumn #footerLogo img {
-  display: block;
-  width: 15%;
 }
 .footer .footerContainer #footerFirstColumn #footerLogo #footerWebsiteName {
   font-family: "Cinzel Decorative", serif;
@@ -309,58 +491,89 @@ header #navHeader button:hover a {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding-top: 64px;
   margin-left: 8px;
+}
+@media (min-width: 1024px) {
+  .footer .footerContainer #footerFirstColumn #footerLogo #footerWebsiteName {
+    padding-top: 64px;
+  }
 }
 .footer .footerContainer #footerFirstColumn #footerCatchyPhrase {
   font-family: "Poppins";
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bolder;
   color: #FFFFFF;
 }
+@media (min-width: 1024px) {
+  .footer .footerContainer #footerFirstColumn #footerCatchyPhrase {
+    font-size: 1.1rem;
+  }
+}
+.footer .footerContainer #footerFirstColumn #footerSocials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 .footer .footerContainer #footerFirstColumn #footerSocials a {
   border: 1px solid #DAAF50;
-  padding: 12px 16px;
-  text-decoration: none;
+  padding: 10px 14px;
   color: #DAAF50;
-  margin-right: 24px;
+}
+@media (min-width: 1024px) {
+  .footer .footerContainer #footerFirstColumn #footerSocials a {
+    padding: 12px 16px;
+    margin-right: 24px;
+  }
 }
 .footer .footerContainer #footerFirstColumn #footerSocials a:hover {
   background-color: #DAAF50;
   color: #000000;
 }
-.footer .footerContainer #footerSecondColumn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 130%;
-}
+.footer .footerContainer #footerSecondColumn,
 .footer .footerContainer #footerThirdColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 130%;
+  gap: 0.8rem;
+}
+@media (min-width: 1024px) {
+  .footer .footerContainer #footerSecondColumn,
+  .footer .footerContainer #footerThirdColumn {
+    justify-content: space-between;
+    height: 130%;
+    gap: 0;
+  }
 }
 .footer .footerContainer #footerFourthColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 77%;
+  gap: 0.8rem;
+}
+@media (min-width: 1024px) {
+  .footer .footerContainer #footerFourthColumn {
+    justify-content: space-around;
+    height: 77%;
+    gap: 0;
+  }
 }
 .footer #footerCopyrights {
   text-align: center;
   font-family: "Playfair Display";
-  margin-top: 152px;
+  margin-top: 48px;
   color: #FFFFFF;
+}
+@media (min-width: 1024px) {
+  .footer #footerCopyrights {
+    margin-top: 152px;
+  }
 }
 .footer #footerCopyrights #creditWebsiteTitle {
   font-family: "Cinzel Decorative", serif;
   font-weight: bolder;
 }
 
-/*==========ERROR PAGES (403, 404==========*/
+/*==========ERROR PAGES==========*/
 #errorBlock {
-  padding: 4rem 6rem;
+  padding: 2rem;
   text-align: center;
   min-height: 60vh;
   display: flex;
@@ -368,20 +581,35 @@ header #navHeader button:hover a {
   align-items: center;
   justify-content: center;
 }
+@media (min-width: 1024px) {
+  #errorBlock {
+    padding: 4rem 6rem;
+  }
+}
 #errorBlock .errorCode {
   font-family: "Cinzel Decorative", serif;
-  font-size: 10rem;
+  font-size: 5rem;
   font-weight: 700;
   color: rgba(218, 175, 80, 0.2);
   line-height: 1;
   margin: 0 0 1rem;
 }
+@media (min-width: 1024px) {
+  #errorBlock .errorCode {
+    font-size: 10rem;
+  }
+}
 #errorBlock h2 {
   font-family: "Playfair Display";
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 400;
   color: #FFFFFF;
   margin: 0 0 0.5rem;
+}
+@media (min-width: 1024px) {
+  #errorBlock h2 {
+    font-size: 2rem;
+  }
 }
 #errorBlock .underLine {
   width: 60px;
@@ -407,13 +635,24 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 
+/*==========LEGAL==========*/
 #legalBlock {
-  padding: 4rem 8vw 7rem;
+  padding: 2rem 1rem 4rem;
   max-width: 860px;
   margin: 0 auto;
 }
+@media (min-width: 1024px) {
+  #legalBlock {
+    padding: 4rem 8vw 7rem;
+  }
+}
 #legalBlock .legal-hero {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+}
+@media (min-width: 1024px) {
+  #legalBlock .legal-hero {
+    margin-bottom: 4rem;
+  }
 }
 #legalBlock .legal-hero__eyebrow {
   font-family: "Poppins";
@@ -450,7 +689,12 @@ header #navHeader button:hover a {
 }
 #legalBlock .legal-section {
   border-top: 0.5px solid rgba(218, 175, 80, 0.25);
-  padding: 2.5rem 0;
+  padding: 2rem 0;
+}
+@media (min-width: 1024px) {
+  #legalBlock .legal-section {
+    padding: 2.5rem 0;
+  }
 }
 #legalBlock .legal-section:last-of-type {
   border-bottom: 0.5px solid rgba(218, 175, 80, 0.25);
@@ -496,7 +740,6 @@ header #navHeader button:hover a {
 }
 #legalBlock .legal-section a {
   color: #DAAF50;
-  text-decoration: none;
   border-bottom: 0.5px solid rgba(218, 175, 80, 0.3);
   transition: border-color 0.2s ease;
 }
@@ -506,18 +749,184 @@ header #navHeader button:hover a {
 
 /*==========HOME PAGE==========*/
 #homeMain {
-  margin: 16x 0 0 40px;
+  margin: 0;
   font-family: "Playfair Display";
+}
+@media (min-width: 1024px) {
+  #homeMain {
+    margin: 16px 0 0 40px;
+  }
+}
+#homeMain #makeupWidget {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 100;
+}
+@media (min-width: 1024px) {
+  #homeMain #makeupWidget {
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
+#homeMain #makeupWidget #makeupBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #DAAF50;
+  border: 1px solid #DAAF50;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+@media (min-width: 1024px) {
+  #homeMain #makeupWidget #makeupBtn {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+  }
+}
+#homeMain #makeupWidget #makeupBtn:hover {
+  transform: scale(1.1);
+  background: rgb(222.4504716981, 184.6226415094, 101.0495283019);
+}
+#homeMain #makeupPopup {
+  position: fixed;
+  bottom: 4rem;
+  right: 1rem;
+  z-index: 99;
+  width: 90vw;
+  max-width: 320px;
+  background: #000000;
+  border: 1px solid rgba(218, 175, 80, 0.3);
+  padding: 1.2rem;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+@media (min-width: 1024px) {
+  #homeMain #makeupPopup {
+    bottom: 5.5rem;
+    right: 2rem;
+    width: 320px;
+    padding: 1.5rem;
+  }
+}
+#homeMain #makeupPopup.hidden {
+  display: none;
+}
+#homeMain #makeupPopup #makeupClose {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  color: rgba(218, 175, 80, 0.5);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+#homeMain #makeupPopup #makeupClose:hover {
+  color: #DAAF50;
+}
+#homeMain #makeupPopup #makeupLabel {
+  font-family: "Poppins";
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #DAAF50;
+  margin: 0 0 1.2rem;
+}
+#homeMain #makeupPopup #makeupLoading {
+  font-family: "Poppins";
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: 1rem 0;
+}
+#homeMain #makeupPopup #makeupProduct {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#homeMain #makeupPopup #makeupProduct.hidden {
+  display: none;
+}
+#homeMain #makeupPopup #makeupProduct img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  background: #111;
+  display: block;
+}
+#homeMain #makeupPopup #makeupInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+#homeMain #makeupPopup #makeupInfo #makeupBrand {
+  font-family: "Poppins";
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: #DAAF50;
+  margin: 0;
+}
+#homeMain #makeupPopup #makeupInfo #makeupName {
+  font-family: "Playfair Display";
+  font-size: 1rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0;
+}
+#homeMain #makeupPopup #makeupInfo #makeupType,
+#homeMain #makeupPopup #makeupInfo #makeupPrice {
+  font-family: "Poppins";
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  text-transform: capitalize;
+}
+#homeMain #makeupPopup #makeupInfo #makeupLink {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-family: "Poppins";
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #DAAF50;
+  border-bottom: 0.5px solid rgba(218, 175, 80, 0.3);
+  transition: border-color 0.2s ease;
+}
+#homeMain #makeupPopup #makeupInfo #makeupLink:hover {
+  border-color: #DAAF50;
 }
 #homeMain #firstBlock {
   width: 100%;
   display: flex;
-  gap: 176px;
-  height: 840px;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 2rem;
+  height: auto;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+@media (min-width: 1280px) {
+  #homeMain #firstBlock {
+    flex-direction: row;
+    gap: 176px;
+    height: 840px;
+    align-items: flex-end;
+    padding-top: 0;
+  }
 }
 #homeMain #firstBlock #firstBlockPart1 {
-  width: 58%;
+  width: 100%;
+}
+@media (min-width: 1280px) {
+  #homeMain #firstBlock #firstBlockPart1 {
+    width: 58%;
+  }
 }
 #homeMain #firstBlock #firstBlockPart1 #subBlock1 {
   display: flex;
@@ -528,27 +937,48 @@ header #navHeader button:hover a {
 }
 #homeMain #firstBlock #firstBlockPart1 #subBlock1 .underLineSmall {
   background-color: #FFFFFF;
-  width: 60px;
+  width: 40px;
   display: block;
   align-self: center;
 }
+@media (min-width: 1024px) {
+  #homeMain #firstBlock #firstBlockPart1 #subBlock1 .underLineSmall {
+    width: 60px;
+  }
+}
 #homeMain #firstBlock #firstBlockPart1 #subBlock1 h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 16px;
 }
+@media (min-width: 1024px) {
+  #homeMain #firstBlock #firstBlockPart1 #subBlock1 h2 {
+    font-size: 1.5rem;
+  }
+}
 #homeMain #firstBlock #firstBlockPart1 h6 {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: lighter;
-  margin: 0 0 48px 0;
+  margin: 0 0 32px 0;
+}
+@media (min-width: 1024px) {
+  #homeMain #firstBlock #firstBlockPart1 h6 {
+    font-size: 4rem;
+    margin: 0 0 48px 0;
+  }
 }
 #homeMain #firstBlock #firstBlockPart1 button {
-  width: 30%;
-  padding: 12px 16px;
+  width: auto;
+  padding: 10px 16px;
   font-family: "Poppins";
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+@media (min-width: 1024px) {
+  #homeMain #firstBlock #firstBlockPart1 button {
+    width: 30%;
+    font-size: 1rem;
+  }
 }
 #homeMain #firstBlock #firstBlockPart1 button a {
-  text-decoration: none;
   border: none;
 }
 #homeMain #firstBlock #firstBlockPart1 #discoverButton {
@@ -573,15 +1003,20 @@ header #navHeader button:hover a {
 }
 #homeMain #firstBlock #firstBlockPart1 #contactButton:hover {
   background-color: #DAAF50;
-  border: 1px solid #AF7F26;
 }
 #homeMain #firstBlock #firstBlockPart1 #contactButton:hover a {
   color: #000000;
 }
 #homeMain #firstBlock #firstBlockPart2 {
-  width: 32%;
-  height: 800px;
+  width: 100%;
+  height: 400px;
   border: 1px solid #DAAF50;
+}
+@media (min-width: 1280px) {
+  #homeMain #firstBlock #firstBlockPart2 {
+    width: 32%;
+    height: 800px;
+  }
 }
 #homeMain #firstBlock #firstBlockPart2 a {
   text-decoration: none;
@@ -621,35 +1056,61 @@ header #navHeader button:hover a {
 #homeMain .soloLine {
   height: 1px;
   background-color: #DAAF50;
-  margin: 200px -40px 16px -40px;
+  margin: 80px -80px 16px -16px;
+}
+@media (min-width: 1024px) {
+  #homeMain .soloLine {
+    margin: 200px -40px 16px -40px;
+  }
 }
 #homeMain .ribbon {
   background-color: #DAAF50;
   overflow: hidden;
   white-space: nowrap;
-  padding: 24px 0;
-  margin: 0 -40px;
+  padding: 16px 0;
+  margin: 0 -80px;
+}
+@media (min-width: 1024px) {
+  #homeMain .ribbon {
+    padding: 24px 0;
+    margin: 0 -40px;
+  }
 }
 #homeMain .ribbon-track {
   display: inline-block;
   animation: scroll 40s linear infinite;
 }
 #homeMain .ribbon-track span {
-  margin: 0 24px;
-  font-size: 0.95rem;
+  margin: 0 16px;
+  font-size: 0.85rem;
   text-transform: lowercase;
   color: black;
   font-family: "Playfair Display";
+}
+@media (min-width: 1024px) {
+  #homeMain .ribbon-track span {
+    margin: 0 24px;
+    font-size: 0.95rem;
+  }
 }
 #homeMain .ribbon-track .star {
   margin: 0;
 }
 #homeMain #secondBlock {
   display: flex;
-  height: 960px;
-  width: 80%;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
   gap: 16px;
-  margin: 160px auto;
+  margin: 60px auto;
+}
+@media (min-width: 1024px) {
+  #homeMain #secondBlock {
+    flex-direction: row;
+    height: 960px;
+    width: 80%;
+    margin: 160px auto;
+  }
 }
 #homeMain #secondArticleColumn #secondArticle,
 #homeMain #secondArticleColumn #thirdArticle, #homeMain #firstArticleColumn #firstArticle {
@@ -688,49 +1149,87 @@ header #navHeader button:hover a {
   z-index: 1;
 }
 #homeMain #firstArticleColumn {
-  flex: 1;
+  height: 300px;
   display: flex;
   flex-direction: column;
+}
+@media (min-width: 1024px) {
+  #homeMain #firstArticleColumn {
+    flex: 1;
+    height: auto;
+  }
 }
 #homeMain #firstArticleColumn #firstArticle {
   flex: 1;
 }
 #homeMain #secondArticleColumn {
-  flex: 1.4;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+@media (min-width: 1024px) {
+  #homeMain #secondArticleColumn {
+    flex: 1.4;
+  }
+}
 #homeMain #secondArticleColumn #secondArticle,
 #homeMain #secondArticleColumn #thirdArticle {
-  flex: 1;
+  height: 200px;
+}
+@media (min-width: 1024px) {
+  #homeMain #secondArticleColumn #secondArticle,
+  #homeMain #secondArticleColumn #thirdArticle {
+    flex: 1;
+    height: auto;
+  }
 }
 #homeMain #secondArticleColumn p {
   margin-bottom: -16px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #c9a84c;
   letter-spacing: 0.04em;
 }
+@media (min-width: 1024px) {
+  #homeMain #secondArticleColumn p {
+    font-size: 1.5rem;
+  }
+}
 #homeMain #secondArticleColumn h5 {
   margin: 0;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #c9a84c;
   line-height: 1.1;
 }
+@media (min-width: 1024px) {
+  #homeMain #secondArticleColumn h5 {
+    font-size: 3rem;
+  }
+}
 #homeMain #communityBlock {
   position: relative;
-  margin: 0 -40px;
+  margin: 0 -16px;
   background: linear-gradient(135deg, #2a2200 0%, #1a1500 50%, #0a0900 100%);
-  padding: 48px 64px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
+}
+@media (min-width: 1024px) {
+  #homeMain #communityBlock {
+    margin: 0 -40px;
+    padding: 48px 64px;
+  }
 }
 #homeMain #communityBlock #communityLabelRow {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 64px;
+  margin-bottom: 32px;
+}
+@media (min-width: 1024px) {
+  #homeMain #communityBlock #communityLabelRow {
+    margin-bottom: 64px;
+  }
 }
 #homeMain #communityBlock #communityLabel {
   font-family: "Playfair Display";
@@ -743,15 +1242,25 @@ header #navHeader button:hover a {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-bottom: 56px;
+  padding-bottom: 32px;
+}
+@media (min-width: 1024px) {
+  #homeMain #communityBlock #communityContent {
+    padding-bottom: 56px;
+  }
 }
 #homeMain #communityBlock #communityContent h2 {
   font-family: "Playfair Display";
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 400;
   color: #FFFFFF;
   margin: 0 0 1.5rem;
   line-height: 1.1;
+}
+@media (min-width: 1024px) {
+  #homeMain #communityBlock #communityContent h2 {
+    font-size: 4rem;
+  }
 }
 #homeMain #communityBlock #communityContent h2 span {
   color: #DAAF50;
@@ -768,7 +1277,12 @@ header #navHeader button:hover a {
 #homeMain #communityBlock #communityContent button {
   padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 1.1rem;
+  font-size: 1rem;
+}
+@media (min-width: 1024px) {
+  #homeMain #communityBlock #communityContent button {
+    font-size: 1.1rem;
+  }
 }
 #homeMain #communityBlock #communityContent #subscribeButton {
   background-color: #DAAF50;
@@ -780,29 +1294,52 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 
-/*==========ADMIN DASHBOARD PAGE==========*/
+/*==========ADMIN DASHBOARD==========*/
 #dashboard-container {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
+}
+@media (min-width: 1024px) {
+  #dashboard-container {
+    padding: 4rem 6rem;
+  }
 }
 #dashboard-container h3 {
   font-family: "Playfair Display";
-  font-size: 24px;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #FFFFFF;
   margin: 0 0 1.5rem;
-  letter-spacing: 1px;
+}
+@media (min-width: 1024px) {
+  #dashboard-container h3 {
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
 }
 #dashboard-container #manageArticles {
-  margin-top: 3rem;
+  margin-top: 2rem;
+}
+@media (min-width: 1024px) {
+  #dashboard-container #manageArticles {
+    margin-top: 3rem;
+  }
 }
 #dashboard-container #manageArticles .articleRow {
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.8rem;
   border: 0.5px solid rgba(218, 175, 80, 0.3);
-  padding: 1.2rem 2rem;
+  padding: 1rem;
   margin-bottom: 1px;
   background-color: rgb(5.1, 5.1, 5.1);
+}
+@media (min-width: 1024px) {
+  #dashboard-container #manageArticles .articleRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.2rem 2rem;
+  }
 }
 #dashboard-container #manageArticles .articleRow:hover {
   border-color: rgba(218, 175, 80, 0.6);
@@ -827,11 +1364,15 @@ header #navHeader button:hover a {
   font-family: "Poppins";
   font-size: 0.8rem;
   letter-spacing: 2px;
-  text-decoration: none;
-  padding: 6px 16px;
+  padding: 6px 12px;
   border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #DAAF50;
   white-space: nowrap;
+}
+@media (min-width: 1024px) {
+  #dashboard-container #manageArticles .articleRow a {
+    padding: 6px 16px;
+  }
 }
 #dashboard-container #manageArticles .articleRow a:hover {
   background-color: rgba(218, 175, 80, 0.1);
@@ -851,7 +1392,6 @@ header #navHeader button:hover a {
   color: #000000;
   padding: 8px 16px;
   font-size: 1rem;
-  text-decoration: none;
   font-family: "Poppins";
 }
 #dashboard-container #manageArticles > a:hover {
@@ -860,16 +1400,29 @@ header #navHeader button:hover a {
 }
 
 #manageUsers {
-  padding-top: 80px;
+  padding-top: 40px;
+}
+@media (min-width: 1024px) {
+  #manageUsers {
+    padding-top: 80px;
+  }
 }
 #manageUsers .userRow {
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.8rem;
   border: 0.5px solid rgba(218, 175, 80, 0.3);
-  padding: 1.2rem 2rem;
+  padding: 1rem;
   margin-bottom: 1px;
   background-color: rgb(5.1, 5.1, 5.1);
+}
+@media (min-width: 1024px) {
+  #manageUsers .userRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.2rem 2rem;
+  }
 }
 #manageUsers .userRow:hover {
   border-color: rgba(218, 175, 80, 0.6);
@@ -891,11 +1444,16 @@ header #navHeader button:hover a {
   opacity: 0.6;
 }
 
-/*==========CREATE ARTICLE PAGE==========*/
+/*==========CREATE ARTICLE==========*/
 #createArticleView {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
   max-width: 800px;
   margin: 0 auto;
+}
+@media (min-width: 1024px) {
+  #createArticleView {
+    padding: 4rem 6rem;
+  }
 }
 #createArticleView .error {
   font-family: "Poppins";
@@ -917,6 +1475,8 @@ header #navHeader button:hover a {
   font-family: "Poppins";
   font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 #createArticleView form input[type=text]::placeholder,
 #createArticleView form input[type=file]::placeholder {
@@ -933,15 +1493,24 @@ header #navHeader button:hover a {
   padding: 12px 16px;
   font-family: "Poppins";
   font-size: 14px;
-  resize: vertical;
-  min-height: 400px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 #createArticleView form textarea::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
 #createArticleView form textarea:focus {
   border-color: #DAAF50;
+}
+#createArticleView form textarea {
+  resize: vertical;
+  min-height: 300px;
+}
+@media (min-width: 1024px) {
+  #createArticleView form textarea {
+    min-height: 400px;
+  }
 }
 #createArticleView form label {
   font-family: "Poppins";
@@ -956,18 +1525,25 @@ header #navHeader button:hover a {
   background-color: rgb(7.65, 7.65, 7.65);
   border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #FFFFFF;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+#createArticleView form select::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#createArticleView form select:focus {
+  border-color: #DAAF50;
+}
+#createArticleView form select {
   cursor: pointer;
 }
 #createArticleView form select option {
   background-color: #000000;
   color: #FFFFFF;
-}
-#createArticleView form select:focus {
-  border-color: #DAAF50;
 }
 #createArticleView form p {
   font-family: "Poppins";
@@ -989,17 +1565,27 @@ header #navHeader button:hover a {
   background-color: rgba(218, 175, 80, 0.1);
 }
 
-/*==========EDIT ARTICLE PAGE==========*/
+/*==========EDIT ARTICLE==========*/
 #editArticleBlock {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
+}
+@media (min-width: 1024px) {
+  #editArticleBlock {
+    padding: 4rem 6rem;
+  }
 }
 #editArticleBlock h1 {
   font-family: "Cinzel Decorative", serif;
-  font-size: 48px;
+  font-size: 2rem;
   font-weight: 400;
   color: #DAAF50;
   letter-spacing: 2px;
   margin: 0 0 0.5rem;
+}
+@media (min-width: 1024px) {
+  #editArticleBlock h1 {
+    font-size: 48px;
+  }
 }
 #editArticleBlock .underLine {
   height: 1px;
@@ -1025,17 +1611,23 @@ header #navHeader button:hover a {
   text-transform: uppercase;
   color: #DAAF50;
   opacity: 0.7;
-  margin-bottom: -0.5rem;
+  margin-bottom: -0.8rem;
 }
 #editArticleBlock form input[type=text],
 #editArticleBlock form select {
   background-color: rgb(7.65, 7.65, 7.65);
   border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #FFFFFF;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+#editArticleBlock form input[type=text]::placeholder,
+#editArticleBlock form select::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 #editArticleBlock form input[type=text]:focus,
 #editArticleBlock form select:focus {
@@ -1047,21 +1639,31 @@ header #navHeader button:hover a {
   color: #FFFFFF;
   padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 13px;
-  resize: vertical;
-  min-height: 300px;
+  font-size: 14px;
   outline: none;
-}
-#editArticleBlock form textarea:focus {
-  border-color: #DAAF50;
+  width: 100%;
+  box-sizing: border-box;
 }
 #editArticleBlock form textarea::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
+#editArticleBlock form textarea:focus {
+  border-color: #DAAF50;
+}
+#editArticleBlock form textarea {
+  resize: vertical;
+  min-height: 300px;
+}
 #editArticleBlock form img {
-  width: 200px;
-  height: 130px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
+}
+@media (min-width: 1024px) {
+  #editArticleBlock form img {
+    width: 200px;
+    height: 130px;
+  }
 }
 #editArticleBlock form input[type=file] {
   font-family: "Poppins";
@@ -1073,24 +1675,35 @@ header #navHeader button:hover a {
   align-self: flex-start;
   border: 1px solid #DAAF50;
   color: #000000;
-  padding: 10px 28px;
+  padding: 10px 20px;
   font-size: 1rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
   background: transparent;
   cursor: pointer;
   font-family: "Poppins";
   margin-top: 1rem;
 }
+@media (min-width: 1024px) {
+  #editArticleBlock form button {
+    padding: 10px 28px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+}
 #editArticleBlock form button:hover {
   background-color: rgba(218, 175, 80, 0.1);
 }
 
-/*==========LOGIN/REGISTER PAGE==========*/
+/*==========LOGIN/REGISTER==========*/
 #auth-container {
   gap: 30px;
-  margin: 80px auto;
-  width: 25%;
+  margin: 40px auto;
+  width: 90%;
+}
+@media (min-width: 1024px) {
+  #auth-container {
+    margin: 80px auto;
+    width: 25%;
+  }
 }
 #auth-container h2 {
   margin-top: 0;
@@ -1113,6 +1726,7 @@ header #navHeader button:hover a {
   font-size: 0.9rem;
   background: #211d0d;
   background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
+  box-sizing: border-box;
 }
 #auth-container #form-login #checkboxGroup,
 #auth-container #form-register #checkboxGroup {
@@ -1163,11 +1777,17 @@ header #navHeader button:hover a {
 }
 
 #quoteCoco {
-  margin: 0 auto;
-  padding-left: 80px;
-  width: 35%;
-  font-family: "Playfair Display";
-  font-size: 3.8rem;
+  display: none;
+}
+@media (min-width: 1280px) {
+  #quoteCoco {
+    display: block;
+    margin: 0 auto;
+    padding-left: 80px;
+    width: 35%;
+    font-family: "Playfair Display";
+    font-size: 3.8rem;
+  }
 }
 #quoteCoco #quoteAuthor {
   display: flex;
@@ -1182,8 +1802,7 @@ header #navHeader button:hover a {
   font-size: 3rem;
 }
 
-/*====================BLOG====================*/
-/*==========INDEX BLOG PAGE==========*/
+/*==========BLOG==========*/
 #blogBlock #categoriesNav {
   margin: 0 0 32px 0;
 }
@@ -1192,26 +1811,41 @@ header #navHeader button:hover a {
 }
 #blogBlock form {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
   margin-bottom: 32px;
-  align-items: center;
+}
+@media (min-width: 1024px) {
+  #blogBlock form {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
 }
 #blogBlock form input[type=text] {
   background-color: rgb(7.65, 7.65, 7.65);
-  border: 1px solid #DAAF50;
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #FFFFFF;
-  padding: 8px 16px;
+  padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 1rem;
-  letter-spacing: 1px;
-  width: 40%;
+  font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 #blogBlock form input[type=text]::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
 #blogBlock form input[type=text]:focus {
   border-color: #DAAF50;
+}
+#blogBlock form input[type=text] {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #blogBlock form input[type=text] {
+    width: 40%;
+  }
 }
 #blogBlock form button {
   display: block;
@@ -1222,18 +1856,30 @@ header #navHeader button:hover a {
   font-size: 1rem;
   cursor: pointer;
   font-family: "Poppins";
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #blogBlock form button {
+    width: auto;
+  }
 }
 #blogBlock form button:hover {
   background-color: #DAAF50;
   color: #000000;
 }
 #blogBlock .articleCard {
-  width: 70%;
+  width: 100%;
   border: 0.5px solid rgba(218, 175, 80, 0.3);
-  padding: 32px;
+  padding: 20px;
   margin: 8px auto;
   background-color: rgb(5.1, 5.1, 5.1);
   transition: border-color 0.2s;
+}
+@media (min-width: 1024px) {
+  #blogBlock .articleCard {
+    width: 70%;
+    padding: 32px;
+  }
 }
 #blogBlock .articleCard:hover {
   border-color: rgba(218, 175, 80, 0.6);
@@ -1245,11 +1891,16 @@ header #navHeader button:hover a {
 }
 #blogBlock .articleCard .articleContent h3 {
   font-family: "Playfair Display";
-  font-size: 26px;
+  font-size: 1.3rem;
   font-weight: 400;
   color: #FFFFFF;
   margin: 0;
-  letter-spacing: 1px;
+}
+@media (min-width: 1024px) {
+  #blogBlock .articleCard .articleContent h3 {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
 }
 #blogBlock .articleCard .articleContent p {
   font-family: "Poppins";
@@ -1279,22 +1930,31 @@ header #navHeader button:hover a {
   border: 1px solid #DAAF50;
   color: #000000;
   padding: 8px 16px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: #DAAF50;
-  text-decoration: none;
   font-family: "Poppins";
   margin-top: 16px;
+}
+@media (min-width: 1024px) {
+  #blogBlock .articleCard .articleContent a {
+    font-size: 1rem;
+  }
 }
 #blogBlock .articleCard .articleContent a:hover {
   background-color: #000000;
   color: #DAAF50;
 }
 
-/*==========FOR EACH ARTICLE PAGE==========*/
+/*==========SHOW ARTICLE==========*/
 #showArticleBlock {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
   max-width: 900px;
   margin: 0 auto;
+}
+@media (min-width: 1024px) {
+  #showArticleBlock {
+    padding: 4rem 6rem;
+  }
 }
 #showArticleBlock > p {
   font-family: "Poppins";
@@ -1307,34 +1967,62 @@ header #navHeader button:hover a {
 }
 #showArticleBlock > img {
   width: 100%;
-  height: 500px;
+  height: 250px;
   object-fit: cover;
   display: block;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 1024px) {
+  #showArticleBlock > img {
+    height: 500px;
+    margin-bottom: 3rem;
+  }
 }
 #showArticleBlock #articleContent {
   border-left: 2px solid rgba(218, 175, 80, 0.5);
-  padding: 0 0 0 2rem;
-  margin-bottom: 4rem;
+  padding: 0 0 0 1rem;
+  margin-bottom: 3rem;
+}
+@media (min-width: 1024px) {
+  #showArticleBlock #articleContent {
+    padding: 0 0 0 2rem;
+    margin-bottom: 4rem;
+  }
 }
 #showArticleBlock #articleContent p {
   font-family: "Poppins";
-  font-size: 16px;
+  font-size: 15px;
   line-height: 2;
   color: #FFFFFF;
   margin: 0;
 }
+@media (min-width: 1024px) {
+  #showArticleBlock #articleContent p {
+    font-size: 16px;
+  }
+}
 #showArticleBlock #commentsBlock {
   border-top: 0.5px solid rgba(218, 175, 80, 0.3);
-  padding-top: 3rem;
+  padding-top: 2rem;
+}
+@media (min-width: 1024px) {
+  #showArticleBlock #commentsBlock {
+    padding-top: 3rem;
+  }
 }
 #showArticleBlock #commentsBlock h2 {
   font-family: "Playfair Display";
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: 400;
   color: #FFFFFF;
-  margin: 0 0 2rem;
-  letter-spacing: 1px;
+  margin: 0 0 1.5rem;
+}
+@media (min-width: 1024px) {
+  #showArticleBlock #commentsBlock h2 {
+    font-size: 28px;
+    margin: 0 0 2rem;
+    letter-spacing: 1px;
+  }
 }
 #showArticleBlock #commentsBlock > p {
   font-family: "Poppins";
@@ -1344,9 +2032,14 @@ header #navHeader button:hover a {
 }
 #showArticleBlock #commentsBlock .commentCard {
   border: 0.5px solid rgba(218, 175, 80, 0.2);
-  padding: 1.5rem 2rem;
+  padding: 1rem;
   margin-bottom: 1px;
   background-color: rgb(5.1, 5.1, 5.1);
+}
+@media (min-width: 1024px) {
+  #showArticleBlock #commentsBlock .commentCard {
+    padding: 1.5rem 2rem;
+  }
 }
 #showArticleBlock #commentsBlock .commentCard:hover {
   border-color: rgba(218, 175, 80, 0.5);
@@ -1360,7 +2053,6 @@ header #navHeader button:hover a {
 }
 #showArticleBlock #commentsBlock .commentCard .commentAuthor a {
   color: #DAAF50;
-  text-decoration: none;
 }
 #showArticleBlock #commentsBlock .commentCard .commentAuthor a:hover {
   opacity: 0.7;
@@ -1387,23 +2079,33 @@ header #navHeader button:hover a {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #ff6666;
-  text-decoration: none;
   border-bottom: 0.5px solid rgba(255, 0, 0, 0.3);
 }
 #showArticleBlock #commentsBlock .commentCard a:hover {
   border-color: red;
 }
 #showArticleBlock #commentsBlock #commentForm {
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-top: 0.5px solid rgba(218, 175, 80, 0.2);
-  padding-top: 2rem;
+  padding-top: 1.5rem;
+}
+@media (min-width: 1024px) {
+  #showArticleBlock #commentsBlock #commentForm {
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
 }
 #showArticleBlock #commentsBlock #commentForm h3 {
   font-family: "Playfair Display";
-  font-size: 22px;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #FFFFFF;
   margin: 0 0 1.5rem;
+}
+@media (min-width: 1024px) {
+  #showArticleBlock #commentsBlock #commentForm h3 {
+    font-size: 22px;
+  }
 }
 #showArticleBlock #commentsBlock #commentForm .error {
   font-family: "Poppins";
@@ -1412,18 +2114,15 @@ header #navHeader button:hover a {
   margin-bottom: 1rem;
 }
 #showArticleBlock #commentsBlock #commentForm textarea {
-  width: 100%;
   background-color: rgb(7.65, 7.65, 7.65);
   border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #FFFFFF;
   padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 13px;
-  resize: vertical;
-  min-height: 120px;
-  box-sizing: border-box;
-  margin-bottom: 1rem;
+  font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 #showArticleBlock #commentsBlock #commentForm textarea::placeholder {
   color: rgba(255, 255, 255, 0.4);
@@ -1431,17 +2130,27 @@ header #navHeader button:hover a {
 #showArticleBlock #commentsBlock #commentForm textarea:focus {
   border-color: #DAAF50;
 }
+#showArticleBlock #commentsBlock #commentForm textarea {
+  resize: vertical;
+  min-height: 120px;
+  margin-bottom: 1rem;
+}
 #showArticleBlock #commentsBlock #commentForm button {
   display: block;
   border: 1px solid #DAAF50;
   color: #000000;
-  padding: 10px 28px;
+  padding: 10px 20px;
   font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
   background: transparent;
   cursor: pointer;
   font-family: "Poppins";
+}
+@media (min-width: 1024px) {
+  #showArticleBlock #commentsBlock #commentForm button {
+    padding: 10px 28px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
 }
 #showArticleBlock #commentsBlock #commentForm button:hover {
   background-color: rgba(218, 175, 80, 0.1);
@@ -1461,42 +2170,67 @@ header #navHeader button:hover a {
   opacity: 1;
 }
 
-/*====================FORUM====================*/
-/*==========INDEX FORUM PAGE==========*/
+/*==========FORUM==========*/
 #introForum p {
   color: #FFFFFF;
   font-family: "Playfair Display";
-  font-size: 2rem;
-  margin: 48px 0;
+  font-size: 1.4rem;
+  margin: 32px 0;
+}
+@media (min-width: 1024px) {
+  #introForum p {
+    font-size: 2rem;
+    margin: 48px 0;
+  }
 }
 #introForum p .big {
   text-transform: uppercase;
 }
 #introForum .underLineSmall {
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
+}
+@media (min-width: 1024px) {
+  #introForum .underLineSmall {
+    width: 40%;
+  }
 }
 #introForum h3 {
   color: #FFFFFF;
   font-family: "Poppins";
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
+}
+@media (min-width: 1024px) {
+  #introForum h3 {
+    font-size: 1.6rem;
+  }
 }
 
 #categoriesNavForum {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 64px 0 16px 64px;
+  margin: 32px 0 16px 0;
+}
+@media (min-width: 1024px) {
+  #categoriesNavForum {
+    margin: 64px 0 16px 64px;
+  }
 }
 #categoriesNavForum a {
   font-family: "Poppins";
-  font-size: 1rem;
-  text-decoration: none;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(218, 175, 80, 0.15);
-  padding: 8px 16px;
+  padding: 6px 12px;
   transition: color 0.25s ease, border-color 1s ease, background 1s ease;
+}
+@media (min-width: 1024px) {
+  #categoriesNavForum a {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
 }
 #categoriesNavForum a:hover, #categoriesNavForum a.active {
   color: #000000;
@@ -1506,10 +2240,18 @@ header #navHeader button:hover a {
 
 #forumBlock {
   display: grid;
-  grid-template-columns: 2.2fr 0.8fr;
-  gap: 80px;
-  margin-top: -32px;
-  padding: 32px 64px;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 0;
+  padding: 16px;
+}
+@media (min-width: 1280px) {
+  #forumBlock {
+    grid-template-columns: 2.2fr 0.8fr;
+    gap: 80px;
+    margin-top: -32px;
+    padding: 32px 64px;
+  }
 }
 #forumBlock p {
   font-family: "Poppins";
@@ -1530,33 +2272,52 @@ header #navHeader button:hover a {
   flex-direction: column;
 }
 #forumBlock #mainForumBlock .messageCard {
-  position: relative;
   border: 1px solid #c9a84c;
   background: #211d0d;
   background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
   box-sizing: border-box;
-  padding: 8px 48px;
+  position: relative;
+  padding: 12px 16px;
   margin-bottom: 8px;
+}
+@media (min-width: 1024px) {
+  #forumBlock #mainForumBlock .messageCard {
+    padding: 8px 48px;
+  }
 }
 #forumBlock #mainForumBlock .messageCard h4 {
   font-family: "Poppins";
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #DAAF50;
   font-weight: bold;
   margin: 0;
 }
+@media (min-width: 1024px) {
+  #forumBlock #mainForumBlock .messageCard h4 {
+    font-size: 1.2rem;
+  }
+}
 #forumBlock #mainForumBlock .messageCard > p:first-of-type {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #DAAF50;
   text-transform: uppercase;
 }
+@media (min-width: 1024px) {
+  #forumBlock #mainForumBlock .messageCard > p:first-of-type {
+    font-size: 1rem;
+  }
+}
 #forumBlock #mainForumBlock .messageCard p {
   color: #FFFFFF;
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+@media (min-width: 1024px) {
+  #forumBlock #mainForumBlock .messageCard p {
+    font-size: 1rem;
+  }
 }
 #forumBlock #mainForumBlock .messageCard p a {
-  text-decoration: none;
   color: #FFFFFF;
   font-weight: 800;
 }
@@ -1564,15 +2325,24 @@ header #navHeader button:hover a {
   background-color: #DAAF50;
   border: 1px solid #AF7F26;
   padding: 8px 16px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   cursor: pointer;
   white-space: nowrap;
 }
+@media (min-width: 1024px) {
+  #forumBlock #mainForumBlock .messageCard button {
+    margin-bottom: 24px;
+  }
+}
 #forumBlock #mainForumBlock .messageCard button a {
   color: #000000;
-  text-decoration: none;
   font-family: "Poppins";
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+@media (min-width: 1024px) {
+  #forumBlock #mainForumBlock .messageCard button a {
+    font-size: 1rem;
+  }
 }
 #forumBlock #mainForumBlock .messageCard button:hover {
   background-color: #000000;
@@ -1584,20 +2354,24 @@ header #navHeader button:hover a {
   font-size: 1rem;
 }
 #forumBlock #sidebarForumBlock #sidenavBlock {
-  position: relative;
   border: 1px solid #c9a84c;
   background: #211d0d;
   background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
   box-sizing: border-box;
+  position: relative;
 }
 #forumBlock #sidebarForumBlock #sidenavBlock p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #FFFFFF;
   padding: 4px;
   margin: 0;
 }
+@media (min-width: 1024px) {
+  #forumBlock #sidebarForumBlock #sidenavBlock p {
+    font-size: 1rem;
+  }
+}
 #forumBlock #sidebarForumBlock #sidenavBlock p a {
-  text-decoration: none;
   font-weight: bold;
   color: #DAAF50;
 }
@@ -1609,23 +2383,33 @@ header #navHeader button:hover a {
   background: #211d0d;
   background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
   box-sizing: border-box;
-  height: 240px;
+  height: auto;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
 }
+@media (min-width: 1024px) {
+  #forumBlock #speakUp #speakUpCase {
+    height: 240px;
+  }
+}
 #forumBlock #speakUp #speakUpCase p {
   text-align: center;
-  font-size: 5rem;
-  margin: 16px 0 16px 0;
+  font-size: 3rem;
+  margin: 16px 0;
   font-family: "Playfair Display";
   font-style: italic;
   text-transform: uppercase;
+}
+@media (min-width: 1024px) {
+  #forumBlock #speakUp #speakUpCase p {
+    font-size: 5rem;
+  }
 }
 #forumBlock #speakUp #speakUpCase h6 {
   text-align: center;
 }
 #forumBlock #speakUp #speakUpCase h6 a {
-  text-decoration: none;
   color: #DAAF50;
   font-family: "Poppins";
   font-size: 1rem;
@@ -1635,17 +2419,26 @@ header #navHeader button:hover a {
 }
 #forumBlock #speakUp #speakUpCase button {
   background-color: #000000;
-  width: 14%;
+  width: auto;
   margin: 0 auto;
   border: 1px solid #AF7F26;
   padding: 8px 16px;
   cursor: pointer;
 }
+@media (min-width: 1024px) {
+  #forumBlock #speakUp #speakUpCase button {
+    width: 14%;
+  }
+}
 #forumBlock #speakUp #speakUpCase button a {
   color: #DAAF50;
-  text-decoration: none;
   font-family: "Poppins";
-  font-size: 1.1rem;
+  font-size: 1rem;
+}
+@media (min-width: 1024px) {
+  #forumBlock #speakUp #speakUpCase button a {
+    font-size: 1.1rem;
+  }
 }
 #forumBlock #speakUp #speakUpCase button:hover {
   background-color: #DAAF50;
@@ -1663,24 +2456,39 @@ header #navHeader button:hover a {
   border: 1px solid #AF7F26;
   position: relative;
   height: auto;
-  padding-bottom: 56px;
+  padding-bottom: 40px;
   background-image: url(../../images/img_signin_sidebar.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   box-sizing: border-box;
 }
+@media (min-width: 1024px) {
+  #forumBlock #joinOrContact #joinOrContactCase {
+    padding-bottom: 56px;
+  }
+}
 #forumBlock #joinOrContact #joinOrContactCase h5 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-family: "Poppins";
   text-align: center;
   color: #FFFFFF;
+}
+@media (min-width: 1024px) {
+  #forumBlock #joinOrContact #joinOrContactCase h5 {
+    font-size: 1.5rem;
+  }
 }
 #forumBlock #joinOrContact #joinOrContactCase h5 #join {
   font-family: "Playfair Display";
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #DAAF50;
+}
+@media (min-width: 1024px) {
+  #forumBlock #joinOrContact #joinOrContactCase h5 #join {
+    font-size: 2.5rem;
+  }
 }
 #forumBlock #joinOrContact #joinOrContactCase h5 #joinAlliegators {
   text-transform: uppercase;
@@ -1688,7 +2496,12 @@ header #navHeader button:hover a {
 #forumBlock #joinOrContact #joinOrContactCase p {
   color: #FFFFFF;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
+}
+@media (min-width: 1024px) {
+  #forumBlock #joinOrContact #joinOrContactCase p {
+    font-size: 1.2rem;
+  }
 }
 #forumBlock #joinOrContact #joinOrContactCase button {
   display: block;
@@ -1700,9 +2513,13 @@ header #navHeader button:hover a {
 }
 #forumBlock #joinOrContact #joinOrContactCase button a {
   color: #000000;
-  text-decoration: none;
   font-family: "Poppins";
-  font-size: 1.1rem;
+  font-size: 1rem;
+}
+@media (min-width: 1024px) {
+  #forumBlock #joinOrContact #joinOrContactCase button a {
+    font-size: 1.1rem;
+  }
 }
 #forumBlock #joinOrContact #joinOrContactCase button:hover {
   background-color: #000000;
@@ -1711,11 +2528,16 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 
-/*==========CREATION TOPIC PAGE (FORUM)==========*/
+/*==========CREATE MESSAGE==========*/
 #createMessageBlock {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
   max-width: 800px;
   margin: 0 auto;
+}
+@media (min-width: 1024px) {
+  #createMessageBlock {
+    padding: 4rem 6rem;
+  }
 }
 #createMessageBlock .error {
   font-family: "Poppins";
@@ -1736,6 +2558,8 @@ header #navHeader button:hover a {
   font-family: "Poppins";
   font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 #createMessageBlock form input[type=text]::placeholder {
   color: rgba(255, 255, 255, 0.4);
@@ -1750,15 +2574,24 @@ header #navHeader button:hover a {
   padding: 12px 16px;
   font-family: "Poppins";
   font-size: 14px;
-  resize: vertical;
-  min-height: 300px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 #createMessageBlock form textarea::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
 #createMessageBlock form textarea:focus {
   border-color: #DAAF50;
+}
+#createMessageBlock form textarea {
+  resize: vertical;
+  min-height: 200px;
+}
+@media (min-width: 1024px) {
+  #createMessageBlock form textarea {
+    min-height: 300px;
+  }
 }
 #createMessageBlock form label {
   font-family: "Poppins";
@@ -1773,18 +2606,25 @@ header #navHeader button:hover a {
   background-color: rgb(7.65, 7.65, 7.65);
   border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #FFFFFF;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+#createMessageBlock form select::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+#createMessageBlock form select:focus {
+  border-color: #DAAF50;
+}
+#createMessageBlock form select {
   cursor: pointer;
 }
 #createMessageBlock form select option {
   background-color: #000000;
   color: #FFFFFF;
-}
-#createMessageBlock form select:focus {
-  border-color: #DAAF50;
 }
 #createMessageBlock form button {
   display: block;
@@ -1803,44 +2643,76 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 
-/*==========TOPIC PAGE (FORUM)==========*/
+/*==========SHOW MESSAGE==========*/
 #showMessageBlock > p {
   font-family: "Poppins";
-  font-size: 1rem;
-  letter-spacing: 5%;
+  font-size: 0.9rem;
   color: #DAAF50;
   text-transform: uppercase;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+}
+@media (min-width: 1024px) {
+  #showMessageBlock > p {
+    font-size: 1rem;
+    margin-bottom: 32px;
+  }
 }
 #showMessageBlock #mainMessage {
   border-left: 1px solid #DAAF50;
-  padding: 32px 64px;
+  padding: 16px 24px;
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #showMessageBlock #mainMessage {
+    padding: 32px 64px;
+    width: 80%;
+  }
 }
 #showMessageBlock #mainMessage p {
   font-family: "Poppins";
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.9;
   color: #FFFFFF;
   margin: 0;
 }
+@media (min-width: 1024px) {
+  #showMessageBlock #mainMessage p {
+    font-size: 1rem;
+  }
+}
 #showMessageBlock #replies {
-  padding: 32px 64px;
+  padding: 16px 24px;
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #showMessageBlock #replies {
+    padding: 32px 64px;
+    width: 80%;
+  }
 }
 #showMessageBlock #replies h3 {
   font-family: "Playfair Display";
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #FFFFFF;
 }
+@media (min-width: 1024px) {
+  #showMessageBlock #replies h3 {
+    font-size: 1.5rem;
+  }
+}
 #showMessageBlock #replies .replyCard {
   border: 0.5px solid rgba(218, 175, 80, 0.3);
-  padding: 16px 32px;
+  padding: 12px 16px;
   margin-bottom: 1px;
   background-color: rgb(12.75, 12.75, 12.75);
+}
+@media (min-width: 1024px) {
+  #showMessageBlock #replies .replyCard {
+    padding: 16px 32px;
+  }
 }
 #showMessageBlock #replies .replyCard:hover {
   border-color: rgba(218, 175, 80, 0.6);
@@ -1848,22 +2720,24 @@ header #navHeader button:hover a {
 #showMessageBlock #replies .replyCard > p {
   font-family: "Poppins";
   font-size: 0.8rem;
-  letter-spacing: 5%;
   color: #DAAF50;
   text-transform: uppercase;
 }
 #showMessageBlock #replies .replyCard > p:last-of-type {
-  font-size: 1rem;
-  letter-spacing: 0;
+  font-size: 0.95rem;
   text-transform: none;
   opacity: 1;
   color: #FFFFFF;
   margin-top: 0.8rem;
 }
+@media (min-width: 1024px) {
+  #showMessageBlock #replies .replyCard > p:last-of-type {
+    font-size: 1rem;
+  }
+}
 #showMessageBlock #replies .replyCard details summary {
   font-family: "Poppins";
   font-size: 0.8rem;
-  letter-spacing: 5%;
   text-transform: uppercase;
   color: #FFFFFF;
   cursor: pointer;
@@ -1872,20 +2746,26 @@ header #navHeader button:hover a {
   margin-top: 1rem;
 }
 #showMessageBlock #replies .replyCard details form textarea {
-  width: 100%;
-  background-color: #000000;
-  border: 0.5px solid rgba(218, 175, 80, 0.3);
+  background-color: rgb(7.65, 7.65, 7.65);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #FFFFFF;
   padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 13px;
-  resize: vertical;
-  min-height: 80px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
   box-sizing: border-box;
-  margin-bottom: 1rem;
 }
 #showMessageBlock #replies .replyCard details form textarea::placeholder {
   color: rgba(255, 255, 255, 0.4);
+}
+#showMessageBlock #replies .replyCard details form textarea:focus {
+  border-color: #DAAF50;
+}
+#showMessageBlock #replies .replyCard details form textarea {
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 1rem;
 }
 #showMessageBlock #replies .replyCard details form button {
   display: block;
@@ -1901,10 +2781,16 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 #showMessageBlock #replies .replyCard .subReplies {
-  padding: 16px 32px;
+  padding: 12px 16px;
   margin: 8px auto;
-  width: 90%;
+  width: 95%;
   border-left: 1px solid rgba(218, 175, 80, 0.2);
+}
+@media (min-width: 1024px) {
+  #showMessageBlock #replies .replyCard .subReplies {
+    padding: 16px 32px;
+    width: 90%;
+  }
 }
 #showMessageBlock #replies .replyCard .subReplies .subReplyCard {
   margin: 0;
@@ -1913,27 +2799,37 @@ header #navHeader button:hover a {
 #showMessageBlock #replies .replyCard .subReplies .subReplyCard p {
   font-family: "Poppins";
   font-size: 0.8rem;
-  letter-spacing: 5%;
   color: #DAAF50;
   text-transform: uppercase;
 }
 #showMessageBlock #replies .replyCard .subReplies .subReplyCard p:last-of-type {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #FFFFFF;
   text-transform: none;
   letter-spacing: 0;
 }
 #showMessageBlock #replyForm {
   border-top: 0.5px solid rgba(218, 175, 80, 0.3);
-  padding: 32px 64px;
+  padding: 16px 24px;
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #showMessageBlock #replyForm {
+    padding: 32px 64px;
+    width: 80%;
+  }
 }
 #showMessageBlock #replyForm h3 {
   font-family: "Playfair Display";
-  font-size: 24px;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #FFFFFF;
+}
+@media (min-width: 1024px) {
+  #showMessageBlock #replyForm h3 {
+    font-size: 24px;
+  }
 }
 #showMessageBlock #replyForm .error {
   font-family: "Poppins";
@@ -1942,19 +2838,25 @@ header #navHeader button:hover a {
   margin-bottom: 1rem;
 }
 #showMessageBlock #replyForm textarea {
-  width: 100%;
   background-color: rgb(7.65, 7.65, 7.65);
-  border: 0.5px solid rgba(218, 175, 80, 0.3);
+  border: 0.5px solid rgba(218, 175, 80, 0.4);
   color: #FFFFFF;
   padding: 12px 16px;
   font-family: "Poppins";
-  font-size: 1rem;
-  min-height: 120px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
   box-sizing: border-box;
-  margin-bottom: 16px;
 }
 #showMessageBlock #replyForm textarea::placeholder {
   color: rgba(255, 255, 255, 0.4);
+}
+#showMessageBlock #replyForm textarea:focus {
+  border-color: #DAAF50;
+}
+#showMessageBlock #replyForm textarea {
+  min-height: 120px;
+  margin-bottom: 16px;
 }
 #showMessageBlock #replyForm button {
   display: block;
@@ -1983,15 +2885,26 @@ header #navHeader button:hover a {
   opacity: 1;
 }
 
+/*==========ABOUT PAGE==========*/
 #aboutPage {
-  margin: 280px 0 0 64px;
+  margin: 120px 0 0 16px;
+}
+@media (min-width: 1024px) {
+  #aboutPage {
+    margin: 280px 0 0 64px;
+  }
 }
 #aboutPage .about-hero {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   min-height: 10vh;
   overflow: hidden;
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-hero {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 #aboutPage .about-hero__bg {
   position: absolute;
@@ -2025,7 +2938,7 @@ header #navHeader button:hover a {
 }
 #aboutPage .about-hero__title {
   font-family: "Playfair Display";
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 700;
   color: #DAAF50;
   line-height: 1.1;
@@ -2043,6 +2956,12 @@ header #navHeader button:hover a {
 #aboutPage .about-hero__image-wrap {
   position: relative;
   overflow: hidden;
+  height: 300px;
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-hero__image-wrap {
+    height: auto;
+  }
 }
 #aboutPage .about-hero__image-wrap::before {
   content: "";
@@ -2066,30 +2985,49 @@ header #navHeader button:hover a {
 }
 #aboutPage .about-intro {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 3rem;
-  padding: 6rem 8vw;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 3rem 1rem;
   border-top: 1px solid rgba(218, 175, 80, 0.15);
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-intro {
+    grid-template-columns: 120px 1fr;
+    gap: 3rem;
+    padding: 6rem 8vw;
+  }
+}
+#aboutPage .about-intro {
   animation: fadeUp 0.8s 0.2s ease both;
 }
 #aboutPage .about-intro__number {
   font-family: "Playfair Display";
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: rgba(218, 175, 80, 0.15);
   line-height: 1;
-  padding-top: 0.5rem;
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-intro__number {
+    font-size: 5rem;
+    padding-top: 0.5rem;
+  }
 }
 #aboutPage .about-intro__title {
   font-family: "Playfair Display";
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: #DAAF50;
   margin: 0 0 1.5rem;
 }
+@media (min-width: 1024px) {
+  #aboutPage .about-intro__title {
+    font-size: 1.8rem;
+  }
+}
 #aboutPage .about-intro p {
   font-family: "Poppins";
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: rgba(218, 175, 80, 0.75);
   line-height: 1.8;
   margin: 0 0 1rem;
@@ -2100,16 +3038,26 @@ header #navHeader button:hover a {
   font-weight: 600;
 }
 #aboutPage .about-values {
-  padding: 5rem 8vw;
+  padding: 3rem 1rem;
   background: rgba(218, 175, 80, 0.04);
   border-top: 1px solid rgba(218, 175, 80, 0.1);
   border-bottom: 1px solid rgba(218, 175, 80, 0.1);
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-values {
+    padding: 5rem 8vw;
+  }
 }
 #aboutPage .about-values__header {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-values__header {
+    margin-bottom: 4rem;
+  }
 }
 #aboutPage .about-values__header h2 {
   font-family: "Playfair Display";
@@ -2127,20 +3075,30 @@ header #navHeader button:hover a {
 }
 #aboutPage .about-values__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 2px;
 }
+@media (min-width: 1024px) {
+  #aboutPage .about-values__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 #aboutPage .about-values__card {
-  padding: 3rem 2.5rem;
+  padding: 2rem 1.5rem;
   border: 1px solid rgba(218, 175, 80, 0.12);
   transition: border-color 0.3s ease, background 0.3s ease;
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-values__card {
+    padding: 3rem 2.5rem;
+  }
 }
 #aboutPage .about-values__card:hover {
   border-color: rgba(218, 175, 80, 0.5);
   background: rgba(218, 175, 80, 0.03);
 }
 #aboutPage .about-values__card h3 {
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Playfair Display";
   font-size: 1.2rem;
   font-weight: 400;
   color: #DAAF50;
@@ -2159,12 +3117,17 @@ header #navHeader button:hover a {
   display: block;
 }
 #aboutPage .about-quote {
-  padding: 7rem 8vw;
+  padding: 4rem 1rem;
   text-align: center;
 }
+@media (min-width: 1024px) {
+  #aboutPage .about-quote {
+    padding: 7rem 8vw;
+  }
+}
 #aboutPage .about-quote blockquote {
-  font-family: "Cinzel Decorative", serif;
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-family: "Playfair Display";
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
   font-style: italic;
   color: rgba(218, 175, 80, 0.6);
   line-height: 1.5;
@@ -2172,12 +3135,17 @@ header #navHeader button:hover a {
   position: relative;
 }
 #aboutPage .about-quote__mark {
-  font-size: 6rem;
+  font-size: 4rem;
   color: rgba(218, 175, 80, 0.15);
   line-height: 0;
   vertical-align: -2.5rem;
   margin-right: 0.2rem;
   font-style: normal;
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-quote__mark {
+    font-size: 6rem;
+  }
 }
 #aboutPage .about-quote cite {
   display: block;
@@ -2188,9 +3156,14 @@ header #navHeader button:hover a {
   margin-top: 2rem;
 }
 #aboutPage .about-cta {
-  padding: 5rem 8vw;
+  padding: 3rem 1rem;
   text-align: center;
   border-top: 1px solid rgba(218, 175, 80, 0.15);
+}
+@media (min-width: 1024px) {
+  #aboutPage .about-cta {
+    padding: 5rem 8vw;
+  }
 }
 #aboutPage .about-cta p {
   font-family: "Poppins";
@@ -2199,12 +3172,18 @@ header #navHeader button:hover a {
   margin: 0 0 2rem;
 }
 
+/*==========CONTACT==========*/
 #contactPage .contact-hero {
   position: relative;
-  height: 70vh;
+  height: 50vh;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+}
+@media (min-width: 1024px) {
+  #contactPage .contact-hero {
+    height: 70vh;
+  }
 }
 #contactPage .contact-hero__video {
   position: absolute;
@@ -2224,8 +3203,13 @@ header #navHeader button:hover a {
 #contactPage .contact-hero__content {
   position: relative;
   z-index: 2;
-  padding: 4rem 8vw;
+  padding: 2rem 1rem;
   width: 100%;
+}
+@media (min-width: 1024px) {
+  #contactPage .contact-hero__content {
+    padding: 4rem 8vw;
+  }
 }
 #contactPage .contact-hero__eyebrow {
   font-family: "Poppins";
@@ -2246,8 +3230,8 @@ header #navHeader button:hover a {
   background: #DAAF50;
 }
 #contactPage .contact-hero__title {
-  font-family: "Cinzel Decorative", serif;
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-family: "Playfair Display";
+  font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 700;
   color: white;
   line-height: 1;
@@ -2259,10 +3243,15 @@ header #navHeader button:hover a {
 }
 #contactPage .contact-hero__sub {
   font-family: "Poppins";
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.6);
   margin: 0 0 2.5rem;
-  letter-spacing: 0.04em;
+}
+@media (min-width: 1024px) {
+  #contactPage .contact-hero__sub {
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
 }
 #contactPage .contact-hero__line {
   width: 60px;
@@ -2271,15 +3260,15 @@ header #navHeader button:hover a {
 }
 #contactPage .contact-wrapper {
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 5rem;
-  margin: 64px;
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin: 32px 16px;
 }
-@media (max-width: 900px) {
+@media (min-width: 1024px) {
   #contactPage .contact-wrapper {
-    grid-template-columns: 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 380px;
+    gap: 5rem;
+    margin: 64px;
   }
 }
 #contactPage .contact-form-section__title {
@@ -2297,12 +3286,12 @@ header #navHeader button:hover a {
 }
 #contactPage .contact-form__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
 }
-@media (max-width: 600px) {
+@media (min-width: 1024px) {
   #contactPage .contact-form__row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 #contactPage .contact-form__group {
@@ -2328,6 +3317,8 @@ header #navHeader button:hover a {
   resize: none;
   background: #211d0d;
   background: linear-gradient(90deg, rgb(33, 29, 13) 26%, rgb(0, 0, 0) 100%);
+  width: 100%;
+  box-sizing: border-box;
 }
 #contactPage .contact-form__group input::placeholder,
 #contactPage .contact-form__group textarea::placeholder {
@@ -2347,14 +3338,25 @@ header #navHeader button:hover a {
   padding: 8px 16px;
   cursor: pointer;
   transition: background 1s ease, color 1s ease;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #contactPage .contact-form__submit {
+    width: auto;
+  }
 }
 #contactPage .contact-form__submit:hover {
   background: transparent;
   color: #DAAF50;
 }
 #contactPage .contact-aside {
-  position: sticky;
-  top: 2rem;
+  position: relative;
+}
+@media (min-width: 1024px) {
+  #contactPage .contact-aside {
+    position: sticky;
+    top: 2rem;
+  }
 }
 #contactPage .contact-aside__title {
   font-family: "Playfair Display";
@@ -2399,10 +3401,14 @@ header #navHeader button:hover a {
   grid-template-columns: 40px 1fr auto;
   align-items: center;
   gap: 1rem;
-  padding: 1.1rem 1.2rem;
+  padding: 1rem;
   border: 1px solid rgba(218, 175, 80, 0.12);
-  text-decoration: none;
   transition: border-color 1s ease, background 1s ease;
+}
+@media (min-width: 1024px) {
+  #contactPage .contact-social {
+    padding: 1.1rem 1.2rem;
+  }
 }
 #contactPage .contact-social:hover {
   border-color: #DAAF50;
@@ -2436,13 +3442,13 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 
+/*==========BTN GOLD==========*/
 .btn-gold {
   display: inline-block;
   background: #DAAF50;
   color: #000000;
   font-family: "Poppins";
   font-size: 1rem;
-  text-decoration: none;
   border: 1px solid #DAAF50;
   padding: 8px 16px;
   transition: background 1s ease, color 1s ease;
@@ -2452,47 +3458,76 @@ header #navHeader button:hover a {
   color: #DAAF50;
 }
 
+/*==========PROFILE==========*/
 #profileBlock {
-  padding: 4rem 8vw 7rem;
+  padding: 2rem 1rem 4rem;
   max-width: 900px;
   margin: 0 auto;
 }
+@media (min-width: 1024px) {
+  #profileBlock {
+    padding: 4rem 8vw 7rem;
+  }
+}
 #profileBlock #profileHeader {
   display: flex;
-  align-items: center;
-  gap: 3rem;
-  padding-bottom: 3rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
   border-bottom: 0.5px solid rgba(218, 175, 80, 0.3);
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+}
+@media (min-width: 1024px) {
+  #profileBlock #profileHeader {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 4rem;
+  }
 }
 #profileBlock #profileHeader img {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   display: block;
   border: 1px solid rgba(218, 175, 80, 0.4);
   flex-shrink: 0;
 }
+@media (min-width: 1024px) {
+  #profileBlock #profileHeader img {
+    width: 120px;
+    height: 120px;
+  }
+}
 #profileBlock #profileHeader #defaultAvatar {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   border: 1px solid rgba(218, 175, 80, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Cinzel Decorative", serif;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #DAAF50;
   background: linear-gradient(135deg, rgb(12.75, 12.75, 12.75), #000000);
   flex-shrink: 0;
+}
+@media (min-width: 1024px) {
+  #profileBlock #profileHeader #defaultAvatar {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+  }
 }
 #profileBlock #profileHeader #profileInfo {
   flex: 1;
 }
 #profileBlock #profileHeader #profileInfo h1 {
   font-family: "Playfair Display";
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 400;
   color: #FFFFFF;
   margin: 0 0 0.8rem;
@@ -2507,10 +3542,15 @@ header #navHeader button:hover a {
 }
 #profileBlock #editProfileForm h2 {
   font-family: "Playfair Display";
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #FFFFFF;
   margin: 0 0 2rem;
+}
+@media (min-width: 1024px) {
+  #profileBlock #editProfileForm h2 {
+    font-size: 1.4rem;
+  }
 }
 #profileBlock #editProfileForm form {
   display: flex;
@@ -2532,9 +3572,6 @@ header #navHeader button:hover a {
   color: #FFFFFF;
   padding: 8px 0;
 }
-#profileBlock #editProfileForm form p {
-  font-family: "Poppins";
-}
 #profileBlock #editProfileForm form textarea {
   background-color: rgb(7.65, 7.65, 7.65);
   border: 0.5px solid rgba(218, 175, 80, 0.4);
@@ -2542,15 +3579,19 @@ header #navHeader button:hover a {
   padding: 12px 16px;
   font-family: "Poppins";
   font-size: 14px;
-  resize: vertical;
-  min-height: 150px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 #profileBlock #editProfileForm form textarea::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
 #profileBlock #editProfileForm form textarea:focus {
   border-color: #DAAF50;
+}
+#profileBlock #editProfileForm form textarea {
+  resize: vertical;
+  min-height: 150px;
 }
 #profileBlock #editProfileForm form button {
   align-self: flex-start;
@@ -2562,19 +3603,36 @@ header #navHeader button:hover a {
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  #profileBlock #editProfileForm form button {
+    width: auto;
+  }
 }
 #profileBlock #editProfileForm form button:hover {
   background-color: #000000;
   color: #DAAF50;
 }
 
+/*==========RULES==========*/
 #rulesBlock {
-  padding: 4rem 8vw 7rem;
+  padding: 2rem 1rem 4rem;
   max-width: 860px;
   margin: 0 auto;
 }
+@media (min-width: 1024px) {
+  #rulesBlock {
+    padding: 4rem 8vw 7rem;
+  }
+}
 #rulesBlock .rules-hero {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+}
+@media (min-width: 1024px) {
+  #rulesBlock .rules-hero {
+    margin-bottom: 4rem;
+  }
 }
 #rulesBlock .rules-hero__eyebrow {
   font-family: "Poppins";
@@ -2619,8 +3677,13 @@ header #navHeader button:hover a {
 }
 #rulesBlock .rules-section {
   border-top: 0.5px solid rgba(218, 175, 80, 0.25);
-  padding: 2.5rem 0;
+  padding: 2rem 0;
   transition: background 0.2s ease;
+}
+@media (min-width: 1024px) {
+  #rulesBlock .rules-section {
+    padding: 2.5rem 0;
+  }
 }
 #rulesBlock .rules-section h3 {
   font-family: "Poppins";
@@ -2639,7 +3702,6 @@ header #navHeader button:hover a {
 }
 #rulesBlock .rules-section p a {
   color: #DAAF50;
-  text-decoration: none;
   border-bottom: 0.5px solid rgba(218, 175, 80, 0.3);
   transition: border-color 0.2s ease;
 }
@@ -2664,17 +3726,6 @@ header #navHeader button:hover a {
   line-height: 1.8;
   margin: 0;
   font-style: italic;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /*# sourceMappingURL=style.css.map */

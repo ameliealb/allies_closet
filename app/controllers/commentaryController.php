@@ -3,7 +3,7 @@
 function submitComment()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -25,14 +25,14 @@ function submitComment()
     ];
 
     createComment($data);
-    header('Location: /projet-final/index.php?action=showArticle&id=' . $id_article);
+    header('Location: ' . BASE_URL . '/index.php?action=showArticle&id=' . $id_article);
     exit;
 }
 
 function submitDeleteComment()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -42,11 +42,11 @@ function submitDeleteComment()
     $comment = getCommentById($id_comment);
 
     if ($comment['id_user'] !== $_SESSION['user']['id_user'] && $_SESSION['user']['role'] !== 'admin') {
-        header('Location: /projet-final/index.php?action=showArticle&id=' . $id_article);
+        header('Location: ' . BASE_URL . '/index.php?action=showArticle&id=' . $id_article);
         exit;
     }
 
     deleteComment($id_comment);
-    header('Location: /projet-final/index.php?action=showArticle&id=' . $id_article);
+    header('Location: ' . BASE_URL . '/index.php?action=showArticle&id=' . $id_article);
     exit;
 }

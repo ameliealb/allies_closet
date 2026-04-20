@@ -8,7 +8,7 @@ function showProfile()
 
     //if no id founded, redirects to the home page 
     if (!$profile) {
-        header('Location: /projet-final/index.php?action=default');
+        header('Location: ' . BASE_URL . '/index.php?action=default');
         exit;
     }
 
@@ -20,7 +20,7 @@ function showProfile()
 function showEditProfile()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -32,7 +32,7 @@ function showEditProfile()
 function submitProfile()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -41,8 +41,8 @@ function submitProfile()
 
     if (!empty($_FILES['avatar']['name'])) {
         $fileName = uniqid() . '_' . basename($_FILES['avatar']['name']);
-        move_uploaded_file($_FILES['avatar']['tmp_name'], RACINE . '/app/public/images/' . $fileName);
-        $avatar = '/projet-final/app/public/images/' . $fileName;
+        move_uploaded_file($_FILES['avatar']['tmp_name'], RACINE . '/public/images/' . $fileName);
+        $avatar = '/public/images/' . $fileName;
     }
 
     $data = [
@@ -56,6 +56,6 @@ function submitProfile()
     $_SESSION['user']['profile_description'] = $profile_description;
     $_SESSION['user']['avatar'] = $avatar;
 
-    header('Location: /projet-final/index.php?action=showProfile&id=' . $_SESSION['user']['id_user']);
+    header('Location: ' . BASE_URL . '/index.php?action=showProfile&id=' . $_SESSION['user']['id_user']);
     exit;
 }

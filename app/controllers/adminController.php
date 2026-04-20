@@ -4,7 +4,7 @@
 function showDashboard()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 

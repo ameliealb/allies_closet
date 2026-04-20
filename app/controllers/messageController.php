@@ -20,7 +20,7 @@ function showForumCategory()
     $categories = ['mode', 'maquillage', 'chaussures', 'cheveux', 'skincare', 'lifestyle'];
 
     if (!in_array($category, $categories)) {
-        header('Location: /projet-final/index.php?action=forum');
+        header('Location: ' . BASE_URL . '/index.php?action=forum');
         exit;
     }
 
@@ -51,7 +51,7 @@ function showMessage()
 function showCreateMessage()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
     require RACINE . '/app/views/forum/createMessView.php';
@@ -61,7 +61,7 @@ function showCreateMessage()
 function submitMessage()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -82,7 +82,7 @@ function submitMessage()
 ];
 
     createMessage($data);
-    header('Location: /projet-final/index.php?action=forum');
+    header('Location: ' . BASE_URL . '/index.php?action=forum');
     exit;
 }
 
@@ -90,7 +90,7 @@ function submitMessage()
 function submitReply()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -113,14 +113,14 @@ function submitReply()
     ];
 
     createReply($data);
-    header('Location: /projet-final/index.php?action=showMessage&id=' . $topic_id);
+    header('Location: ' . BASE_URL . '/index.php?action=showMessage&id=' . $topic_id);
     exit;
 }
 
 function toggleLikeMessage()
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -133,6 +133,6 @@ function toggleLikeMessage()
         likeMessage($id_user, $id_message);
     }
 
-    header('Location: /projet-final/index.php?action=showMessage&id=' . $id_message);
+    header('Location: ' . BASE_URL . '/index.php?action=showMessage&id=' . $id_message);
     exit;
 }

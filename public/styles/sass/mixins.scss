@@ -1,0 +1,82 @@
+@use 'variables' as *;
+
+// ── Breakpoints ───────────────────────────
+$breakpoints: (
+  'sm': 480px,
+  'md': 1024px,
+  'lg': 1280px,
+  'xl': 1920px
+);
+
+@mixin respond-to($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// ── Bouton primaire ───────────────────────
+@mixin btn-primary {
+  background-color: $secondaryBackgroundColor;
+  border: 1px solid #AF7F26;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: $otherText;
+  font-size: 1rem;
+  color: $secondaryTextColor;
+  text-decoration: none;
+  transition: all 1s ease;
+
+  a {
+    color: $secondaryTextColor;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $mainBackgroundColor;
+    color: $mainTextColor;
+
+    a {
+      color: $mainTextColor;
+    }
+  }
+}
+
+// ── Champ de formulaire ───────────────────
+@mixin form-field {
+  background-color: lighten($mainBackgroundColor, 3%);
+  border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
+  color: $thirdlyTextColor;
+  padding: 12px 16px;
+  font-family: $otherText;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: rgba($thirdlyTextColor, 0.4);
+  }
+
+  &:focus {
+    border-color: $secondaryBackgroundColor;
+  }
+}
+
+// ── Card dorée ────────────────────────────
+@mixin gold-card {
+  border: 1px solid #c9a84c;
+  background: #211d0d;
+  background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
+  box-sizing: border-box;
+}
+
+// ── Label formulaire ──────────────────────
+@mixin form-label {
+  font-family: $otherText;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $mainTextColor;
+  opacity: 0.7;
+  margin-bottom: -0.8rem;
+}

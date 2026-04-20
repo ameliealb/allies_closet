@@ -15,7 +15,7 @@
         <div id="firstBlockPart2">
             <a href="#">
                 <article id="lastArticle">
-                    <img src="<?php echo BASE_URL; ?>/app/public/images/main_home_pic.webp" alt="article_semaine">
+                    <img src="<?php echo BASE_URL; ?>/public/images/main_home_pic.webp" alt="article_semaine">
                     <h3>l'article de la semaine ici</h3>
                 </article>
             </a>
@@ -63,17 +63,17 @@
     <section id="secondBlock">
         <div id="firstArticleColumn">
             <article id="firstArticle">
-                <img src="<?php echo BASE_URL; ?>/app/public/images/img_article_body_dictats.webp" alt="article_1_dictats_physique">
+                <img src="<?php echo BASE_URL; ?>/public/images/img_article_body_dictats.webp" alt="article_1_dictats_physique">
                 <h4>Se défaire des dictats sur nos corps : mode d'emploi</h4>
             </article>
         </div>
         <div id="secondArticleColumn">
             <article id="secondArticle">
-                <img src="<?php echo BASE_URL; ?>/app/public/images/img_article_cars.webp" alt="article_2_voitures">
+                <img src="<?php echo BASE_URL; ?>/public/images/img_article_cars.webp" alt="article_2_voitures">
                 <h4>Votre choix de voiture en dit plus sur vous que ce que vous pensiez !</h4>
             </article>
             <article id="thirdArticle">
-                <img src="<?php echo BASE_URL; ?>/app/public/images/img_article_other1.webp" alt="article_3_boutiques_luxe">
+                <img src="<?php echo BASE_URL; ?>/public/images/img_article_other1.webp" alt="article_3_boutiques_luxe">
                 <h4>Le modèle bien chapeauté des boutiques de luxe : comment les grandes maisons nous manipulent</h4>
             </article>
             <p>voir les</p>
@@ -92,6 +92,30 @@
             <a href="index.php?action=loginPage"><button id="subscribeButton">inscrivez-vous</button></a>
         </div>
     </section>
+
+    <!-- Bouton popup maquillage -->
+    <div id="makeupWidget">
+        <button id="makeupBtn" title="produit du jour">💄</button>
+    </div>
+
+    <!-- Popup -->
+    <div id="makeupPopup" class="hidden">
+        <button id="makeupClose">✕</button>
+        <p id="makeupLabel">produit du jour</p>
+        <div id="makeupContent">
+            <div id="makeupLoading">chargement...</div>
+            <div id="makeupProduct" class="hidden">
+                <img id="makeupImg" src="" alt="">
+                <div id="makeupInfo">
+                    <p id="makeupBrand"></p>
+                    <h3 id="makeupName"></h3>
+                    <p id="makeupType"></p>
+                    <p id="makeupPrice"></p>
+                    <a id="makeupLink" href="#" target="_blank" rel="noopener noreferrer">voir le produit →</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>
 

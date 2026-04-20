@@ -4,12 +4,12 @@
   <!-- Header avec vidéo de fond -->
   <section class="contact-hero">
     <video class="contact-hero__video" autoplay muted loop playsinline>
-      <source src="<?= BASE_URL ?>/app/public/images/contact_video.mp4" type="video/mp4">
+      <source src="<?= BASE_URL ?>/public/images/contact_video.mp4" type="video/mp4">
     </video>
     <div class="contact-hero__overlay"></div>
     <div class="contact-hero__content">
       <span class="contact-hero__eyebrow">contact</span>
-      <h1 class="contact-hero__title">parlons <em>style</em>.</h1>
+      <h1 class="contact-hero__title">parlons <em>style</em></h1>
       <p class="contact-hero__sub">une question, une collab, un simple bonjour — je lis tout.</p>
     </div>
   </section>

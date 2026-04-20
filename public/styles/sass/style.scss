@@ -12,9 +12,29 @@
   }
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /*==========FOR EVERY SINGLE PAGE==========*/
 
 body {
+  background-color: $mainBackgroundColor;
+  color: $mainTextColor;
+  padding: 0 16px;
+
+  @include respond-to('md') {
+    padding: 0 40px;
+  }
+
   .spotlight {
     position: fixed;
     z-index: -1;
@@ -28,10 +48,6 @@ body {
     transition: all 0.8s ease-out;
   }
 
-  background-color: $mainBackgroundColor;
-  color: $mainTextColor;
-  padding: 0 40px;
-
   a {
     text-decoration: none;
     color: $mainTextColor;
@@ -39,21 +55,30 @@ body {
 
   h2 {
     font-family: $secondaryTitles;
-    font-size: 2.5rem;
-    margin-top: 280px;
+    font-size: 1.8rem;
+    margin-top: 120px;
     font-weight: 400;
+
+    @include respond-to('md') {
+      font-size: 2.5rem;
+      margin-top: 280px;
+    }
   }
 
   .underLine {
     height: 1px;
     background-color: $secondaryBackgroundColor;
-    width: 70%;
+    width: 100%;
     margin: -12px 0 32px 0;
+
+    @include respond-to('md') {
+      width: 70%;
+    }
   }
 
   .underLineSmall {
     height: 1px;
-    background-color: $secondaryBackgroundColor ;
+    background-color: $secondaryBackgroundColor;
     width: 10%;
   }
 
@@ -103,14 +128,22 @@ body {
     transition: all 1s ease;
   }
 
-  textarea {
-    &:focus {
-      outline: none;
-      border: 1px solid #d4af37;
-      box-shadow: 0 1px 4px #d4af37b6;
-      transition: all 1s ease;
-    }
+  textarea:focus {
+    outline: none;
+    border: 1px solid #d4af37;
+    box-shadow: 0 1px 4px #d4af37b6;
+    transition: all 1s ease;
   }
+
+  .logoHeaderFooter {
+      width: 40px !important;
+      height: auto !important;
+      object-fit: unset !important;
+
+      @include respond-to('md') {
+        width: 56px !important;
+      }
+    }
 
   #categoriesNav {
     display: flex;
@@ -119,12 +152,16 @@ body {
 
     a {
       font-family: $otherText;
-      font-size: 1rem;
-      text-decoration: none;
+      font-size: 0.9rem;
       color: rgba($thirdlyTextColor, 0.5);
       border: 1px solid rgba($secondaryBackgroundColor, 0.15);
-      padding: 8px 16px;
+      padding: 6px 12px;
       transition: color 0.25s ease, border-color 1s ease, background 1s ease;
+
+      @include respond-to('md') {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
 
       &:hover,
       &.active {
@@ -152,75 +189,184 @@ button {
   @include btn-primary;
 }
 
-/*==========FOR EVERY SINGLE PAGE - HEADER==========*/
+/*==========HEADER==========*/
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 128px;
+  height: 80px;
+  position: relative;
+
+  @include respond-to('md') {
+    height: 128px;
+  }
 
   #logoAndTitle {
     display: flex;
-
-    #logoHeader {
-      width: 8%;
-      display: block;
-    }
+    align-items: center;
+    gap: 8px;
 
     h1 {
-      display: flex;
-      align-items: end;
-      margin: 0 0 4px 8px;
-      font-family: $mainTitleFont;
-      font-weight: lighter;
-      background: linear-gradient(to left,
-          #AF7F26 30%,
-          #F5DBAA 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      display: none;
+
+      @include respond-to('md') {
+        display: flex;
+        align-items: end;
+        margin: 0 0 4px 8px;
+        font-family: $mainTitleFont;
+        font-weight: lighter;
+        background: linear-gradient(to left, #AF7F26 30%, #F5DBAA 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
   }
 
   #navHeader {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 1rem;
 
-    #menuHeader {
+    @include respond-to('lg') {
+      gap: 2.5rem;
+    }
+
+    // ── Burger button ─────────────────────
+    #burgerBtn {
       display: flex;
-      flex-direction: row;
-      gap: 64px;
-      list-style: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 200;
 
-      li {
-        font-family: $secondaryTitles;
-        font-size: 1.2rem;
-        cursor: pointer;
+      @include respond-to('lg') {
+        display: none;
+      }
 
-        a {
-          text-decoration: none;
-          color: $thirdlyTextColor;
+      span {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: $mainTextColor;
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+
+      // ── toggle open ────────────────────
+      &.open {
+        span:nth-child(1) {
+          transform: translateY(6px) rotate(45deg);
         }
 
-        a:hover {
-          color: $mainTextColor;
+        span:nth-child(2) {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+
+        span:nth-child(3) {
+          transform: translateY(-6px) rotate(-45deg);
         }
       }
     }
 
-    button {
+    // ── Mobile menu ───────────────────────
+    #menuHeader {
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      // ── Mobile : toggle menu ────────
+      &.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: $mainBackgroundColor;
+        border-top: 1px solid rgba($secondaryBackgroundColor, 0.3);
+        border-bottom: 1px solid rgba($secondaryBackgroundColor, 0.3);
+        padding: 1rem 0;
+        z-index: 100;
+        animation: fadeUp 0.2s ease;
+
+        li {
+          padding: 0;
+          border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.1);
+
+          a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-family: $secondaryTitles;
+            font-size: 2.5rem;
+            color: $thirdlyTextColor;
+
+            &:hover {
+              color: $mainTextColor;
+              background-color: rgba($secondaryBackgroundColor, 0.05);
+            }
+          }
+        }
+      }
+
+      // ── Desktop menu ──────
+      @include respond-to('lg') {
+        display: flex;
+        flex-direction: row;
+        gap: 64px;
+        position: static;
+        background: transparent;
+        border: none;
+        padding: 0;
+        animation: none;
+
+        li {
+          border: none;
+          font-family: $secondaryTitles;
+          font-size: 1.2rem;
+          cursor: pointer;
+
+          a {
+            display: block;
+            padding: 0;
+            color: $thirdlyTextColor;
+
+            &:hover {
+              color: $mainTextColor;
+            }
+          }
+        }
+      }
+    }
+
+    // ── login/logout button ──────
+    button:not(#burgerBtn) {
       background-color: $secondaryBackgroundColor;
       border: 1px solid #AF7F26;
-      padding: 8px 16px;
+      padding: 8px 12px;
       cursor: pointer;
+
+      @include respond-to('md') {
+        padding: 8px 16px;
+      }
 
       a {
         color: $secondaryTextColor;
-        text-decoration: none;
         font-family: $otherText;
-        font-size: 1rem;
+        font-size: 0.9rem;
+
+        @include respond-to('md') {
+          font-size: 1rem;
+        }
       }
 
       &:hover {
@@ -234,16 +380,26 @@ header {
   }
 }
 
-/*==========FOR EVERY SINGLE PAGE - FOOTER==========*/
+/*==========FOOTER==========*/
 
 .footer {
-  margin-top: 160px;
+  margin-top: 80px;
+
+  @include respond-to('md') {
+    margin-top: 160px;
+  }
 
   .footerContainer {
     display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     width: 100%;
-    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr;
     margin: 0 auto;
+
+    @include respond-to('md') {
+      grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr;
+      gap: 0;
+    }
 
     h3 {
       font-family: $secondaryTitles;
@@ -256,110 +412,136 @@ header {
       padding: 0;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
+      gap: 0.8rem;
+
+      @include respond-to('md') {
+        justify-content: space-between;
+        height: 100%;
+        gap: 0;
+      }
 
       li {
         font-family: $otherText;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: lighter;
         list-style-type: none;
         cursor: pointer;
 
-        a {
-          text-decoration: none;
-          color: $thirdlyTextColor;
+        @include respond-to('md') {
+          font-size: 1.1rem;
         }
 
-        a:hover {
-          color: $mainTextColor;
+        a {
+          color: $thirdlyTextColor;
+
+          &:hover {
+            color: $mainTextColor;
+          }
         }
       }
-
     }
 
     #footerFirstColumn {
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
-      height: 110%;
-      margin: 50px 0 0 50px;
+      gap: 1.5rem;
+      margin: 0;
+
+      @include respond-to('md') {
+        justify-content: space-around;
+        height: 110%;
+        margin: 50px 0 0 50px;
+        gap: 0;
+      }
 
       #footerLogo {
         display: flex;
         align-items: center;
 
-        img {
-          display: block;
-          width: 15%;
-        }
-
         #footerWebsiteName {
           font-family: $mainTitleFont;
           font-size: 1.2rem;
-          background: linear-gradient(to left,
-              #AF7F26 30%,
-              #F5DBAA 100%);
+          background: linear-gradient(to left, #AF7F26 30%, #F5DBAA 100%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          padding-top: 64px;
           margin-left: 8px;
+
+          @include respond-to('md') {
+            padding-top: 64px;
+          }
         }
       }
 
       #footerCatchyPhrase {
         font-family: $otherText;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: bolder;
         color: $thirdlyTextColor;
+
+        @include respond-to('md') {
+          font-size: 1.1rem;
+        }
       }
 
       #footerSocials {
+        display: flex;
+        flex-wrap: wrap; // ← ajoute ça
+        gap: 8px;
 
         a {
           border: 1px solid $secondaryBackgroundColor;
-          padding: 12px 16px;
-          text-decoration: none;
+          padding: 10px 14px;
           color: $secondaryBackgroundColor;
-          margin-right: 24px;
-        }
 
-        a:hover {
-          background-color: $secondaryBackgroundColor;
-          color: $secondaryTextColor;
+          @include respond-to('md') {
+            padding: 12px 16px;
+            margin-right: 24px;
+          }
+
+          &:hover {
+            background-color: $secondaryBackgroundColor;
+            color: $secondaryTextColor;
+          }
         }
       }
-
     }
 
-    #footerSecondColumn {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 130%;
-    }
-
+    #footerSecondColumn,
     #footerThirdColumn {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 130%;
+      gap: 0.8rem;
+
+      @include respond-to('md') {
+        justify-content: space-between;
+        height: 130%;
+        gap: 0;
+      }
     }
 
     #footerFourthColumn {
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
-      height: 77%;
+      gap: 0.8rem;
+
+      @include respond-to('md') {
+        justify-content: space-around;
+        height: 77%;
+        gap: 0;
+      }
     }
   }
 
   #footerCopyrights {
     text-align: center;
     font-family: $secondaryTitles;
-    margin-top: 152px;
+    margin-top: 48px;
     color: $thirdlyTextColor;
+
+    @include respond-to('md') {
+      margin-top: 152px;
+    }
 
     #creditWebsiteTitle {
       font-family: $mainTitleFont;
@@ -368,10 +550,10 @@ header {
   }
 }
 
-/*==========ERROR PAGES (403, 404==========*/
+/*==========ERROR PAGES==========*/
 
 #errorBlock {
-  padding: 4rem 6rem;
+  padding: 2rem;
   text-align: center;
   min-height: 60vh;
   display: flex;
@@ -379,21 +561,33 @@ header {
   align-items: center;
   justify-content: center;
 
+  @include respond-to('md') {
+    padding: 4rem 6rem;
+  }
+
   .errorCode {
     font-family: $mainTitleFont;
-    font-size: 10rem;
+    font-size: 5rem;
     font-weight: 700;
     color: rgba($secondaryBackgroundColor, 0.2);
     line-height: 1;
     margin: 0 0 1rem;
+
+    @include respond-to('md') {
+      font-size: 10rem;
+    }
   }
 
   h2 {
     font-family: $secondaryTitles;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
     color: $thirdlyTextColor;
     margin: 0 0 0.5rem;
+
+    @include respond-to('md') {
+      font-size: 2rem;
+    }
   }
 
   .underLine {
@@ -424,16 +618,23 @@ header {
   }
 }
 
-//==========LEGAL STUFF==========//
+/*==========LEGAL==========*/
 
 #legalBlock {
-  padding: 4rem 8vw 7rem;
+  padding: 2rem 1rem 4rem;
   max-width: 860px;
   margin: 0 auto;
 
-  // ── Hero ──────────────────────────────────
+  @include respond-to('md') {
+    padding: 4rem 8vw 7rem;
+  }
+
   .legal-hero {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+
+    @include respond-to('md') {
+      margin-bottom: 4rem;
+    }
 
     &__eyebrow {
       font-family: $otherText;
@@ -468,17 +669,19 @@ header {
     }
   }
 
-  // ── Contenu ───────────────────────────────
   .legal-content {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
 
-  // ── Sections ──────────────────────────────
   .legal-section {
     border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
-    padding: 2.5rem 0;
+    padding: 2rem 0;
+
+    @include respond-to('md') {
+      padding: 2.5rem 0;
+    }
 
     &:last-of-type {
       border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
@@ -532,7 +735,6 @@ header {
 
     a {
       color: $mainTextColor;
-      text-decoration: none;
       border-bottom: 0.5px solid rgba($mainTextColor, 0.3);
       transition: border-color 0.2s ease;
 
@@ -546,18 +748,196 @@ header {
 /*==========HOME PAGE==========*/
 
 #homeMain {
-  margin: 16x 0 0 40px;
+  margin: 0;
   font-family: $secondaryTitles;
+
+  @include respond-to('md') {
+    margin: 16px 0 0 40px;
+  }
+
+  #makeupWidget {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 100;
+
+    @include respond-to('md') {
+      bottom: 2rem;
+      right: 2rem;
+    }
+
+    #makeupBtn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: $secondaryBackgroundColor;
+      border: 1px solid $mainTextColor;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+
+      @include respond-to('md') {
+        width: 56px;
+        height: 56px;
+        font-size: 1.5rem;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        background: lighten($secondaryBackgroundColor, 5%);
+      }
+    }
+  }
+
+  #makeupPopup {
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    z-index: 99;
+    width: 90vw;
+    max-width: 320px;
+    background: $mainBackgroundColor;
+    border: 1px solid rgba($mainTextColor, 0.3);
+    padding: 1.2rem;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    @include respond-to('md') {
+      bottom: 5.5rem;
+      right: 2rem;
+      width: 320px;
+      padding: 1.5rem;
+    }
+
+    &.hidden {
+      display: none;
+    }
+
+    #makeupClose {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: transparent;
+      border: none;
+      color: rgba($mainTextColor, 0.5);
+      font-size: 0.9rem;
+      cursor: pointer;
+
+      &:hover {
+        color: $mainTextColor;
+      }
+    }
+
+    #makeupLabel {
+      font-family: $otherText;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: $mainTextColor;
+      margin: 0 0 1.2rem;
+    }
+
+    #makeupLoading {
+      font-family: $otherText;
+      font-size: 0.85rem;
+      color: rgba($thirdlyTextColor, 0.5);
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    #makeupProduct {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &.hidden {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        height: 160px;
+        object-fit: contain;
+        background: #111;
+        display: block;
+      }
+    }
+
+    #makeupInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+
+      #makeupBrand {
+        font-family: $otherText;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        color: $mainTextColor;
+        margin: 0;
+      }
+
+      #makeupName {
+        font-family: $secondaryTitles;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $thirdlyTextColor;
+        margin: 0;
+      }
+
+      #makeupType,
+      #makeupPrice {
+        font-family: $otherText;
+        font-size: 0.82rem;
+        color: rgba($thirdlyTextColor, 0.5);
+        margin: 0;
+        text-transform: capitalize;
+      }
+
+      #makeupLink {
+        display: inline-block;
+        margin-top: 0.8rem;
+        font-family: $otherText;
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: $mainTextColor;
+        border-bottom: 0.5px solid rgba($mainTextColor, 0.3);
+        transition: border-color 0.2s ease;
+
+        &:hover {
+          border-color: $mainTextColor;
+        }
+      }
+    }
+  }
 
   #firstBlock {
     width: 100%;
     display: flex;
-    gap: 176px;
-    height: 840px;
-    align-items: flex-end;
+    flex-direction: column;
+    gap: 2rem;
+    height: auto;
+    align-items: flex-start;
+    padding-top: 2rem;
+
+    @include respond-to('lg') {
+      flex-direction: row;
+      gap: 176px;
+      height: 840px;
+      align-items: flex-end;
+      padding-top: 0;
+    }
 
     #firstBlockPart1 {
-      width: 58%;
+      width: 100%;
+
+      @include respond-to('lg') {
+        width: 58%;
+      }
 
       #subBlock1 {
         display: flex;
@@ -568,34 +948,50 @@ header {
 
         .underLineSmall {
           background-color: $thirdlyBackgroundColor;
-          width: 60px;
+          width: 40px;
           display: block;
           align-self: center;
+
+          @include respond-to('md') {
+            width: 60px;
+          }
         }
 
         h2 {
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           margin-top: 16px;
+
+          @include respond-to('md') {
+            font-size: 1.5rem;
+          }
         }
       }
 
       h6 {
-        font-size: 4rem;
+        font-size: 2rem;
         font-weight: lighter;
-        margin: 0 0 48px 0;
+        margin: 0 0 32px 0;
+
+        @include respond-to('md') {
+          font-size: 4rem;
+          margin: 0 0 48px 0;
+        }
       }
 
       button {
-        width: 30%;
-        padding: 12px 16px;
+        width: auto;
+        padding: 10px 16px;
         font-family: $otherText;
-        font-size: 1rem;
+        font-size: 0.9rem;
 
-        a {
-          text-decoration: none;
-          border: none;
+        @include respond-to('md') {
+          width: 30%;
+          font-size: 1rem;
         }
 
+        a {
+          border: none;
+        }
       }
 
       #discoverButton {
@@ -605,13 +1001,13 @@ header {
         a {
           color: $secondaryTextColor;
         }
-      }
 
-      #discoverButton:hover {
-        background-color: $mainBackgroundColor;
+        &:hover {
+          background-color: $mainBackgroundColor;
 
-        a {
-          color: $mainTextColor;
+          a {
+            color: $mainTextColor;
+          }
         }
       }
 
@@ -622,22 +1018,26 @@ header {
         a {
           color: $mainTextColor;
         }
-      }
 
-      #contactButton:hover {
-        background-color: $secondaryBackgroundColor;
-        border: 1px solid #AF7F26;
+        &:hover {
+          background-color: $secondaryBackgroundColor;
 
-        a {
-          color: $secondaryTextColor;
+          a {
+            color: $secondaryTextColor;
+          }
         }
       }
     }
 
     #firstBlockPart2 {
-      width: 32%;
-      height: 800px;
+      width: 100%;
+      height: 400px;
       border: 1px solid $secondaryBackgroundColor;
+
+      @include respond-to('lg') {
+        width: 32%;
+        height: 800px;
+      }
 
       a {
         text-decoration: none;
@@ -684,15 +1084,24 @@ header {
   .soloLine {
     height: 1px;
     background-color: $secondaryBackgroundColor;
-    margin: 200px -40px 16px -40px;
+    margin: 80px -80px 16px -16px;
+
+    @include respond-to('md') {
+      margin: 200px -40px 16px -40px;
+    }
   }
 
   .ribbon {
     background-color: $secondaryBackgroundColor;
     overflow: hidden;
     white-space: nowrap;
-    padding: 24px 0;
-    margin: 0 -40px;
+    padding: 16px 0;
+    margin: 0 -80px;
+
+    @include respond-to('md') {
+      padding: 24px 0;
+      margin: 0 -40px;
+    }
   }
 
   .ribbon-track {
@@ -701,11 +1110,16 @@ header {
   }
 
   .ribbon-track span {
-    margin: 0 24px;
-    font-size: 0.95rem;
+    margin: 0 16px;
+    font-size: 0.85rem;
     text-transform: lowercase;
     color: black;
     font-family: $secondaryTitles;
+
+    @include respond-to('md') {
+      margin: 0 24px;
+      font-size: 0.95rem;
+    }
   }
 
   .ribbon-track .star {
@@ -714,10 +1128,18 @@ header {
 
   #secondBlock {
     display: flex;
-    height: 960px;
-    width: 80%;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
     gap: 16px;
-    margin: 160px auto;
+    margin: 60px auto;
+
+    @include respond-to('md') {
+      flex-direction: row;
+      height: 960px;
+      width: 80%;
+      margin: 160px auto;
+    }
   }
 
   %articleBase {
@@ -757,9 +1179,14 @@ header {
   }
 
   #firstArticleColumn {
-    flex: 1;
+    height: 300px;
     display: flex;
     flex-direction: column;
+
+    @include respond-to('md') {
+      flex: 1;
+      height: auto;
+    }
 
     #firstArticle {
       @extend %articleBase;
@@ -768,47 +1195,71 @@ header {
   }
 
   #secondArticleColumn {
-    flex: 1.4;
     display: flex;
     flex-direction: column;
     gap: 16px;
 
+    @include respond-to('md') {
+      flex: 1.4;
+    }
+
     #secondArticle,
     #thirdArticle {
       @extend %articleBase;
-      flex: 1;
+      height: 200px;
+
+      @include respond-to('md') {
+        flex: 1;
+        height: auto;
+      }
     }
 
     p {
       margin-bottom: -16px;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: #c9a84c;
       letter-spacing: 0.04em;
+
+      @include respond-to('md') {
+        font-size: 1.5rem;
+      }
     }
 
     h5 {
       margin: 0;
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #c9a84c;
       line-height: 1.1;
+
+      @include respond-to('md') {
+        font-size: 3rem;
+      }
     }
   }
 
   #communityBlock {
     position: relative;
-    margin: 0 -40px;
+    margin: 0 -16px;
     background: linear-gradient(135deg, #2a2200 0%, #1a1500 50%, #0a0900 100%);
-    padding: 48px 64px;
+    padding: 32px 24px;
     display: flex;
     flex-direction: column;
+
+    @include respond-to('md') {
+      margin: 0 -40px;
+      padding: 48px 64px;
+    }
 
     #communityLabelRow {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 64px;
+      margin-bottom: 32px;
 
+      @include respond-to('md') {
+        margin-bottom: 64px;
+      }
     }
 
     #communityLabel {
@@ -823,15 +1274,23 @@ header {
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding-bottom: 56px;
+      padding-bottom: 32px;
+
+      @include respond-to('md') {
+        padding-bottom: 56px;
+      }
 
       h2 {
         font-family: $secondaryTitles;
-        font-size: 4rem;
+        font-size: 2.5rem;
         font-weight: 400;
         color: $thirdlyTextColor;
         margin: 0 0 1.5rem;
         line-height: 1.1;
+
+        @include respond-to('md') {
+          font-size: 4rem;
+        }
 
         span {
           color: $mainTextColor;
@@ -851,48 +1310,71 @@ header {
       button {
         padding: 12px 16px;
         font-family: $otherText;
-        font-size: 1.1rem;
+        font-size: 1rem;
 
+        @include respond-to('md') {
+          font-size: 1.1rem;
+        }
       }
 
       #subscribeButton {
         background-color: $secondaryBackgroundColor;
         color: $secondaryTextColor;
         border: 1px solid #AF7F26;
-      }
 
-      #subscribeButton:hover {
-        background-color: $mainBackgroundColor;
-        color: $mainTextColor;
+        &:hover {
+          background-color: $mainBackgroundColor;
+          color: $mainTextColor;
+        }
       }
     }
   }
 }
 
-/*==========ADMIN DASHBOARD PAGE==========*/
+/*==========ADMIN DASHBOARD==========*/
+
 #dashboard-container {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
+
+  @include respond-to('md') {
+    padding: 4rem 6rem;
+  }
 
   h3 {
     font-family: $secondaryTitles;
-    font-size: 24px;
+    font-size: 1.2rem;
     font-weight: 400;
     color: $thirdlyTextColor;
     margin: 0 0 1.5rem;
-    letter-spacing: 1px;
+
+    @include respond-to('md') {
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
   }
 
   #manageArticles {
-    margin-top: 3rem;
+    margin-top: 2rem;
+
+    @include respond-to('md') {
+      margin-top: 3rem;
+    }
 
     .articleRow {
       display: flex;
-      align-items: center;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 0.8rem;
       border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-      padding: 1.2rem 2rem;
+      padding: 1rem;
       margin-bottom: 1px;
       background-color: lighten($mainBackgroundColor, 2%);
+
+      @include respond-to('md') {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        padding: 1.2rem 2rem;
+      }
 
       &:hover {
         border-color: rgba($secondaryBackgroundColor, 0.6);
@@ -921,11 +1403,14 @@ header {
         font-family: $otherText;
         font-size: 0.8rem;
         letter-spacing: 2px;
-        text-decoration: none;
-        padding: 6px 16px;
+        padding: 6px 12px;
         border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
         color: $mainTextColor;
         white-space: nowrap;
+
+        @include respond-to('md') {
+          padding: 6px 16px;
+        }
 
         &:hover {
           background-color: rgba($secondaryBackgroundColor, 0.1);
@@ -950,7 +1435,6 @@ header {
       color: $secondaryTextColor;
       padding: 8px 16px;
       font-size: 1rem;
-      text-decoration: none;
       font-family: $otherText;
 
       &:hover {
@@ -962,17 +1446,27 @@ header {
 }
 
 #manageUsers {
+  padding-top: 40px;
 
-  padding-top: 80px;
+  @include respond-to('md') {
+    padding-top: 80px;
+  }
 
   .userRow {
     display: flex;
-    align-items: center;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 0.8rem;
     border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-    padding: 1.2rem 2rem;
+    padding: 1rem;
     margin-bottom: 1px;
     background-color: lighten($mainBackgroundColor, 2%);
+
+    @include respond-to('md') {
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.2rem 2rem;
+    }
 
     &:hover {
       border-color: rgba($secondaryBackgroundColor, 0.6);
@@ -999,12 +1493,16 @@ header {
   }
 }
 
-/*==========CREATE ARTICLE PAGE==========*/
+/*==========CREATE ARTICLE==========*/
 
 #createArticleView {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
   max-width: 800px;
   margin: 0 auto;
+
+  @include respond-to('md') {
+    padding: 4rem 6rem;
+  }
 
   .error {
     font-family: $otherText;
@@ -1020,70 +1518,30 @@ header {
 
     input[type="text"],
     input[type="file"] {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 12px 16px;
-      font-family: $otherText;
-      font-size: 14px;
-      outline: none;
-
-      &::placeholder {
-        color: rgba($thirdlyTextColor, 0.4);
-      }
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
-      }
+      @include form-field;
     }
 
     textarea {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 12px 16px;
-      font-family: $otherText;
-      font-size: 14px;
+      @include form-field;
       resize: vertical;
-      min-height: 400px;
-      outline: none;
+      min-height: 300px;
 
-      &::placeholder {
-        color: rgba($thirdlyTextColor, 0.4);
-      }
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
+      @include respond-to('md') {
+        min-height: 400px;
       }
     }
 
     label {
-      font-family: $otherText;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: $mainTextColor;
-      opacity: 0.7;
-      margin-bottom: -0.8rem;
+      @include form-label;
     }
 
     select {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 10px 16px;
-      font-family: $otherText;
-      font-size: 13px;
-      outline: none;
+      @include form-field;
       cursor: pointer;
 
       option {
         background-color: $mainBackgroundColor;
         color: $thirdlyTextColor;
-      }
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
       }
     }
 
@@ -1111,18 +1569,26 @@ header {
   }
 }
 
-/*==========EDIT ARTICLE PAGE==========*/
+/*==========EDIT ARTICLE==========*/
 
 #editArticleBlock {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
+
+  @include respond-to('md') {
+    padding: 4rem 6rem;
+  }
 
   h1 {
     font-family: $mainTitleFont;
-    font-size: 48px;
+    font-size: 2rem;
     font-weight: 400;
     color: $mainTextColor;
     letter-spacing: 2px;
     margin: 0 0 0.5rem;
+
+    @include respond-to('md') {
+      font-size: 48px;
+    }
   }
 
   .underLine {
@@ -1145,54 +1611,29 @@ header {
     max-width: 800px;
 
     label {
-      font-family: $otherText;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: $mainTextColor;
-      opacity: 0.7;
-      margin-bottom: -0.5rem;
+      @include form-label;
     }
 
     input[type="text"],
     select {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 10px 16px;
-      font-family: $otherText;
-      font-size: 13px;
-      outline: none;
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
-      }
+      @include form-field;
     }
 
     textarea {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 12px 16px;
-      font-family: $otherText;
-      font-size: 13px;
+      @include form-field;
       resize: vertical;
       min-height: 300px;
-      outline: none;
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
-      }
-
-      &::placeholder {
-        color: rgba($thirdlyTextColor, 0.4);
-      }
     }
 
     img {
-      width: 200px;
-      height: 130px;
+      width: 100%;
+      height: auto;
       object-fit: cover;
+
+      @include respond-to('md') {
+        width: 200px;
+        height: 130px;
+      }
     }
 
     input[type="file"] {
@@ -1206,14 +1647,18 @@ header {
       align-self: flex-start;
       border: 1px solid $secondaryBackgroundColor;
       color: $secondaryTextColor;
-      padding: 10px 28px;
+      padding: 10px 20px;
       font-size: 1rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
       background: transparent;
       cursor: pointer;
       font-family: $otherText;
       margin-top: 1rem;
+
+      @include respond-to('md') {
+        padding: 10px 28px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
 
       &:hover {
         background-color: rgba($secondaryBackgroundColor, 0.1);
@@ -1222,12 +1667,17 @@ header {
   }
 }
 
-/*==========LOGIN/REGISTER PAGE==========*/
+/*==========LOGIN/REGISTER==========*/
 
 #auth-container {
   gap: 30px;
-  margin: 80px auto;
-  width: 25%;
+  margin: 40px auto;
+  width: 90%;
+
+  @include respond-to('md') {
+    margin: 80px auto;
+    width: 25%;
+  }
 
   h2 {
     margin-top: 0;
@@ -1250,18 +1700,19 @@ header {
       font-size: 0.9rem;
       background: #211d0d;
       background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
+      box-sizing: border-box;
     }
 
     #checkboxGroup {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      width: 100%; // ← était 5%
+      width: 100%;
       margin: 8px 0;
     }
 
     input[type="checkbox"] {
-      width: auto; // ← annule le width: 100% du input général
+      width: auto;
       margin-top: 3px;
       accent-color: $secondaryBackgroundColor;
       cursor: pointer;
@@ -1295,20 +1746,25 @@ header {
     color: $mainTextColor;
     font-size: 1rem;
     font-family: $otherText;
-  }
 
-  button:hover {
-    background-color: $secondaryBackgroundColor;
-    color: $secondaryTextColor;
+    &:hover {
+      background-color: $secondaryBackgroundColor;
+      color: $secondaryTextColor;
+    }
   }
 }
 
 #quoteCoco {
-  margin: 0 auto;
-  padding-left: 80px;
-  width: 35%;
-  font-family: $secondaryTitles;
-  font-size: 3.8rem;
+  display: none;
+
+  @include respond-to('lg') {
+    display: block;
+    margin: 0 auto;
+    padding-left: 80px;
+    width: 35%;
+    font-family: $secondaryTitles;
+    font-size: 3.8rem;
+  }
 
   #quoteAuthor {
     display: flex;
@@ -1326,10 +1782,7 @@ header {
   }
 }
 
-
-/*====================BLOG====================*/
-
-/*==========INDEX BLOG PAGE==========*/
+/*==========BLOG==========*/
 
 #blogBlock {
 
@@ -1343,27 +1796,22 @@ header {
 
   form {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 32px;
-    align-items: center;
+
+    @include respond-to('md') {
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
 
     input[type="text"] {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 1px solid $secondaryBackgroundColor;
-      color: $thirdlyTextColor;
-      padding: 8px 16px;
-      font-family: $otherText;
-      font-size: 1rem;
-      letter-spacing: 1px;
-      width: 40%;
-      outline: none;
+      @include form-field;
+      width: 100%;
 
-      &::placeholder {
-        color: rgba($thirdlyTextColor, 0.4);
-      }
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
+      @include respond-to('md') {
+        width: 40%;
       }
     }
 
@@ -1376,6 +1824,11 @@ header {
       font-size: 1rem;
       cursor: pointer;
       font-family: $otherText;
+      width: 100%;
+
+      @include respond-to('md') {
+        width: auto;
+      }
 
       &:hover {
         background-color: $secondaryBackgroundColor;
@@ -1385,12 +1838,17 @@ header {
   }
 
   .articleCard {
-    width: 70%;
+    width: 100%;
     border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-    padding: 32px;
+    padding: 20px;
     margin: 8px auto;
     background-color: lighten($mainBackgroundColor, 2%);
     transition: border-color 0.2s;
+
+    @include respond-to('md') {
+      width: 70%;
+      padding: 32px;
+    }
 
     &:hover {
       border-color: rgba($secondaryBackgroundColor, 0.6);
@@ -1403,11 +1861,15 @@ header {
 
       h3 {
         font-family: $secondaryTitles;
-        font-size: 26px;
+        font-size: 1.3rem;
         font-weight: 400;
         color: $thirdlyTextColor;
         margin: 0;
-        letter-spacing: 1px;
+
+        @include respond-to('md') {
+          font-size: 26px;
+          letter-spacing: 1px;
+        }
       }
 
       p {
@@ -1441,11 +1903,14 @@ header {
         border: 1px solid $secondaryBackgroundColor;
         color: $secondaryTextColor;
         padding: 8px 16px;
-        font-size: 1rem;
+        font-size: 0.9rem;
         background-color: $secondaryBackgroundColor;
-        text-decoration: none;
         font-family: $otherText;
         margin-top: 16px;
+
+        @include respond-to('md') {
+          font-size: 1rem;
+        }
 
         &:hover {
           background-color: $mainBackgroundColor;
@@ -1456,12 +1921,16 @@ header {
   }
 }
 
-/*==========FOR EACH ARTICLE PAGE==========*/
+/*==========SHOW ARTICLE==========*/
 
 #showArticleBlock {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
   max-width: 900px;
   margin: 0 auto;
+
+  @include respond-to('md') {
+    padding: 4rem 6rem;
+  }
 
   &>p {
     font-family: $otherText;
@@ -1475,37 +1944,60 @@ header {
 
   &>img {
     width: 100%;
-    height: 500px;
+    height: 250px;
     object-fit: cover;
     display: block;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+
+    @include respond-to('md') {
+      height: 500px;
+      margin-bottom: 3rem;
+    }
   }
 
   #articleContent {
     border-left: 2px solid rgba($secondaryBackgroundColor, 0.5);
-    padding: 0 0 0 2rem;
-    margin-bottom: 4rem;
+    padding: 0 0 0 1rem;
+    margin-bottom: 3rem;
+
+    @include respond-to('md') {
+      padding: 0 0 0 2rem;
+      margin-bottom: 4rem;
+    }
 
     p {
       font-family: $otherText;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 2;
       color: $thirdlyTextColor;
       margin: 0;
+
+      @include respond-to('md') {
+        font-size: 16px;
+      }
     }
   }
 
   #commentsBlock {
     border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-    padding-top: 3rem;
+    padding-top: 2rem;
+
+    @include respond-to('md') {
+      padding-top: 3rem;
+    }
 
     h2 {
       font-family: $secondaryTitles;
-      font-size: 28px;
+      font-size: 1.5rem;
       font-weight: 400;
       color: $thirdlyTextColor;
-      margin: 0 0 2rem;
-      letter-spacing: 1px;
+      margin: 0 0 1.5rem;
+
+      @include respond-to('md') {
+        font-size: 28px;
+        margin: 0 0 2rem;
+        letter-spacing: 1px;
+      }
     }
 
     &>p {
@@ -1517,9 +2009,13 @@ header {
 
     .commentCard {
       border: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
-      padding: 1.5rem 2rem;
+      padding: 1rem;
       margin-bottom: 1px;
       background-color: lighten($mainBackgroundColor, 2%);
+
+      @include respond-to('md') {
+        padding: 1.5rem 2rem;
+      }
 
       &:hover {
         border-color: rgba($secondaryBackgroundColor, 0.5);
@@ -1534,7 +2030,6 @@ header {
 
         a {
           color: $mainTextColor;
-          text-decoration: none;
 
           &:hover {
             opacity: 0.7;
@@ -1566,7 +2061,6 @@ header {
         letter-spacing: 2px;
         text-transform: uppercase;
         color: lighten(red, 20%);
-        text-decoration: none;
         border-bottom: 0.5px solid rgba(red, 0.3);
 
         &:hover {
@@ -1576,16 +2070,25 @@ header {
     }
 
     #commentForm {
-      margin-top: 3rem;
+      margin-top: 2rem;
       border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.2);
-      padding-top: 2rem;
+      padding-top: 1.5rem;
+
+      @include respond-to('md') {
+        margin-top: 3rem;
+        padding-top: 2rem;
+      }
 
       h3 {
         font-family: $secondaryTitles;
-        font-size: 22px;
+        font-size: 1.2rem;
         font-weight: 400;
         color: $thirdlyTextColor;
         margin: 0 0 1.5rem;
+
+        @include respond-to('md') {
+          font-size: 22px;
+        }
       }
 
       .error {
@@ -1596,39 +2099,27 @@ header {
       }
 
       textarea {
-        width: 100%;
-        background-color: lighten($mainBackgroundColor, 3%);
-        border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-        color: $thirdlyTextColor;
-        padding: 12px 16px;
-        font-family: $otherText;
-        font-size: 13px;
+        @include form-field;
         resize: vertical;
         min-height: 120px;
-        box-sizing: border-box;
         margin-bottom: 1rem;
-        outline: none;
-
-        &::placeholder {
-          color: rgba($thirdlyTextColor, 0.4);
-        }
-
-        &:focus {
-          border-color: $secondaryBackgroundColor;
-        }
       }
 
       button {
         display: block;
         border: 1px solid $secondaryBackgroundColor;
         color: $secondaryTextColor;
-        padding: 10px 28px;
+        padding: 10px 20px;
         font-size: 11px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
         background: transparent;
         cursor: pointer;
         font-family: $otherText;
+
+        @include respond-to('md') {
+          padding: 10px 28px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+        }
 
         &:hover {
           background-color: rgba($secondaryBackgroundColor, 0.1);
@@ -1655,17 +2146,19 @@ header {
   }
 }
 
-/*====================FORUM====================*/
-
-/*==========INDEX FORUM PAGE==========*/
+/*==========FORUM==========*/
 
 #introForum {
-
   p {
     color: $thirdlyTextColor;
     font-family: $secondaryTitles;
-    font-size: 2rem;
-    margin: 48px 0;
+    font-size: 1.4rem;
+    margin: 32px 0;
+
+    @include respond-to('md') {
+      font-size: 2rem;
+      margin: 48px 0;
+    }
 
     .big {
       text-transform: uppercase;
@@ -1673,15 +2166,23 @@ header {
   }
 
   .underLineSmall {
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
+
+    @include respond-to('md') {
+      width: 40%;
+    }
   }
 
   h3 {
     color: $thirdlyTextColor;
     font-family: $otherText;
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
+
+    @include respond-to('md') {
+      font-size: 1.6rem;
+    }
   }
 }
 
@@ -1689,16 +2190,24 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 64px 0 16px 64px;
+  margin: 32px 0 16px 0;
+
+  @include respond-to('md') {
+    margin: 64px 0 16px 64px;
+  }
 
   a {
     font-family: $otherText;
-    font-size: 1rem;
-    text-decoration: none;
+    font-size: 0.9rem;
     color: rgba($thirdlyTextColor, 0.5);
     border: 1px solid rgba($secondaryBackgroundColor, 0.15);
-    padding: 8px 16px;
+    padding: 6px 12px;
     transition: color 0.25s ease, border-color 1s ease, background 1s ease;
+
+    @include respond-to('md') {
+      font-size: 1rem;
+      padding: 8px 16px;
+    }
 
     &:hover,
     &.active {
@@ -1711,11 +2220,17 @@ header {
 
 #forumBlock {
   display: grid;
-  grid-template-columns: 2.2fr 0.8fr;
-  gap: 80px;
-  margin-top: -32px;
-  padding: 32px 64px;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 0;
+  padding: 16px;
 
+  @include respond-to('lg') {
+    grid-template-columns: 2.2fr 0.8fr;
+    gap: 80px;
+    margin-top: -32px;
+    padding: 32px 64px;
+  }
 
   p {
     font-family: $otherText;
@@ -1739,54 +2254,72 @@ header {
     flex-direction: column;
 
     .messageCard {
+      @include gold-card;
       position: relative;
-      border: 1px solid #c9a84c;
-      background: #211d0d;
-      background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
-      box-sizing: border-box;
-      padding: 8px 48px;
+      padding: 12px 16px;
       margin-bottom: 8px;
+
+      @include respond-to('md') {
+        padding: 8px 48px;
+      }
 
       h4 {
         font-family: $otherText;
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: $mainTextColor;
         font-weight: bold;
         margin: 0;
+
+        @include respond-to('md') {
+          font-size: 1.2rem;
+        }
       }
 
       &>p:first-of-type {
-        font-size: 1rem;
+        font-size: 0.85rem;
         font-weight: bold;
         color: $mainTextColor;
         text-transform: uppercase;
+
+        @include respond-to('md') {
+          font-size: 1rem;
+        }
       }
 
       p {
         color: $thirdlyTextColor;
-        font-size: 1rem;
+        font-size: 0.9rem;
+
+        @include respond-to('md') {
+          font-size: 1rem;
+        }
 
         a {
-          text-decoration: none;
           color: $thirdlyTextColor;
           font-weight: 800;
         }
       }
 
-
       button {
         background-color: $secondaryBackgroundColor;
         border: 1px solid #AF7F26;
         padding: 8px 16px;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
         cursor: pointer;
         white-space: nowrap;
 
+        @include respond-to('md') {
+          margin-bottom: 24px;
+        }
+
         a {
           color: $secondaryTextColor;
-          text-decoration: none;
           font-family: $otherText;
-          font-size: 1rem;
+          font-size: 0.9rem;
+
+          @include respond-to('md') {
+            font-size: 1rem;
+          }
         }
 
         &:hover {
@@ -1801,26 +2334,25 @@ header {
   }
 
   #sidebarForumBlock {
-
     p {
       font-size: 1rem;
     }
 
     #sidenavBlock {
+      @include gold-card;
       position: relative;
-      border: 1px solid #c9a84c;
-      background: #211d0d;
-      background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
-      box-sizing: border-box;
 
       p {
-        font-size: 1rem;
+        font-size: 0.9rem;
         color: $thirdlyTextColor;
         padding: 4px;
         margin: 0;
 
+        @include respond-to('md') {
+          font-size: 1rem;
+        }
+
         a {
-          text-decoration: none;
           font-weight: bold;
           color: $mainTextColor;
         }
@@ -1829,7 +2361,6 @@ header {
   }
 
   #speakUp {
-
     p {
       font-size: 1rem;
     }
@@ -1839,51 +2370,62 @@ header {
       background: #211d0d;
       background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
       box-sizing: border-box;
-      height: 240px;
+      height: auto;
+      min-height: 200px;
       display: flex;
       flex-direction: column;
 
+      @include respond-to('md') {
+        height: 240px;
+      }
+
       p {
         text-align: center;
-        font-size: 5rem;
-        margin: 16px 0 16px 0;
+        font-size: 3rem;
+        margin: 16px 0;
         font-family: $secondaryTitles;
         font-style: italic;
         text-transform: uppercase;
+
+        @include respond-to('md') {
+          font-size: 5rem;
+        }
       }
 
       h6 {
         text-align: center;
 
         a {
-          text-decoration: none;
           color: $mainTextColor;
           font-family: $otherText;
           font-size: 1rem;
         }
 
-        &:hover {
-
-          a {
-            color: $thirdlyTextColor;
-          }
+        &:hover a {
+          color: $thirdlyTextColor;
         }
-
       }
 
       button {
         background-color: $mainBackgroundColor;
-        width: 14%;
+        width: auto;
         margin: 0 auto;
         border: 1px solid #AF7F26;
         padding: 8px 16px;
         cursor: pointer;
 
+        @include respond-to('md') {
+          width: 14%;
+        }
+
         a {
           color: $mainTextColor;
-          text-decoration: none;
           font-family: $otherText;
-          font-size: 1.1rem;
+          font-size: 1rem;
+
+          @include respond-to('md') {
+            font-size: 1.1rem;
+          }
         }
 
         &:hover {
@@ -1896,7 +2438,6 @@ header {
       }
     }
   }
-
 
   #pagination {
     a {
@@ -1913,24 +2454,36 @@ header {
       border: 1px solid #AF7F26;
       position: relative;
       height: auto;
-      padding-bottom: 56px;
+      padding-bottom: 40px;
       background-image: url(../../images/img_signin_sidebar.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       box-sizing: border-box;
 
+      @include respond-to('md') {
+        padding-bottom: 56px;
+      }
+
       h5 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-family: $otherText;
         text-align: center;
         color: $thirdlyTextColor;
+
+        @include respond-to('md') {
+          font-size: 1.5rem;
+        }
 
         #join {
           font-family: $secondaryTitles;
           font-weight: bold;
           text-transform: uppercase;
-          font-size: 2.5rem;
+          font-size: 2rem;
           color: $mainTextColor;
+
+          @include respond-to('md') {
+            font-size: 2.5rem;
+          }
         }
 
         #joinAlliegators {
@@ -1941,7 +2494,11 @@ header {
       p {
         color: $thirdlyTextColor;
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1rem;
+
+        @include respond-to('md') {
+          font-size: 1.2rem;
+        }
       }
 
       button {
@@ -1954,9 +2511,12 @@ header {
 
         a {
           color: $secondaryTextColor;
-          text-decoration: none;
           font-family: $otherText;
-          font-size: 1.1rem;
+          font-size: 1rem;
+
+          @include respond-to('md') {
+            font-size: 1.1rem;
+          }
         }
 
         &:hover {
@@ -1971,12 +2531,16 @@ header {
   }
 }
 
-/*==========CREATION TOPIC PAGE (FORUM)==========*/
+/*==========CREATE MESSAGE==========*/
 
 #createMessageBlock {
-  padding: 4rem 6rem;
+  padding: 2rem 1rem;
   max-width: 800px;
   margin: 0 auto;
+
+  @include respond-to('md') {
+    padding: 4rem 6rem;
+  }
 
   .error {
     font-family: $otherText;
@@ -1991,70 +2555,30 @@ header {
     gap: 1.2rem;
 
     input[type="text"] {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 12px 16px;
-      font-family: $otherText;
-      font-size: 14px;
-      outline: none;
-
-      &::placeholder {
-        color: rgba($thirdlyTextColor, 0.4);
-      }
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
-      }
+      @include form-field;
     }
 
     textarea {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 12px 16px;
-      font-family: $otherText;
-      font-size: 14px;
+      @include form-field;
       resize: vertical;
-      min-height: 300px;
-      outline: none;
+      min-height: 200px;
 
-      &::placeholder {
-        color: rgba($thirdlyTextColor, 0.4);
-      }
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
+      @include respond-to('md') {
+        min-height: 300px;
       }
     }
 
     label {
-      font-family: $otherText;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: $mainTextColor;
-      opacity: 0.7;
-      margin-bottom: -0.8rem;
+      @include form-label;
     }
 
     select {
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-      color: $thirdlyTextColor;
-      padding: 10px 16px;
-      font-family: $otherText;
-      font-size: 13px;
-      outline: none;
+      @include form-field;
       cursor: pointer;
 
       option {
         background-color: $mainBackgroundColor;
         color: $thirdlyTextColor;
-      }
-
-      &:focus {
-        border-color: $secondaryBackgroundColor;
       }
     }
 
@@ -2078,51 +2602,77 @@ header {
   }
 }
 
-/*==========TOPIC PAGE (FORUM)==========*/
+/*==========SHOW MESSAGE==========*/
 
 #showMessageBlock {
 
   &>p {
     font-family: $otherText;
-    font-size: 1rem;
-    letter-spacing: 5%;
+    font-size: 0.9rem;
     color: $mainTextColor;
     text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+
+    @include respond-to('md') {
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
   }
 
   #mainMessage {
     border-left: 1px solid $secondaryBackgroundColor;
-    padding: 32px 64px;
+    padding: 16px 24px;
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
+
+    @include respond-to('md') {
+      padding: 32px 64px;
+      width: 80%;
+    }
 
     p {
       font-family: $otherText;
-      font-size: 1rem;
+      font-size: 0.95rem;
       line-height: 1.9;
       color: $thirdlyTextColor;
       margin: 0;
+
+      @include respond-to('md') {
+        font-size: 1rem;
+      }
     }
   }
 
   #replies {
-    padding: 32px 64px;
+    padding: 16px 24px;
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
+
+    @include respond-to('md') {
+      padding: 32px 64px;
+      width: 80%;
+    }
 
     h3 {
       font-family: $secondaryTitles;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 400;
       color: $thirdlyTextColor;
+
+      @include respond-to('md') {
+        font-size: 1.5rem;
+      }
     }
 
     .replyCard {
       border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-      padding: 16px 32px;
+      padding: 12px 16px;
       margin-bottom: 1px;
       background-color: lighten($mainBackgroundColor, 5%);
+
+      @include respond-to('md') {
+        padding: 16px 32px;
+      }
 
       &:hover {
         border-color: rgba($secondaryBackgroundColor, 0.6);
@@ -2131,26 +2681,26 @@ header {
       &>p {
         font-family: $otherText;
         font-size: 0.8rem;
-        letter-spacing: 5%;
         color: $mainTextColor;
         text-transform: uppercase;
 
         &:last-of-type {
-          font-size: 1rem;
-          letter-spacing: 0;
+          font-size: 0.95rem;
           text-transform: none;
           opacity: 1;
           color: $thirdlyTextColor;
           margin-top: 0.8rem;
+
+          @include respond-to('md') {
+            font-size: 1rem;
+          }
         }
       }
 
       details {
-
         summary {
           font-family: $otherText;
           font-size: 0.8rem;
-          letter-spacing: 5%;
           text-transform: uppercase;
           color: $thirdlyTextColor;
           cursor: pointer;
@@ -2160,21 +2710,10 @@ header {
           margin-top: 1rem;
 
           textarea {
-            width: 100%;
-            background-color: $mainBackgroundColor;
-            border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-            color: $thirdlyTextColor;
-            padding: 12px 16px;
-            font-family: $otherText;
-            font-size: 13px;
+            @include form-field;
             resize: vertical;
             min-height: 80px;
-            box-sizing: border-box;
             margin-bottom: 1rem;
-
-            &::placeholder {
-              color: rgba($thirdlyTextColor, 0.4);
-            }
           }
 
           button {
@@ -2195,10 +2734,15 @@ header {
       }
 
       .subReplies {
-        padding: 16px 32px;
+        padding: 12px 16px;
         margin: 8px auto;
-        width: 90%;
+        width: 95%;
         border-left: 1px solid rgba($secondaryBackgroundColor, 0.2);
+
+        @include respond-to('md') {
+          padding: 16px 32px;
+          width: 90%;
+        }
 
         .subReplyCard {
           margin: 0;
@@ -2207,12 +2751,11 @@ header {
           p {
             font-family: $otherText;
             font-size: 0.8rem;
-            letter-spacing: 5%;
             color: $mainTextColor;
             text-transform: uppercase;
 
             &:last-of-type {
-              font-size: 1rem;
+              font-size: 0.95rem;
               color: $thirdlyTextColor;
               text-transform: none;
               letter-spacing: 0;
@@ -2225,15 +2768,24 @@ header {
 
   #replyForm {
     border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-    padding: 32px 64px;
+    padding: 16px 24px;
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
+
+    @include respond-to('md') {
+      padding: 32px 64px;
+      width: 80%;
+    }
 
     h3 {
       font-family: $secondaryTitles;
-      font-size: 24px;
+      font-size: 1.2rem;
       font-weight: 400;
       color: $thirdlyTextColor;
+
+      @include respond-to('md') {
+        font-size: 24px;
+      }
     }
 
     .error {
@@ -2244,20 +2796,9 @@ header {
     }
 
     textarea {
-      width: 100%;
-      background-color: lighten($mainBackgroundColor, 3%);
-      border: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-      color: $thirdlyTextColor;
-      padding: 12px 16px;
-      font-family: $otherText;
-      font-size: 1rem;
+      @include form-field;
       min-height: 120px;
-      box-sizing: border-box;
       margin-bottom: 16px;
-
-      &::placeholder {
-        color: rgba($thirdlyTextColor, 0.4);
-      }
     }
 
     button {
@@ -2293,20 +2834,25 @@ header {
   }
 }
 
-// ══════════════════════════════════════════════
-// PAGE À PROPOS
-// ══════════════════════════════════════════════
+/*==========ABOUT PAGE==========*/
 
 #aboutPage {
-  margin: 280px 0 0 64px;
+  margin: 120px 0 0 16px;
 
-  // ── Hero ──────────────────────────────────
+  @include respond-to('md') {
+    margin: 280px 0 0 64px;
+  }
+
   .about-hero {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     min-height: 10vh;
     overflow: hidden;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr 1fr;
+    }
 
     &__bg {
       position: absolute;
@@ -2344,7 +2890,7 @@ header {
 
     &__title {
       font-family: $secondaryTitles;
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-size: clamp(2rem, 5vw, 4.5rem);
       font-weight: 700;
       color: $mainTextColor;
       line-height: 1.1;
@@ -2365,6 +2911,11 @@ header {
     &__image-wrap {
       position: relative;
       overflow: hidden;
+      height: 300px;
+
+      @include respond-to('md') {
+        height: auto;
+      }
 
       &::before {
         content: "";
@@ -2391,35 +2942,49 @@ header {
     }
   }
 
-  // ── Intro ─────────────────────────────────
   .about-intro {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 3rem;
-    padding: 6rem 8vw;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
     border-top: 1px solid rgba($mainTextColor, 0.15);
+
+    @include respond-to('md') {
+      grid-template-columns: 120px 1fr;
+      gap: 3rem;
+      padding: 6rem 8vw;
+    }
+
     animation: fadeUp 0.8s 0.2s ease both;
 
     &__number {
       font-family: $secondaryTitles;
-      font-size: 5rem;
+      font-size: 3rem;
       font-weight: 700;
       color: rgba($mainTextColor, 0.15);
       line-height: 1;
-      padding-top: 0.5rem;
+
+      @include respond-to('md') {
+        font-size: 5rem;
+        padding-top: 0.5rem;
+      }
     }
 
     &__title {
       font-family: $secondaryTitles;
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-weight: 400;
       color: $mainTextColor;
       margin: 0 0 1.5rem;
+
+      @include respond-to('md') {
+        font-size: 1.8rem;
+      }
     }
 
     p {
       font-family: $otherText;
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: rgba($mainTextColor, 0.75);
       line-height: 1.8;
       margin: 0 0 1rem;
@@ -2432,18 +2997,25 @@ header {
     }
   }
 
-  // ── Valeurs ───────────────────────────────
   .about-values {
-    padding: 5rem 8vw;
+    padding: 3rem 1rem;
     background: rgba($secondaryBackgroundColor, 0.04);
     border-top: 1px solid rgba($mainTextColor, 0.1);
     border-bottom: 1px solid rgba($mainTextColor, 0.1);
+
+    @include respond-to('md') {
+      padding: 5rem 8vw;
+    }
 
     &__header {
       display: flex;
       align-items: center;
       gap: 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
+
+      @include respond-to('md') {
+        margin-bottom: 4rem;
+      }
 
       h2 {
         font-family: $secondaryTitles;
@@ -2464,14 +3036,22 @@ header {
 
     &__grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 2px;
+
+      @include respond-to('md') {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     &__card {
-      padding: 3rem 2.5rem;
+      padding: 2rem 1.5rem;
       border: 1px solid rgba($mainTextColor, 0.12);
       transition: border-color 0.3s ease, background 0.3s ease;
+
+      @include respond-to('md') {
+        padding: 3rem 2.5rem;
+      }
 
       &:hover {
         border-color: rgba($mainTextColor, 0.5);
@@ -2479,7 +3059,7 @@ header {
       }
 
       h3 {
-        font-family: $mainTitleFont;
+        font-family: $secondaryTitles;
         font-size: 1.2rem;
         font-weight: 400;
         color: $mainTextColor;
@@ -2502,14 +3082,17 @@ header {
     }
   }
 
-  // ── Citation ──────────────────────────────
   .about-quote {
-    padding: 7rem 8vw;
+    padding: 4rem 1rem;
     text-align: center;
 
+    @include respond-to('md') {
+      padding: 7rem 8vw;
+    }
+
     blockquote {
-      font-family: $mainTitleFont;
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-family: $secondaryTitles;
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
       font-style: italic;
       color: rgba($mainTextColor, 0.6);
       line-height: 1.5;
@@ -2518,12 +3101,16 @@ header {
     }
 
     &__mark {
-      font-size: 6rem;
+      font-size: 4rem;
       color: rgba($mainTextColor, 0.15);
       line-height: 0;
       vertical-align: -2.5rem;
       margin-right: 0.2rem;
       font-style: normal;
+
+      @include respond-to('md') {
+        font-size: 6rem;
+      }
     }
 
     cite {
@@ -2536,11 +3123,14 @@ header {
     }
   }
 
-  // ── CTA ───────────────────────────────────
   .about-cta {
-    padding: 5rem 8vw;
+    padding: 3rem 1rem;
     text-align: center;
     border-top: 1px solid rgba($mainTextColor, 0.15);
+
+    @include respond-to('md') {
+      padding: 5rem 8vw;
+    }
 
     p {
       font-family: $otherText;
@@ -2551,22 +3141,21 @@ header {
   }
 }
 
-
-// ══════════════════════════════════════════════
-// PAGE CONTACT
-// ══════════════════════════════════════════════
+/*==========CONTACT==========*/
 
 #contactPage {
 
-  // ── Hero ──────────────────────────────────
   .contact-hero {
     position: relative;
-    height: 70vh;
+    height: 50vh;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
 
-    // ── Vidéo de fond ──────────────────────
+    @include respond-to('md') {
+      height: 70vh;
+    }
+
     &__video {
       position: absolute;
       inset: 0;
@@ -2577,23 +3166,22 @@ header {
       z-index: 0;
     }
 
-    // ── Overlay sombre pour lisibilité ─────
     &__overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top,
-          rgba(0, 0, 0, 0.85) 0%,
-          rgba(0, 0, 0, 0.4) 50%,
-          rgba(0, 0, 0, 0.2) 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.2) 100%);
       z-index: 1;
     }
 
-    // ── Contenu texte ──────────────────────
     &__content {
       position: relative;
       z-index: 2;
-      padding: 4rem 8vw;
+      padding: 2rem 1rem;
       width: 100%;
+
+      @include respond-to('md') {
+        padding: 4rem 8vw;
+      }
     }
 
     &__eyebrow {
@@ -2617,8 +3205,8 @@ header {
     }
 
     &__title {
-      font-family: $mainTitleFont;
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-family: $secondaryTitles;
+      font-size: clamp(2rem, 6vw, 5rem);
       font-weight: 700;
       color: white;
       line-height: 1;
@@ -2632,10 +3220,14 @@ header {
 
     &__sub {
       font-family: $otherText;
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: rgba(white, 0.6);
       margin: 0 0 2.5rem;
-      letter-spacing: 0.04em;
+
+      @include respond-to('md') {
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+      }
     }
 
     &__line {
@@ -2645,21 +3237,19 @@ header {
     }
   }
 
-  // ── Wrapper 2 colonnes ────────────────────
   .contact-wrapper {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 5rem;
-    margin: 64px;
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin: 32px 16px;
 
-    @media (max-width: 900px) {
-      grid-template-columns: 1fr;
-      gap: 4rem;
+    @include respond-to('md') {
+      grid-template-columns: 1fr 380px;
+      gap: 5rem;
+      margin: 64px;
     }
   }
 
-  // ── Formulaire ────────────────────────────
   .contact-form-section {
     &__title {
       font-family: $secondaryTitles;
@@ -2678,11 +3268,11 @@ header {
 
     &__row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1.5rem;
 
-      @media (max-width: 600px) {
-        grid-template-columns: 1fr;
+      @include respond-to('md') {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -2710,6 +3300,8 @@ header {
         resize: none;
         background: #211d0d;
         background: linear-gradient(90deg, rgba(33, 29, 13, 1) 26%, rgba(0, 0, 0, 1) 100%);
+        width: 100%;
+        box-sizing: border-box;
 
         &::placeholder {
           color: $mainTextColor;
@@ -2731,6 +3323,11 @@ header {
       padding: 8px 16px;
       cursor: pointer;
       transition: background 1s ease, color 1s ease;
+      width: 100%;
+
+      @include respond-to('md') {
+        width: auto;
+      }
 
       &:hover {
         background: transparent;
@@ -2739,10 +3336,13 @@ header {
     }
   }
 
-  // ── Aside réseaux ─────────────────────────
   .contact-aside {
-    position: sticky;
-    top: 2rem;
+    position: relative;
+
+    @include respond-to('md') {
+      position: sticky;
+      top: 2rem;
+    }
 
     &__title {
       font-family: $secondaryTitles;
@@ -2794,10 +3394,13 @@ header {
     grid-template-columns: 40px 1fr auto;
     align-items: center;
     gap: 1rem;
-    padding: 1.1rem 1.2rem;
+    padding: 1rem;
     border: 1px solid rgba($mainTextColor, 0.12);
-    text-decoration: none;
     transition: border-color 1s ease, background 1s ease;
+
+    @include respond-to('md') {
+      padding: 1.1rem 1.2rem;
+    }
 
     &:hover {
       border-color: $mainTextColor;
@@ -2837,10 +3440,7 @@ header {
   }
 }
 
-
-// ══════════════════════════════════════════════
-// PARTAGÉ : bouton gold + animations
-// ══════════════════════════════════════════════
+/*==========BTN GOLD==========*/
 
 .btn-gold {
   display: inline-block;
@@ -2848,7 +3448,6 @@ header {
   color: $secondaryTextColor;
   font-family: $otherText;
   font-size: 1rem;
-  text-decoration: none;
   border: 1px solid $mainTextColor;
   padding: 8px 16px;
   transition: background 1s ease, color 1s ease;
@@ -2859,48 +3458,67 @@ header {
   }
 }
 
-// ══════════════════════════════════════════════
-// _profile.scss — Allie's Closet
-// ══════════════════════════════════════════════
+/*==========PROFILE==========*/
 
 #profileBlock {
-  padding: 4rem 8vw 7rem;
+  padding: 2rem 1rem 4rem;
   max-width: 900px;
   margin: 0 auto;
 
-  // ── Header profil ─────────────────────────
+  @include respond-to('md') {
+    padding: 4rem 8vw 7rem;
+  }
+
   #profileHeader {
     display: flex;
-    align-items: center;
-    gap: 3rem;
-    padding-bottom: 3rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
     border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.3);
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 
+    @include respond-to('md') {
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      margin-bottom: 4rem;
+    }
 
     img {
-      width: 120px;
-      height: 120px;
+      width: 80px;
+      height: 80px;
       object-fit: cover;
       display: block;
       border: 1px solid rgba($secondaryBackgroundColor, 0.4);
       flex-shrink: 0;
+
+      @include respond-to('md') {
+        width: 120px;
+        height: 120px;
+      }
     }
 
-
     #defaultAvatar {
-      width: 120px;
-      height: 120px;
+      width: 80px;
+      height: 80px;
       border: 1px solid rgba($secondaryBackgroundColor, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: $mainTitleFont;
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: 700;
       color: $mainTextColor;
       background: linear-gradient(135deg, lighten($mainBackgroundColor, 5%), $mainBackgroundColor);
       flex-shrink: 0;
+
+      @include respond-to('md') {
+        width: 120px;
+        height: 120px;
+        font-size: 3rem;
+      }
     }
 
     #profileInfo {
@@ -2908,7 +3526,7 @@ header {
 
       h1 {
         font-family: $secondaryTitles;
-        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
         font-weight: 400;
         color: $thirdlyTextColor;
         margin: 0 0 0.8rem;
@@ -2925,14 +3543,17 @@ header {
     }
   }
 
-  // ── Formulaire d'édition ──────────────────
   #editProfileForm {
     h2 {
       font-family: $secondaryTitles;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 400;
       color: $thirdlyTextColor;
       margin: 0 0 2rem;
+
+      @include respond-to('md') {
+        font-size: 1.4rem;
+      }
     }
 
     form {
@@ -2957,31 +3578,10 @@ header {
         padding: 8px 0;
       }
 
-      p {
-        font-family: $otherText;
-      }
-
       textarea {
-        background-color: lighten($mainBackgroundColor, 3%);
-        border: 0.5px solid rgba($secondaryBackgroundColor, 0.4);
-        color: $thirdlyTextColor;
-        padding: 12px 16px;
-        font-family: $otherText;
-        font-size: 14px;
+        @include form-field;
         resize: vertical;
         min-height: 150px;
-        outline: none;
-
-        &::placeholder {
-          color: rgba($thirdlyTextColor, 0.4);
-        }
-
-        &:focus {
-          border-color: $secondaryBackgroundColor;
-        }
-
-
-
       }
 
       button {
@@ -2994,6 +3594,11 @@ header {
         font-size: 1rem;
         cursor: pointer;
         transition: background 0.25s ease, color 0.25s ease;
+        width: 100%;
+
+        @include respond-to('md') {
+          width: auto;
+        }
 
         &:hover {
           background-color: $mainBackgroundColor;
@@ -3004,18 +3609,23 @@ header {
   }
 }
 
-// ══════════════════════════════════════════════
-// _rules.scss — Règles du forum
-// ══════════════════════════════════════════════
+/*==========RULES==========*/
 
 #rulesBlock {
-  padding: 4rem 8vw 7rem;
+  padding: 2rem 1rem 4rem;
   max-width: 860px;
   margin: 0 auto;
 
-  // ── Hero ──────────────────────────────────
+  @include respond-to('md') {
+    padding: 4rem 8vw 7rem;
+  }
+
   .rules-hero {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+
+    @include respond-to('md') {
+      margin-bottom: 4rem;
+    }
 
     &__eyebrow {
       font-family: $otherText;
@@ -3059,18 +3669,20 @@ header {
     }
   }
 
-  // ── Contenu ───────────────────────────────
   .rules-content {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
 
-  // ── Sections ──────────────────────────────
   .rules-section {
     border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
-    padding: 2.5rem 0;
+    padding: 2rem 0;
     transition: background 0.2s ease;
+
+    @include respond-to('md') {
+      padding: 2.5rem 0;
+    }
 
     h3 {
       font-family: $otherText;
@@ -3090,15 +3702,12 @@ header {
 
       a {
         color: $mainTextColor;
-        text-decoration: none;
         border-bottom: 0.5px solid rgba($mainTextColor, 0.3);
         transition: border-color 0.2s ease;
-
       }
     }
   }
 
-  // ── Footer règles ─────────────────────────
   .rules-footer {
     border-top: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
     border-bottom: 0.5px solid rgba($secondaryBackgroundColor, 0.25);
@@ -3122,17 +3731,5 @@ header {
       margin: 0;
       font-style: italic;
     }
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

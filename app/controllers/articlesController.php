@@ -27,7 +27,7 @@ function showCategory() //displays catogories, users are able to look for articl
     $categories = ['mode', 'maquillage', 'chaussures', 'cheveux', 'skincare', 'lifestyle'];
 
     if (!in_array($category, $categories)) {
-        header('Location: /projet-final/index.php?action=blog');
+        header('Location: ' . BASE_URL . '/index.php?action=blog');
         exit;
     }
 
@@ -52,7 +52,7 @@ function showArticle() //displays article's page
     $hasLiked = isset($_SESSION['user']) ? hasLikedArticle($_SESSION['user']['id_user'], $id) : false;
 
     if (!$article) {
-        header('Location: /projet-final/index.php?action=blog');
+        header('Location: ' . BASE_URL . '/index.php?action=blog');
         exit;
     }
 
@@ -81,7 +81,7 @@ function submitArticle()
     }
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        header('Location: /projet-final/index.php?action=dashboard');
+        header('Location: ' . BASE_URL . '/index.php?action=dashboard');
         exit;
     }
 
@@ -107,11 +107,11 @@ function submitArticle()
 
     if (!empty($_FILES['article_image']['name'])) {
         $fileName = uniqid() . '_' . basename($_FILES['article_image']['name']);
-        $destPath = RACINE . '/app/public/images/' . $fileName;
+        $destPath = RACINE . '/public/images/' . $fileName;
         $fileContent = file_get_contents($_FILES['article_image']['tmp_name']);
 
         if (file_put_contents($destPath, $fileContent) !== false) {
-            $article_image = BASE_URL . '/app/public/images/' . $fileName;
+            $article_image = BASE_URL . '/public/images/' . $fileName;
         }
     }
 
@@ -128,7 +128,7 @@ function submitArticle()
     createArticle($data); //creating a new article, createArticle() defined in articlesModel.php and it parameter $data defined above
 
 
-    header('Location: /projet-final/index.php?action=blog'); //then the admin is leaded to it's dashboard
+    header('Location: ' . BASE_URL . '/index.php?action=blog'); //then the admin is leaded to it's dashboard
     exit;
 }
 
@@ -146,7 +146,7 @@ function showEditArticle()
     $article = getArticleById($id);
 
     if (!$article) {
-        header('Location: /projet-final/index.php?action=dashboard');
+        header('Location: ' . BASE_URL . '/index.php?action=dashboard');
         exit;
     }
 
@@ -161,7 +161,7 @@ function submitEditArticle()
     }
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        header('Location: /projet-final/index.php?action=dashboard');
+        header('Location: ' . BASE_URL . '/index.php?action=dashboard');
         exit;
     }
 
@@ -171,7 +171,7 @@ function submitEditArticle()
     $status = $_POST['status'] ?? 'draft';
 
     if (!$id) {
-        header('Location: /projet-final/index.php?action=dashboard');
+        header('Location: ' . BASE_URL . '/index.php?action=dashboard');
         exit;
     }
 
@@ -187,11 +187,11 @@ function submitEditArticle()
 
     if (!empty($_FILES['article_image']['name'])) {
         $fileName = uniqid() . '_' . basename($_FILES['article_image']['name']);
-        $destPath = RACINE . '/app/public/images/' . $fileName;
+        $destPath = RACINE . '/public/images/' . $fileName;
         $fileContent = file_get_contents($_FILES['article_image']['tmp_name']);
 
         if (file_put_contents($destPath, $fileContent) !== false) {
-            $article_image = BASE_URL . '/app/public/images/' . $fileName;
+            $article_image = BASE_URL . '/public/images/' . $fileName;
         }
     }
 
@@ -203,7 +203,7 @@ function submitEditArticle()
     ];
 
     updateArticle($id, $data);
-    header('Location: /projet-final/index.php?action=dashboard');
+    header('Location: ' . BASE_URL . '/index.php?action=dashboard');
     exit;
 }
 
@@ -217,7 +217,7 @@ function submitDeleteArticle()
 
     $id = $_GET['id'];
     deleteArticle($id); // ← appelle la fonction du model
-    header('Location: /projet-final/index.php?action=dashboard');
+    header('Location: ' . BASE_URL . '/index.php?action=dashboard');
     exit;
 }
 
@@ -232,7 +232,7 @@ function submitArchiveArticle() //allows the admin to archive an article
     $id = $_GET['id'];
 
     archiveArticle($id); //calls for the model function 
-    header('Location: /projet-final/index.php?action=dashboard'); //then redirects to the dashboard page
+    header('Location: ' . BASE_URL . '/index.php?action=dashboard'); //then redirects to the dashboard page
     exit;
 }
 
@@ -240,7 +240,7 @@ function submitArchiveArticle() //allows the admin to archive an article
 function toggleLikeArticle() //allows users to like or unlike an article
 {
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
@@ -253,6 +253,6 @@ function toggleLikeArticle() //allows users to like or unlike an article
         likeArticle($id_user, $id_article);
     }
 
-    header('Location: /projet-final/index.php?action=showArticle&id=' . $id_article);
+    header('Location: ' . BASE_URL . '/index.php?action=showArticle&id=' . $id_article);
     exit;
 }

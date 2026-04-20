@@ -41,9 +41,9 @@ function login()
     $_SESSION['user'] = $user;
 
     if ($user['role'] === 'admin') {
-        header('Location: /projet-final/index.php?action=dashboard');
+        header('Location: ' . BASE_URL . '/index.php?action=dashboard');
     } else {
-        header('Location: /projet-final/index.php?action=default');
+        header('Location: ' . BASE_URL . '/index.php?action==default');
     }
     exit;
 }
@@ -113,7 +113,7 @@ function register()
 
     //if everything's ok : creates a new user
     createUser($data);
-    header('Location: /projet-final/index.php?action=loginPage'); //redirects towards the login page so the newly registered user can login 
+    header('Location: ' . BASE_URL . '/index.php?action=loginPage'); //redirects towards the login page so the newly registered user can login 
     exit;
 }
 
@@ -122,12 +122,12 @@ function logout()
 {
     //if the user isn't logged, shows the login page
     if (!isset($_SESSION['user'])) {
-        header('Location: /projet-final/index.php?action=loginPage');
+        header('Location: ' . BASE_URL . '/index.php?action=loginPage');
         exit;
     }
 
     //else, if the user is logged and clicks on "deconnexion" button, deletes the session and the user is disconnected
     session_destroy();
-    header('Location: /projet-final/index.php?action=default');
+    header('Location: ' . BASE_URL . '/index.php?action=default');
     exit;
 }
