@@ -6,7 +6,7 @@
 
 ## Présentation
 
-**Allie's Closet** est une application web complète développée pour une cliente passionnée de mode. Elle combine un blog éditorial et un forum communautaire, le tout dans une direction artistique luxueuse et élégante (palette noire et dorée).
+**Allie's Closet** est un site web développé pour une cliente passionnée de mode. Elle combine un blog éditorial et un forum communautaire, le tout dans une direction artistique luxueuse et élégante (palette noire et dorée).
 
 ---
 
@@ -24,13 +24,13 @@
 ### Côté admin
 - Dashboard d'administration
 - Création, modification, archivage et suppression d'articles
-- Gestion des membres
-- Gestion des commentaires
+
+Gestion des membres et gestion des commentaires à venir dans la V2.
 
 ### Pages statiques
 - Page d'accueil
-- Blog avec pagination
-- Forum avec catégories
+- Blog
+- Forum
 - À propos
 - Contact
 - Mentions légales
@@ -49,7 +49,6 @@
 | SCSS | Styles, mobile-first, mixins |
 | JavaScript | Interactions DOM, API externe |
 | HTML5 | Structure sémantique |
-| PHPMailer | Formulaire de contact (SMTP) |
 | Dotenv | Variables d'environnement |
 
 ---
@@ -154,8 +153,6 @@ define("BASE_URL", "/allies_closet"); // en local
 | `DB_PORT` | Port MySQL (3306 par défaut) |
 | `DB_LOGIN` | Identifiant MySQL |
 | `DB_PASSWORD` | Mot de passe MySQL |
-| `MAIL_USER` | Adresse Gmail pour l'envoi de mails |
-| `MAIL_PASSWORD` | Mot de passe d'application Gmail |
 
 ---
 
