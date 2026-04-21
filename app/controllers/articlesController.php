@@ -108,13 +108,17 @@ function submitArticle() //allows to submit an article
 
     $article_image = ''; //variable initialized as empty in case the admin doesn't put any image
 
-    if (!empty($_FILES['article_image']['name'])) {
+    if (!empty($_FILES['article_image']['name'])) { //if the file field is empty, doesn't do anything
+        /*
+        *generates an uniq id based on the daytime, with a seperator
+        *basename() is the original name file without the path
+        */
         $fileName = uniqid() . '_' . basename($_FILES['article_image']['name']);
-        $destPath = RACINE . '/public/images/' . $fileName;
-        $fileContent = file_get_contents($_FILES['article_image']['tmp_name']);
+        $destPath = RACINE . '/public/images/' . $fileName; //constructs an absolute server path where to save the file (here, in the images folder)
+        $fileContent = file_get_contents($_FILES['article_image']['tmp_name']); //temporary stocks the uploaded file 
 
         if (file_put_contents($destPath, $fileContent) !== false) {
-            $article_image = BASE_URL . '/public/images/' . $fileName;
+            $article_image = BASE_URL . '/public/images/' . $fileName; //writes the file to its destination. if works, stocks the url path in the data base
         }
     }
 
@@ -135,15 +139,13 @@ function submitArticle() //allows to submit an article
     exit;
 }
 
-
+//allows the admin to edit an article 
 function showEditArticle()
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         show403();
         exit;
     }
-
-    // ← pas de check REQUEST_METHOD ici, c'est un GET normal
 
     $id = $_GET['id'];
     $article = getArticleById($id);
@@ -156,6 +158,7 @@ function showEditArticle()
     require RACINE . '/app/views/articles/editArtView.php';
 }
 
+//allows the admin to submit modifications 
 function submitEditArticle()
 {
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
@@ -163,6 +166,7 @@ function submitEditArticle()
         exit;
     }
 
+    //checks if the method is POST, security measure 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: ' . BASE_URL . '/index.php?action=dashboard');
         exit;

@@ -1,5 +1,6 @@
 <?php
 
+//allows any logged user to submit a comment under an article
 function submitComment()
 {
     if (!isset($_SESSION['user'])) {
@@ -8,20 +9,20 @@ function submitComment()
     }
 
     $id_article = $_POST['id_article'];
-    $content    = trim($_POST['content']);
+    $content = trim($_POST['content']);
 
     if (empty($content)) {
-        $error    = "Le commentaire ne peut pas être vide.";
-        $article  = getArticleById($id_article);
+        $error = "Le commentaire ne peut pas être vide.";
+        $article = getArticleById($id_article);
         $comments = getCommentsByArticleId($id_article);
         require RACINE . '/app/views/articles/showArtView.php';
         return;
     }
 
     $data = [
-        'id_user'    => $_SESSION['user']['id_user'],
+        'id_user' => $_SESSION['user']['id_user'],
         'id_article' => $id_article,
-        'content'    => $content
+        'content' => $content
     ];
 
     createComment($data);
@@ -29,6 +30,7 @@ function submitComment()
     exit;
 }
 
+//allows any logged user to delete its comments
 function submitDeleteComment()
 {
     if (!isset($_SESSION['user'])) {

@@ -14,7 +14,7 @@ function login()
     global $dbConnector;
 
     //trim() removes spaces or other parasite characters in the string
-    $email    = trim($_POST['email']);
+    $email = trim($_POST['email']);
     //$_POST get the entered password in the form, the method POST is used
     $password = $_POST['password'];
     //findByEmail() is defined in the file loginModel.php, looks for the email in the database
@@ -52,9 +52,9 @@ function login()
 function register()
 {
     //gathers every data entered in the form using the POST method and trim() removes spaces or other parasite characters in the string
-    $name     = trim($_POST['name']);
-    $surname  = trim($_POST['surname']);
-    $email    = trim($_POST['email']);
+    $name = trim($_POST['name']);
+    $surname = trim($_POST['surname']);
+    $email = trim($_POST['email']);
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
