@@ -43,7 +43,7 @@ function login()
     if ($user['role'] === 'admin') {
         header('Location: ' . BASE_URL . '/index.php?action=dashboard');
     } else {
-        header('Location: ' . BASE_URL . '/index.php?action==default');
+        header('Location: ' . BASE_URL . '/index.php?action=default');
     }
     exit;
 }

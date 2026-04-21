@@ -62,7 +62,7 @@ function showArticle() //displays article's page
 
 function showCreateArticle() //displays creation article page, only for the admin
 {
-    //if the user is NOT logged in OR the user hasn't 'admin' as role, the function leads it to the login page
+    //if the user is NOT logged in OR the user hasn't 'admin' as role, the function leads it to the 403 page
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         show403();
         exit;
@@ -73,18 +73,21 @@ function showCreateArticle() //displays creation article page, only for the admi
 }
 
 
-function submitArticle()
+function submitArticle() //allows to submit an article
 {
+    //if the user is not logged OR the user role is not admin, displays 403 page
     if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         show403();
         exit;
     }
 
+    //
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: ' . BASE_URL . '/index.php?action=dashboard');
         exit;
     }
 
+    //get stuff from the form in the article creation's page 
     $title   = trim($_POST['title'] ?? '');
     $content = trim($_POST['content'] ?? '');
     $status  = $_POST['status'] ?? 'draft';

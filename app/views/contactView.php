@@ -68,7 +68,7 @@
       </div>
       <div class="contact-aside__note">
         <span class="contact-aside__note-icon">✦</span>
-        <p>je réponds généralement sous <strong>48h</strong>. pour les collaborations, merci de préciser ta marque et le type de partenariat souhaité.</p>
+        <p>je réponds généralement sous <strong>48h</strong>. pour les collaborations, merci de préciser votre marque et le type de partenariat souhaité.</p>
       </div>
     </aside>
   </div>

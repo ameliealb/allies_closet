@@ -62,6 +62,23 @@
         <?php endforeach; ?>
     <?php endif; ?>
 
+    <nav id="pagination">
+        <?php if ($page > 1): ?>
+            <a href="index.php?action=blog&page=<?php echo $page - 1; ?>">← précédent</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="index.php?action=blog&page=<?php echo $i; ?>"
+                <?php if ($i === $page): ?> class="activePage" <?php endif; ?>>
+                <?php echo $i; ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="index.php?action=blog&page=<?php echo $page + 1; ?>">suivant →</a>
+        <?php endif; ?>
+    </nav>
+
 </section>
 
 <?php require RACINE . '/app/views/layouts/footer.php'; ?>

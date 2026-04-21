@@ -11,7 +11,7 @@
 
         <section class="legal-section">
             <h3>01 — éditeur du site</h3>
-            <p>Le site <strong>Allie's Closet</strong> est édité par :</p>
+            <p>Le site <strong>Allie's Closet</strong> est détenu par :</p>
             <p>
                 Allison J. BOLDWIN<br>
                 5 Avenue Marceau, 75116 PARIS (FRANCE) et<br>
@@ -58,7 +58,8 @@
                 <li><strong>Graphiste</strong> : Christina AGUILERA</li>
                 <li><strong>Testeur</strong> : Dominic TORETTO</li>
                 <br>
-                <p>Mention honorable à Céline DION, traductrice durant toute la durée du projet.</p>
+                <p>Mention honorable à Céline DION, traductrice durant toute la durée du projet. <br>
+            Toute ressemblance avec des noms célèbres est purement fortuite.</p>
             </ul>
         </section>
 
