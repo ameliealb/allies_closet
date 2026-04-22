@@ -68,6 +68,20 @@ function register()
         return;
     }
 
+    //invalidate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "L'adresse email n'est pas valide.";
+        require RACINE . '/app/views/login/loginRegisterView.php';
+        return;
+    }
+
+    //username already used
+    if (findByUsername($username)) {
+        $error = "Ce nom d'utilisateur est déjà pris.";
+        require RACINE . '/app/views/login/loginRegisterView.php';
+        return;
+    }
+
     //password's length has to be at least 8 or more
     if (strlen($password) < 8) {
         $error = "Le mot de passe doit contenir au moins 8 caractères.";
@@ -98,7 +112,7 @@ function register()
 
     if (!isset($_POST['acceptTerms'])) {
         $error = "Tu dois accepter les politiques de confidentialité pour t'inscrire.";
-        require RACINE . '/app/views/auth/loginRegisterView.php';
+        require RACINE . '/app/views/login/loginRegisterView.php';
         return;
     }
 
@@ -108,7 +122,7 @@ function register()
         'surname' => $surname,
         'email' => $email,
         'username' => $username,
-        'password' => $password,
+        'password' => password_hash($password, PASSWORD_BCRYPT),  //password's hash absolutely needed
     ];
 
     //if everything's ok : creates a new user

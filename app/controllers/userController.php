@@ -40,10 +40,14 @@ function submitProfile()
     $avatar = $_SESSION['user']['avatar'];
 
     if (!empty($_FILES['avatar']['name'])) {
-        $fileName = uniqid() . '_' . basename($_FILES['avatar']['name']);
-        move_uploaded_file($_FILES['avatar']['tmp_name'], RACINE . '/public/images/' . $fileName);
-        $avatar = '/public/images/' . $fileName;
+    $fileName    = uniqid() . '_' . basename($_FILES['avatar']['name']);
+    $destPath    = RACINE . '/public/images/' . $fileName;
+    $fileContent = file_get_contents($_FILES['avatar']['tmp_name']);
+
+    if (file_put_contents($destPath, $fileContent) !== false) {
+        $avatar = BASE_URL . '/public/images/' . $fileName;
     }
+}
 
     $data = [
         'profile_description' => $profile_description,

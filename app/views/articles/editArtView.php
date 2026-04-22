@@ -2,7 +2,7 @@
 
 <div id="editArticleBlock">
 
-    <h2>modifier l'article</h2>
+    <h2>modify article</h2>
     <div class="underLine"></div>
 
     <?php if (!empty($error)): ?>
@@ -13,30 +13,30 @@
 
         <input type="hidden" name="id_article" value="<?php echo $article['id_article']; ?>">
 
-        <label>titre</label>
+        <label>title</label>
         <input type="text" name="title" value="<?php echo htmlspecialchars($article['title']); ?>" required>
 
-        <label>contenu</label>
+        <label>content</label>
         <textarea name="content" required><?php echo htmlspecialchars($article['content']); ?></textarea>
 
-        <label>statut</label>
+        <label>status</label>
         <select name="status">
-            <option value="published" <?php if ($article['status'] === 'published') echo 'selected'; ?>>publié</option>
-            <option value="draft" <?php if ($article['status'] === 'draft') echo 'selected'; ?>>brouillon</option>
-            <option value="archived" <?php if ($article['status'] === 'archived') echo 'selected'; ?>>archivé</option>
+            <option value="published" <?php if ($article['status'] === 'published') echo 'selected'; ?>>published</option>
+            <option value="draft" <?php if ($article['status'] === 'draft') echo 'selected'; ?>>draft</option>
+            <option value="archived" <?php if ($article['status'] === 'archived') echo 'selected'; ?>>archived</option>
         </select>
 
-        <label>image actuelle</label>
+        <label>actual pic</label>
         <?php if (!empty($article['article_image'])): ?>
             <img src="<?php echo htmlspecialchars($article['article_image']); ?>" alt="image actuelle">
         <?php else: ?>
-            <p>aucune image</p>
+            <p>no pic</p>
         <?php endif; ?>
 
-        <label>changer l'image</label>
+        <label>change pic</label>
         <input type="file" name="article_image" accept="image/*">
 
-        <button type="submit">sauvegarder</button>
+        <button type="submit">save</button>
 
     </form>
 

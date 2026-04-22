@@ -1,6 +1,6 @@
 <?php
 
-//displays forum's page and all messages (topics and replies) in the database ; works with JavaScript in the affected pages (indexArtView.php and indexForumView.php)
+//displays forum's page, paging and all the messages (topics and replies) in the database ; works with JavaScript on the affected page (indexForumView.php)
 function showForum()
 {
     $limit = 6; //6 messages per page max 

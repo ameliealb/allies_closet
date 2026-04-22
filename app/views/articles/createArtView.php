@@ -2,7 +2,7 @@
 
 <div class="container" id="createArticleView">
 
-    <h2>création d'un article</h2>
+    <h2>article creation</h2>
     <div class="underLine">&nbsp</div>
 
     <?php if (!empty($error)): ?>
@@ -12,16 +12,16 @@
     <!-- enctype is absolutely needed to upload an image -->
     <form method="POST" action="?action=submitArticle" enctype="multipart/form-data">
 
-        <input type="text" name="title" placeholder="titre" required>
+        <input type="text" name="title" placeholder="title" required>
 
-        <textarea name="content" placeholder="contenu de l'article" required></textarea>
+        <textarea name="content" placeholder="article content" required></textarea>
 
-        <label>catégorie</label>
+        <label>category</label>
         <select name="category">
-            <option value="mode">mode</option>
-            <option value="maquillage">maquillage</option>
-            <option value="chaussures">chaussures</option>
-            <option value="cheveux">cheveux</option>
+            <option value="mode">fashion</option>
+            <option value="maquillage">makeup</option>
+            <option value="chaussures">shoes</option>
+            <option value="cheveux">hair</option>
             <option value="skincare">skincare</option>
             <option value="lifestyle">lifestyle</option>
         </select>
@@ -32,9 +32,9 @@
         </select>
 
         <input type="file" name="article_image" accept="image/*">
-        <p>Attention : le poids de l'image ne doit pas dépasser les 2MB et doit être de préférence, pour une meilleure visibilité, horizontale.</p>
+        <p>Be careful ! The file chosen must not exceed 2MB and should preferably be a horizontal format.</p>
 
-        <button type="submit">publier</button>
+        <button type="submit">publish</button>
 
     </form>
 

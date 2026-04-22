@@ -1,11 +1,11 @@
 <?php
 
 
-function showBlog() //displays blog and paging
+function showBlog() //displays blog and paging,  and all the articles in the database ; works with JavaScript on the affected page (indexArtView.php)
 {
-    $limit = 6;
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $offset = ($page - 1) * $limit;
+    $limit = 6; //6 articles per page max 
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; //gets page's number ; if none, page 1 by default
+    $offset = ($page - 1) * $limit; //starting point in the database, like : page 2 -> offset = (2-1)*6=6, so starts at the 7th article
 
     if (!empty($_GET['search'])) {
         $keyword = trim($_GET['search']);

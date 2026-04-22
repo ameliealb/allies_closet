@@ -13,6 +13,15 @@ function findByEmail($email)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// looks for a user by his username
+function findByUsername($username)
+{
+    global $dbConnector;
+    $stmt = $dbConnector->prepare("SELECT * FROM USER_ WHERE username = ?");
+    $stmt->execute([$username]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 //creates a new user using the $data array (see in loginController.php)
 function createUser($data)
 {
@@ -23,7 +32,7 @@ function createUser($data)
     //'role' is automatically "member", because the client is and wants to be the only admin on the website
     $stmt = $dbConnector->prepare("INSERT INTO USER_ (password, name, surname, username, email, role) VALUES (?, ?, ?, ?, ?, 'member')");
     return $stmt->execute([
-        password_hash($data['password'], PASSWORD_BCRYPT), //password's hash absolutely needed
+        $data['password'],
         $data['name'],
         $data['surname'],
         $data['username'],
