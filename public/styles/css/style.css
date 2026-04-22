@@ -1106,27 +1106,33 @@ header #navHeader button:not(#burgerBtn):hover a {
 @media (min-width: 1024px) {
   #homeMain #secondBlock {
     flex-direction: row;
-    height: 960px;
+    height: 1280px;
     width: 80%;
     margin: 160px auto;
   }
 }
 #homeMain #secondArticleColumn #secondArticle,
-#homeMain #secondArticleColumn #thirdArticle, #homeMain #firstArticleColumn #firstArticle {
+#homeMain #secondArticleColumn #thirdArticle,
+#homeMain #secondArticleColumn #fourthArticle, #homeMain #firstArticleColumn #firstArticle,
+#homeMain #firstArticleColumn #fourthArticle {
   position: relative;
   border: 1px solid #c9a84c;
   box-sizing: border-box;
   overflow: hidden;
 }
 #homeMain #secondArticleColumn #secondArticle img,
-#homeMain #secondArticleColumn #thirdArticle img, #homeMain #firstArticleColumn #firstArticle img {
+#homeMain #secondArticleColumn #thirdArticle img,
+#homeMain #secondArticleColumn #fourthArticle img, #homeMain #firstArticleColumn #firstArticle img,
+#homeMain #firstArticleColumn #fourthArticle img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 #homeMain #secondArticleColumn #secondArticle::after,
-#homeMain #secondArticleColumn #thirdArticle::after, #homeMain #firstArticleColumn #firstArticle::after {
+#homeMain #secondArticleColumn #thirdArticle::after,
+#homeMain #secondArticleColumn #fourthArticle::after, #homeMain #firstArticleColumn #firstArticle::after,
+#homeMain #firstArticleColumn #fourthArticle::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -1136,7 +1142,9 @@ header #navHeader button:not(#burgerBtn):hover a {
   background: linear-gradient(to top, rgb(0, 0, 0), transparent);
 }
 #homeMain #secondArticleColumn #secondArticle h4,
-#homeMain #secondArticleColumn #thirdArticle h4, #homeMain #firstArticleColumn #firstArticle h4 {
+#homeMain #secondArticleColumn #thirdArticle h4,
+#homeMain #secondArticleColumn #fourthArticle h4, #homeMain #firstArticleColumn #firstArticle h4,
+#homeMain #firstArticleColumn #fourthArticle h4 {
   position: absolute;
   bottom: 12px;
   left: 16px;
@@ -1148,18 +1156,28 @@ header #navHeader button:not(#burgerBtn):hover a {
   z-index: 1;
 }
 #homeMain #firstArticleColumn {
-  height: 300px;
+  height: auto;
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 @media (min-width: 1024px) {
   #homeMain #firstArticleColumn {
     flex: 1;
-    height: auto;
+    gap: 0;
   }
 }
-#homeMain #firstArticleColumn #firstArticle {
+#homeMain #firstArticleColumn #firstArticle,
+#homeMain #firstArticleColumn #fourthArticle {
+  height: 200px;
   flex: 1;
+}
+@media (min-width: 1024px) {
+  #homeMain #firstArticleColumn #firstArticle,
+  #homeMain #firstArticleColumn #fourthArticle {
+    height: auto;
+    margin-bottom: 16px;
+  }
 }
 #homeMain #secondArticleColumn {
   display: flex;
@@ -1172,12 +1190,14 @@ header #navHeader button:not(#burgerBtn):hover a {
   }
 }
 #homeMain #secondArticleColumn #secondArticle,
-#homeMain #secondArticleColumn #thirdArticle {
+#homeMain #secondArticleColumn #thirdArticle,
+#homeMain #secondArticleColumn #fourthArticle {
   height: 200px;
 }
 @media (min-width: 1024px) {
   #homeMain #secondArticleColumn #secondArticle,
-  #homeMain #secondArticleColumn #thirdArticle {
+  #homeMain #secondArticleColumn #thirdArticle,
+  #homeMain #secondArticleColumn #fourthArticle {
     flex: 1;
     height: auto;
   }
@@ -1206,8 +1226,7 @@ header #navHeader button:not(#burgerBtn):hover a {
   }
 }
 #homeMain #communityBlock {
-  position: relative;
-  margin: 0 -16px;
+  margin: 16px -16px 0 -16px;
   background: linear-gradient(135deg, #2a2200 0%, #1a1500 50%, #0a0900 100%);
   padding: 32px 24px;
   display: flex;

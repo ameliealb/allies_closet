@@ -30,7 +30,9 @@
         foreach ($users as $user):
         ?>
             <div class="userRow">
-                <p><?php echo htmlspecialchars($user['username']); ?></p>
+                <p><a href="index.php?action=showProfile&id=<?php echo $user['id_user']; ?>">
+                        <?php echo htmlspecialchars($user['username']); ?>
+                    </a></p>
                 <p><?php echo htmlspecialchars($user['email']); ?></p>
                 <p><?php echo htmlspecialchars($user['role']); ?></p>
             </div>

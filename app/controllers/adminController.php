@@ -12,6 +12,7 @@ function showDashboard()
     //if not admin, displays 403 page (forbidden access)
     if ($_SESSION['user']['role'] !== 'admin') {
         show403();
+        exit;
     }
 
     //if logged AND admin then displays dashboard view

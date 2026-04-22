@@ -18,6 +18,8 @@ class Route
 
     public function route()
     {
+        require_once RACINE . "/app/controllers/errorController.php";
+        
         switch ($this->action) {
 
             case "default":

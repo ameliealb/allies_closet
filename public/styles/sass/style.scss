@@ -135,14 +135,14 @@ body {
   }
 
   .logoHeaderFooter {
-      width: 40px !important;
-      height: auto !important;
-      object-fit: unset !important;
+    width: 40px !important;
+    height: auto !important;
+    object-fit: unset !important;
 
-      @include respond-to('md') {
-        width: 56px !important;
-      }
+    @include respond-to('md') {
+      width: 56px !important;
     }
+  }
 
   #categoriesNav {
     display: flex;
@@ -1135,7 +1135,7 @@ header {
 
     @include respond-to('md') {
       flex-direction: row;
-      height: 960px;
+      height: 1280px;
       width: 80%;
       margin: 160px auto;
     }
@@ -1178,18 +1178,26 @@ header {
   }
 
   #firstArticleColumn {
-    height: 300px;
+    height: auto;
     display: flex;
     flex-direction: column;
+    gap:16px;
 
     @include respond-to('md') {
       flex: 1;
-      height: auto;
+      gap:0;
     }
 
-    #firstArticle {
+    #firstArticle,
+    #fourthArticle {
       @extend %articleBase;
+      height:200px;
       flex: 1;
+
+      @include respond-to('md') {
+      height: auto;
+      margin-bottom: 16px;
+    }
     }
   }
 
@@ -1203,7 +1211,8 @@ header {
     }
 
     #secondArticle,
-    #thirdArticle {
+    #thirdArticle,
+    #fourthArticle {
       @extend %articleBase;
       height: 200px;
 
@@ -1238,8 +1247,7 @@ header {
   }
 
   #communityBlock {
-    position: relative;
-    margin: 0 -16px;
+    margin: 16px -16px 0 -16px;
     background: linear-gradient(135deg, #2a2200 0%, #1a1500 50%, #0a0900 100%);
     padding: 32px 24px;
     display: flex;
@@ -2834,7 +2842,7 @@ header {
 /*==========ABOUT PAGE==========*/
 
 #aboutPage {
-  margin-bottom:16px;
+  margin-bottom: 16px;
 
   @include respond-to('md') {
     margin: 280px 0 0 64px;
@@ -2847,7 +2855,7 @@ header {
     min-height: 10vh;
     overflow: hidden;
 
-    .underLine{
+    .underLine {
       width: 100%;
     }
 

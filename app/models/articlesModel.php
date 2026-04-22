@@ -35,6 +35,24 @@ function getArticlesByCategory($category, $limit, $offset) //the user selects a 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+//gets the last article
+function getLastArticle()
+{
+    global $dbConnector;
+    $stmt = $dbConnector->prepare("SELECT * FROM ARTICLE WHERE status = 'published' ORDER BY date_of_creation DESC LIMIT 1");
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+//gets X last articles
+function getLatestArticles($limit)
+{
+    global $dbConnector;
+    $limit = (int)$limit;
+    $stmt = $dbConnector->prepare("SELECT * FROM ARTICLE WHERE status = 'published' ORDER BY date_of_creation DESC LIMIT " . $limit);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 function countArticlesByCategory($category)
 {
     global $dbConnector;
