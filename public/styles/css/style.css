@@ -103,7 +103,6 @@ body a {
 body h2 {
   font-family: "Playfair Display";
   font-size: 1.8rem;
-  margin-top: 120px;
   font-weight: 400;
 }
 @media (min-width: 1024px) {
@@ -1673,11 +1672,10 @@ header #navHeader button:not(#burgerBtn):hover a {
 #editArticleBlock form button {
   display: block;
   align-self: flex-start;
-  border: 1px solid #DAAF50;
+  background-color: #DAAF50;
   color: #000000;
-  padding: 10px 20px;
+  padding: 8px 16px;
   font-size: 1rem;
-  background: transparent;
   cursor: pointer;
   font-family: "Poppins";
   margin-top: 1rem;
@@ -1690,7 +1688,8 @@ header #navHeader button:not(#burgerBtn):hover a {
   }
 }
 #editArticleBlock form button:hover {
-  background-color: rgba(218, 175, 80, 0.1);
+  border: 1px solid #DAAF50;
+  background-color: #000000;
 }
 
 /*==========LOGIN/REGISTER==========*/
@@ -2137,23 +2136,21 @@ header #navHeader button:not(#burgerBtn):hover a {
 }
 #showArticleBlock #commentsBlock #commentForm button {
   display: block;
-  border: 1px solid #DAAF50;
   color: #000000;
-  padding: 10px 20px;
-  font-size: 11px;
-  background: transparent;
+  background-color: #DAAF50;
+  padding: 8px 16px;
+  font-size: 1rem;
   cursor: pointer;
   font-family: "Poppins";
 }
 @media (min-width: 1024px) {
   #showArticleBlock #commentsBlock #commentForm button {
     padding: 10px 28px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
   }
 }
 #showArticleBlock #commentsBlock #commentForm button:hover {
-  background-color: rgba(218, 175, 80, 0.1);
+  background-color: #000000;
+  border: 1px solid #DAAF50;
 }
 #showArticleBlock #commentsBlock > p:last-of-type {
   margin-top: 2rem;
@@ -2887,7 +2884,7 @@ header #navHeader button:not(#burgerBtn):hover a {
 
 /*==========ABOUT PAGE==========*/
 #aboutPage {
-  margin: 120px 0 0 16px;
+  margin-bottom: 16px;
 }
 @media (min-width: 1024px) {
   #aboutPage {
@@ -2900,6 +2897,9 @@ header #navHeader button:not(#burgerBtn):hover a {
   grid-template-columns: 1fr;
   min-height: 10vh;
   overflow: hidden;
+}
+#aboutPage .about-hero .underLine {
+  width: 100%;
 }
 @media (min-width: 1024px) {
   #aboutPage .about-hero {

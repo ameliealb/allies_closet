@@ -4,16 +4,14 @@
 
     <!-- Hero -->
     <section class="about-hero">
-        <div class="about-hero__bg"></div>
-        <div class="about-hero__content">
-            <span class="about-hero__eyebrow">à propos</span>
-            <h1 class="about-hero__title">je suis <em>Allison</em>,<br>et voici mon dressing</h1>
-        </div>
+            <h2>à propos</h2>
+            <div class="underLine">&nbsp;</div>
+            <p class="about-hero__title">je suis <em>Allison</em>,<br>et voici mon dressing</p>
     </section>
 
     <!-- Intro -->
     <section class="about-intro">
-        <div class="about-intro__number">01</div>
+        <div class="about-intro__number">✦</div>
         <div class="about-intro__text">
             <h2 class="about-intro__title">qui je suis</h2>
             <p>Bienvenue sur <strong>Allie's Closet</strong> — un espace pensé pour celles qui refusent de choisir entre le fond et la forme. Ici, la mode est un langage, une armure, une déclaration.</p>

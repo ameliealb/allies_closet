@@ -17,7 +17,7 @@
 
             <?php if (isset($_SESSION['user'])): ?>
                 <a href="index.php?action=toggleLikeArticle&id_article=<?php echo $article['id_article']; ?>">
-                    <?php echo $hasLiked ? '♡ retirer le like' : '♥︎ liker'; ?>
+                    <?php echo $hasLiked ? '♥︎ retirer le like' : '♡ liker'; ?>
                 </a>
             <?php endif; ?>
         </div>
@@ -57,7 +57,7 @@
 
                 <form method="POST" action="index.php?action=submitComment">
                     <input type="hidden" name="id_article" value="<?php echo $article['id_article']; ?>">
-                    <textarea name="content" placeholder="ton commentaire..." required></textarea>
+                    <textarea name="content" placeholder="votre commentaire..." required></textarea>
                     <button type="submit">publier</button>
                 </form>
             </section>

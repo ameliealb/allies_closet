@@ -24,7 +24,7 @@
             <input type="text" name="surname" placeholder="Prénom" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="username" placeholder="Pseudonyme" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
+            <input type="password" name="password" placeholder="Mot de passe (min 8 carac, 1 maj, 1 chiffre)" required>
             <div id="checkboxGroup">
                 <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
                 <label for="acceptTerms">
